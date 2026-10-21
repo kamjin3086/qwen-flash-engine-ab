@@ -4,7 +4,7 @@
     {
       "bytes": 9916,
       "path": "README.md",
-      "sha256": "c73e646446711b7812a29c7ab7aabcee3e564bafad114866903c6f5619c7d09a"
+      "sha256": "95dcf4ecbccbf998e18756dedc197f5c83c3c04e9368adc0db05aa403154b828"
     },
     {
       "bytes": 2958,
@@ -27,9 +27,9 @@
       "sha256": "521a1d509ad97ce1b51e62e5f9173cd9d90bc6613bbb92c2131540728627d787"
     },
     {
-      "bytes": 67264,
+      "bytes": 68352,
       "path": "docs/index.html",
-      "sha256": "81dcf8539c633810f4aa1d2b80ed860f33665cddb5d9ecd2212ba2cdae587e6e"
+      "sha256": "20638b80ef0867cbc03a961d988aa316aa8d967cd384a494a42c250b3848d54e"
     },
     {
       "bytes": 2119,
@@ -152,9 +152,9 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 44713,
+      "bytes": 45190,
       "path": "report/render.py",
-      "sha256": "ddb66edbbd54063fbe5ba9a07cff227218165f286b3d94b75492219d58745b4c"
+      "sha256": "22554ab2384774614eb4e9afd445e865fa6eed48c2460626b511581f70b498a2"
     },
     {
       "bytes": 26420,
@@ -222,14 +222,14 @@
       "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
-      "bytes": 18915,
+      "bytes": 19448,
       "path": "results/issue-body.md",
-      "sha256": "70afb8028ab395623a7a045a6453e691e4ea05f754c899dab80b62e475c75295"
+      "sha256": "0f802c69bf9ecb4c335b98574c1403ad4428ce48f53921cd54efbff1ac03cfe9"
     },
     {
-      "bytes": 10214,
+      "bytes": 10747,
       "path": "results/findings.md",
-      "sha256": "4bfc331b11e2ea6f4059725efe24e51036be66776f710547e57f8ab71dd817f7"
+      "sha256": "102f9b99d8bd9da80216239b5885a97a79b46a655508b6068687ff82ccc445c1"
     },
     {
       "bytes": 5706,

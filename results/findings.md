@@ -10,9 +10,10 @@ Everything below is a value from the tables above. Nothing here is a judgement o
 model, only of what came out of each engine.
 
 **How many times each number was measured.** Prefill and decode at the author's sizes are
-the median of three runs. Everything else is one observation: the 32K / 128K / 262K prefill
-and first-token figures, both retrieval depths, the tool call, the concurrency rows, the two
-prefix requests, the two starts, and the artifacts were each measured once. One observation
+the median of three runs. Everything else is one observation: both retrieval depths, the tool call, the concurrency
+rows, the two prefix requests, the two starts, and the artifacts were each measured once. The
+32K / 128K / 262K prefill and first-token points were repeated after the run; they are in the
+Variance table, not in this sentence. One observation
 on one machine is enough to say *this is how it behaved here*; it is not a distribution. The
 prefill ratio is quoted because it holds across four prompt sizes, not because it was
 repeated.
@@ -27,7 +28,9 @@ worth the machine time.
 ## Where the two engines actually differ
 
 **Prefill is the real gap, and it is uniform.** Halogen is faster at every context length
-I measured, and the ratio barely moves (1.28× at ~2.7K, 1.36–1.37× from 32K to 262K). Both
+I measured, and the ratio barely moves (1.28× at the author's size, 1.36–1.37× from 32K to
+262K; 1.36–1.39× across those points and their repetitions). The author's-size ratio compares
+2,737 tokens against 3,110, because the two tokenizers disagree on the same text. Both
 engines lose about the same share of their speed as the prompt grows (−7.7 % and −6.8 %
 from 32K to 262K), so this is not a long-context effect: it is a constant factor on
 forward pass throughput.
@@ -42,7 +45,7 @@ page, and they make that statement precise: the prefill ranges do not overlap, s
 there is not noise; the decode ranges overlap on chat and separate on prose and code, in
 opposite directions. The ordering depends on the prompt class more than on the engine.
 
-**Time to first token at 250K** follows the prefill gap: 148 s against 204 s.
+**Time to first token at 262K** follows the prefill gap: 148 s against 204 s.
 
 **Startup is the largest single difference in the whole comparison.** 37 s against 561 s
 on a first start after clearing caches, and 16 s against 43 s on a warm start. The first
@@ -50,13 +53,15 @@ number is what a new user meets; the second is what an existing user meets every
 
 ## Parallel requests buy latency isolation, not throughput
 
-Four 8K-prompt, 512-token requests released at once:
+Four 8K-prompt, 512-token requests released at once. *Aggregate* is all output tokens over
+the whole wall time, prompt processing included; *per request* is decode only, measured from
+the first token. They are not expected to match.
 
 | | wall | aggregate | per request | first token (median) |
 |---|---:|---:|---:|---:|
 | Halogen, 1 request | 10.1 s | 35.1 tok/s | 60.8 tok/s | 4.3 s |
 | Halogen, 4 requests | 33.4 s | 42.4 tok/s | 16.6 tok/s | 11.6 s |
-| Kyojin, 1 request | 12.3 s | 28.5 tok/s | 53.4 tok/s | 5.8 s |
+| Kyojin, 1 request | 12.3 s | 28.4 tok/s | 53.4 tok/s | 5.8 s |
 | Kyojin, 4 requests | 45.6 s | 31.6 tok/s | 16.3 tok/s | 23.0 s |
 
 Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 % on
@@ -87,7 +92,7 @@ faster in absolute terms, and its cache covered a larger share of the prompt.
 
 Both engines retrieved a fact planted at 40 % and at 85 % of a 250K prompt, both emitted
 a correctly-formed tool call with arguments, and both identified the colour in a generated
-image. On this evidence there is no capability gap in the paths an agent uses.
+image. On these three probes there is no capability gap in the paths an agent uses.
 
 At `xhigh` thinking effort on the same prompt, Halogen spent 60 reasoning tokens and
 Kyojin 170. That is a difference in how much the template asks for, not a quality measure.
@@ -116,8 +121,9 @@ Thirteen cases whose answers a script decides: 11 passed on Halogen, 8 on Kyojin
 
 - **8 pass on both**, five of them with byte-identical output.
 - **2 fail on both, identically**: a run-length encoder that cannot round-trip digits
-  (`AbC123!` decodes to `AbC!!!!…` on both engines) and a vowel count that both report as
-  16 where the sentence has 17. These are properties of the pack, not of the engine.
+  (`AbC123!` decodes to `AbC!!!!…` on both engines), and the JSON-shape case, where both
+  report 16 vowels for a sentence that has 17 (`d-json-shape`). That is consistent with the
+  pack, but it is a hypothesis from one run, not a measurement of the cause.
 - **3 differ, all three wrong on Kyojin**: a bat-and-ball problem answered 0.10 instead of
   0.05, a painted-cube count answered 4 instead of 12, and a geometric sequence answered
   with the 11th term instead of the 10th.

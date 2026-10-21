@@ -314,7 +314,9 @@ def variance_table(summary: dict) -> str:
     return ('<h2>Variance</h2>'
             '<p class="sub">The same configuration measured three times in one start, for '
             'the numbers the verdict leans on. The headline table above is the original run; '
-            "this is how far a repetition of it travels. Decode rows are the original "
+            "this is how far a repetition of it travels. These were measured in a separate "
+            "start, so their medians sit a little away from the headline column; the table is "
+            "the spread within a start, not absolute agreement between sessions. Decode rows are the original "
             "run's three repetitions per prompt class, the same data as Repetitions above; "
             "the context rows were re-measured.</p>"
             f'{notes}'
@@ -755,6 +757,8 @@ Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 
 {abort_band(m)}
 {cell_table(m)}
+<p class="sub">Tok/s for prefill and decode; seconds for time to first token and startup.
+How often each value was measured is in Repetitions.</p>
 {note_html}
 {spread_table(m)}
 {variance_table(summary)}
@@ -778,8 +782,9 @@ comparable to the gallery's timings; they are here so you can click them.</p>
 <p class="sub">Every number above traces to one of these files. The report page is derived; the raw records are
 the artifact of record.</p>
 <ul>{csv_link}{"".join(f'<li><a href="{escape(rel(p))}">{escape(p)}</a></li>'
-             for p in sorted({e["raw_path"] for e in m if e["raw_path"]})
-             if (LINK_ROOT / p).is_file())}</ul>
+             for p in sorted({e["raw_path"] for e in m if e["raw_path"]}
+                             | {v.get("raw_path") for v in summary.get("variance") or [] if v.get("raw_path")})
+             if p and (LINK_ROOT / p).is_file())}</ul>
 
 <p class="sub">Method, abort rules and the two ADRs that explain why there is one arm:
 <a href="../README.md">README</a> &middot; <a href="../docs/adr/0001-single-arm-halogen-as-yardstick.md">ADR-0001</a>,
