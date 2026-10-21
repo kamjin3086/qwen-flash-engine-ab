@@ -346,6 +346,27 @@ class SummaryValidationTest(unittest.TestCase):
         self.assertNotEqual(p.returncode, 0)
         self.assertIn("status", p.stderr)
 
+    def test_a_valid_variance_block_is_accepted(self):
+        good = json.loads(json.dumps(self.good))
+        good["schema"] = 2
+        good["variance"] = [{"engine": "halogen", "phase": "variance-halogen",
+                             "metric": "ttft_s", "unit": "s", "condition": "prompt ~262K",
+                             "n": 3, "median": 149.1, "min": 149.0, "max": 149.3,
+                             "raw_path": "runs/variance-halogen/variance.json"}]
+        self.assertEqual(self.render_with(good).returncode, 0)
+
+    def test_a_variance_block_with_impossible_statistics_is_refused(self):
+        bad = json.loads(json.dumps(self.good))
+        bad["schema"] = 2
+        bad["variance"] = [{"engine": "halogen", "phase": "variance-halogen",
+                            "metric": "ttft_s", "unit": "s", "condition": "prompt ~262K",
+                            "n": 1, "median": 149.1, "min": 149.5, "max": 149.0,
+                            "raw_path": "x"}]
+        p = self.render_with(bad)
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn("at least two repetitions", p.stderr)
+        self.assertIn("out of order", p.stderr)
+
     def test_counts_that_disagree_are_refused(self):
         bad = json.loads(json.dumps(self.good))
         bad["counts"]["measured"] = 7

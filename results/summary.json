@@ -1540,7 +1540,7 @@
     "kyojin-s4",
     "kyojin-extra"
   ],
-  "schema": 1,
+  "schema": 2,
   "variance": [
     {
       "condition": "prompt ~32K",
@@ -1550,8 +1550,8 @@
       "metric": "prefill_tps",
       "min": 1840.008,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1562,8 +1562,8 @@
       "metric": "ttft_s",
       "min": 16.405,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "s"
     },
     {
@@ -1574,8 +1574,8 @@
       "metric": "prefill_tps",
       "min": 1789.548,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1586,8 +1586,8 @@
       "metric": "ttft_s",
       "min": 67.986,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "s"
     },
     {
@@ -1598,8 +1598,8 @@
       "metric": "prefill_tps",
       "min": 1692.525,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1610,8 +1610,8 @@
       "metric": "ttft_s",
       "min": 149.003,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "s"
     },
     {
@@ -1622,8 +1622,8 @@
       "metric": "aggregate_decode_tps",
       "min": 39.19,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1634,8 +1634,8 @@
       "metric": "per_request_decode_tps",
       "min": 26.494999999999997,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1646,9 +1646,48 @@
       "metric": "ttft_p50_s",
       "min": 16.3205,
       "n": 3,
-      "phase": "halogen",
-      "raw_path": "runs/halogen/variance.json",
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
       "unit": "s"
+    },
+    {
+      "condition": "decode prose",
+      "engine": "halogen",
+      "max": 49.6,
+      "median": 49.5,
+      "metric": "decode_tps",
+      "min": 47.4,
+      "n": 3,
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
+      "source": "bench.py, original run (runs/halogen/bench.txt)",
+      "unit": "tok/s"
+    },
+    {
+      "condition": "decode chat",
+      "engine": "halogen",
+      "max": 54.7,
+      "median": 53.6,
+      "metric": "decode_tps",
+      "min": 51.1,
+      "n": 3,
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
+      "source": "bench.py, original run (runs/halogen/bench.txt)",
+      "unit": "tok/s"
+    },
+    {
+      "condition": "decode code",
+      "engine": "halogen",
+      "max": 61.6,
+      "median": 60.8,
+      "metric": "decode_tps",
+      "min": 60.5,
+      "n": 3,
+      "phase": "variance-halogen",
+      "raw_path": "runs/variance-halogen/variance.json",
+      "source": "bench.py, original run (runs/halogen/bench.txt)",
+      "unit": "tok/s"
     },
     {
       "condition": "prompt ~32K",
@@ -1658,8 +1697,8 @@
       "metric": "prefill_tps",
       "min": 1329.4110222000713,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1670,8 +1709,8 @@
       "metric": "ttft_s",
       "min": 23.377,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "s"
     },
     {
@@ -1682,8 +1721,8 @@
       "metric": "prefill_tps",
       "min": 1285.3182080767438,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1694,8 +1733,8 @@
       "metric": "ttft_s",
       "min": 96.397,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "s"
     },
     {
@@ -1706,8 +1745,8 @@
       "metric": "prefill_tps",
       "min": 1243.5014346766764,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1718,8 +1757,8 @@
       "metric": "ttft_s",
       "min": 205.761,
       "n": 3,
-      "phase": "kyojin-s1",
-      "raw_path": "runs/kyojin-s1/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "s"
     },
     {
@@ -1730,8 +1769,8 @@
       "metric": "aggregate_decode_tps",
       "min": 31.76,
       "n": 3,
-      "phase": "kyojin-s4",
-      "raw_path": "runs/kyojin-s4/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1742,8 +1781,8 @@
       "metric": "per_request_decode_tps",
       "min": 16.225,
       "n": 3,
-      "phase": "kyojin-s4",
-      "raw_path": "runs/kyojin-s4/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "tok/s"
     },
     {
@@ -1754,9 +1793,48 @@
       "metric": "ttft_p50_s",
       "min": 22.7285,
       "n": 3,
-      "phase": "kyojin-s4",
-      "raw_path": "runs/kyojin-s4/variance.json",
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
       "unit": "s"
+    },
+    {
+      "condition": "decode prose",
+      "engine": "kyojin",
+      "max": 54.6,
+      "median": 53.4,
+      "metric": "decode_tps",
+      "min": 52.6,
+      "n": 3,
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
+      "source": "bench.py, original run (runs/kyojin-s1/bench.txt)",
+      "unit": "tok/s"
+    },
+    {
+      "condition": "decode chat",
+      "engine": "kyojin",
+      "max": 51.9,
+      "median": 50.9,
+      "metric": "decode_tps",
+      "min": 50.3,
+      "n": 3,
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
+      "source": "bench.py, original run (runs/kyojin-s1/bench.txt)",
+      "unit": "tok/s"
+    },
+    {
+      "condition": "decode code",
+      "engine": "kyojin",
+      "max": 57.8,
+      "median": 56.8,
+      "metric": "decode_tps",
+      "min": 53.0,
+      "n": 3,
+      "phase": "variance-kyojin",
+      "raw_path": "runs/variance-kyojin/variance.json",
+      "source": "bench.py, original run (runs/kyojin-s1/bench.txt)",
+      "unit": "tok/s"
     }
   ]
 }

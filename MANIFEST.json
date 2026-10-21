@@ -1,10 +1,10 @@
 {
-  "count": 142,
+  "count": 143,
   "files": [
     {
-      "bytes": 9966,
+      "bytes": 9916,
       "path": "README.md",
-      "sha256": "ca09826ba5deb4188342f53ae0e25481df24991882a6b53edbe820aeb57051fe"
+      "sha256": "27f3e772ddac68622de2dc2d879cdfbf7218870042de3df6927a15fa6b37e167"
     },
     {
       "bytes": 2958,
@@ -22,14 +22,14 @@
       "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
     },
     {
-      "bytes": 22040,
+      "bytes": 22904,
       "path": "bench.sh",
-      "sha256": "182ff1f3b09f14dd0ff56c94fef80d0a78a8064d33195aff681c5da144a1f6e5"
+      "sha256": "521a1d509ad97ce1b51e62e5f9173cd9d90bc6613bbb92c2131540728627d787"
     },
     {
-      "bytes": 66725,
+      "bytes": 67856,
       "path": "docs/index.html",
-      "sha256": "35e69c34d99ee3fc1e3be3c82c2789d1f6aa505ddd8119ee3e606b1003cadeff"
+      "sha256": "c3dc3ad47ab345bb20a97fb7ec4d36d0b63b09c955c7eeb3d69445b715a8e221"
     },
     {
       "bytes": 2119,
@@ -152,14 +152,14 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 42230,
+      "bytes": 44084,
       "path": "report/render.py",
-      "sha256": "9b74d465084e3c6ae2143a15b9cfc2b66c4856b9c182c13eac26c165b99e0f20"
+      "sha256": "e115aa5ac5fc3fc22031d322a48156daf0f573c3bcef557ad492375683077d7b"
     },
     {
-      "bytes": 24987,
+      "bytes": 25603,
       "path": "report/summary.py",
-      "sha256": "4edd24a46c6bc8f36a9f8f7dad08a2241f594d1fd20e47d3e816d5cc6217109f"
+      "sha256": "74c4a2eff38d52a044afb22effe27f5acfca7c094610e147ef98f7f51e6d78d3"
     },
     {
       "bytes": 7657,
@@ -192,9 +192,9 @@
       "sha256": "5e267f6ef66ff8ed62f64c8500fcd0248f190aa203c8bd35f4e036e5a6892a50"
     },
     {
-      "bytes": 18157,
+      "bytes": 19317,
       "path": "tests/test_guards.py",
-      "sha256": "38bfca53881d4ad961f802477977202e3d84ea555e5447a399e1f1ee088b8605"
+      "sha256": "b9d06f24ea81e5e2e1e26f9532f2cdd8fa16b82c32946ecacd805046aff41c97"
     },
     {
       "bytes": 4927,
@@ -202,9 +202,9 @@
       "sha256": "d1af77b71b8fe0d6f23670136dd1ab391dfcc84779f182ea9c2c93cf702ee12a"
     },
     {
-      "bytes": 15980,
+      "bytes": 17056,
       "path": "tests/test_report.py",
-      "sha256": "c892bf5ff45dee558bacb55748a6ab2f48416a48bd4c2c0d15ec829e9d924589"
+      "sha256": "aee3185a1f9a6b1b004d5dc042b8804c2026d2f239b695f54021a53dc8cd8570"
     },
     {
       "bytes": 4199,
@@ -212,9 +212,9 @@
       "sha256": "326163ac77c922d2406b5abece85da8040c6b956d767aaacc03dd4aadc1b386b"
     },
     {
-      "bytes": 59148,
+      "bytes": 61571,
       "path": "results/summary.json",
-      "sha256": "922328afd6724f99cac30bcbc152f96fc09652443488b8e562b19fe5e220f996"
+      "sha256": "15e7cde31b98d271c1291a6b87dcbec73d3699ddc1ee3b0046800c0ce0069a46"
     },
     {
       "bytes": 22927,
@@ -222,9 +222,9 @@
       "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
-      "bytes": 18259,
+      "bytes": 18772,
       "path": "results/issue-body.md",
-      "sha256": "4095d729ac90254d3025f2f2fe259031b1ba3a09895fe14b03b93e855f365dcd"
+      "sha256": "1dbbe1a193875c24cab08795cf0ed4a4cfc846578b15e5cff52d501a7d3e62be"
     },
     {
       "bytes": 9934,
@@ -295,11 +295,6 @@
       "bytes": 597,
       "path": "runs/halogen/tool.json",
       "sha256": "c04cfd5e5bafcbf4f9b04550e108c8dac75a5992ae09beaaacd1235327bee427"
-    },
-    {
-      "bytes": 60028,
-      "path": "runs/halogen/variance.json",
-      "sha256": "ac54b2d7602f28a110e2742a2e58f584c583f459054b3fac21f26843f022bbc6"
     },
     {
       "bytes": 1032,
@@ -377,11 +372,6 @@
       "sha256": "924a9c2bf84ddb81820c41815949e756b994bf873704eb34f6802c9126bae446"
     },
     {
-      "bytes": 11434,
-      "path": "runs/kyojin-s1/variance.json",
-      "sha256": "3fe579713af0c1fd9e196a842c621e6a80c10792d6ddb0e2d6752d51e2a050d1"
-    },
-    {
       "bytes": 647,
       "path": "runs/kyojin-s1/warmup.json",
       "sha256": "5f31d64b58258c89e5da9a1766ab815ef6c4edc869d0556d4f712df677b7597a"
@@ -400,11 +390,6 @@
       "bytes": 404,
       "path": "runs/kyojin-s4/health.json",
       "sha256": "aa31161d6c5c636e82f89454b15adad304d9b9b2f13fab62e7869d05dff95237"
-    },
-    {
-      "bytes": 16008,
-      "path": "runs/kyojin-s4/variance.json",
-      "sha256": "c14dec2b82a5be0987f384f575b3edbb80525646b1d24679187100588b65248a"
     },
     {
       "bytes": 7448,
@@ -440,6 +425,16 @@
       "bytes": 768,
       "path": "runs/smoke/tool.json",
       "sha256": "bcc86576bd8b472fa27556480c76e3183e26d532977e53269c4b55df46e5d68a"
+    },
+    {
+      "bytes": 60510,
+      "path": "runs/variance-halogen/variance.json",
+      "sha256": "e8e6a56443474458bed44be37bd4786c1f6dc229b623800649d51e3316f6383e"
+    },
+    {
+      "bytes": 27929,
+      "path": "runs/variance-kyojin/variance.json",
+      "sha256": "cb6f35cc8427351c6b665f1cc94d73c664381e8838d81f32140cb27ce77cf408"
     },
     {
       "bytes": 63,
@@ -580,6 +575,16 @@
       "bytes": 31,
       "path": "runs/restore/stop-state.txt",
       "sha256": "fd8cff69142dfc05a914f5a2e6cffc936770a37dfe73cdb6d19a848bbc244f2d"
+    },
+    {
+      "bytes": 444,
+      "path": "runs/variance-halogen/env.txt",
+      "sha256": "a4b6d4c98b9ddcb0fa66c167615700592db4e9a8ede162d58cdcce04be112cf3"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/variance-kyojin/env.txt",
+      "sha256": "eb3e87774899b6e1db1ceb857cac58a189ca32aac1bcd2d9c4c29821b3ed6639"
     },
     {
       "bytes": 5850,

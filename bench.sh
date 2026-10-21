@@ -369,9 +369,9 @@ cmd_variance() { # label — repetitions of the claims the verdict leans on
   resolve_digests
   local label="${1:?usage: bench.sh variance <label>}"
   local url; case "$label" in halogen) url="$HALOGEN_URL";; *) url="$KYOJIN_URL";; esac
-  local d; d=$(phase_dir "$label")
+  local d; d=$(phase_dir "variance-$label"); record_env "$d"
   local tmp; tmp=$(mktemp -d)
-  log "[$label] variance: 3 x prefill/TTFT at 32K/128K/262K and 3 x N=4"
+  log "[$label] variance: 3 x prefill/TTFT at 32K/128K/262K, 3 x N=4, 1 x decode (3 reps/class)"
   local i
   for i in 1 2 3; do
     "$PY" "$KB" --base "$url/v1" --label "$label" --phase "$label" --digest "$(digest_for "$url")" \
@@ -379,15 +379,30 @@ cmd_variance() { # label — repetitions of the claims the verdict leans on
     "$PY" "$KB" --base "$url/v1" --label "$label" --phase "$label" --digest "$(digest_for "$url")" \
       --out "$tmp/conc4-$i.json" conc --n 4 --prompt-tokens 8000 --max-tokens 512
   done
-  "$PY" - "$tmp" "$d/variance.json" <<'PY'
-import json, sys
+  # one upstream bench.py pass records three repetitions for each decode class
+  ( cd "$ROOT/vendor/kyojin" && "$PY" tools/bench.py --base "$url/v1" --reps 3 --json ) \
+    > "$tmp/bench.txt" 2>/dev/null || log "[$label] decode benchmark failed (recorded)"
+  "$PY" - "$tmp" "$d/variance.json" "$label" <<'PY'
+import json, re, sys
 from pathlib import Path
-tmp, out = Path(sys.argv[1]), Path(sys.argv[2])
+tmp, out, label = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3]
 def reps(prefix):
     return [json.loads(p.read_text()) for p in sorted(tmp.glob(f"{prefix}-*.json"))]
-doc = {"ctx": reps("ctx"), "conc4": reps("conc4")}
+decode = {}
+bench = tmp / "bench.txt"
+if bench.is_file():
+    m = re.search(r"```json\n(.*?)```", bench.read_text(), re.S)
+    if m:
+        bj = json.loads(m.group(1))
+        decode = {"source": "bench.py, this run (3 reps per class)",
+                  "classes": {cat: {"tok_s": blob.get("tok_s"), "runs": blob.get("runs")}
+                              for cat, blob in (bj.get("decode") or {}).items()}}
+doc = {"engine": label, "ctx": reps("ctx"), "conc4": reps("conc4")}
+if decode:
+    doc["decode"] = decode
 out.write_text(json.dumps(doc, indent=1))
-print(f"{out}: {len(doc['ctx'])} ctx reps, {len(doc['conc4'])} concurrency reps")
+print(f"{out}: {len(doc['ctx'])} ctx reps, {len(doc['conc4'])} concurrency reps, "
+      f"{len(decode.get('classes', {}))} decode classes")
 PY
   rm -rf "$tmp"
   log "variance done: $d"

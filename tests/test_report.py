@@ -205,6 +205,25 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(spreads[("decode_tps", "decode chat")],
                          {"n": 3, "min": 51.1, "max": 54.7})
 
+    def test_variance_rows_render_as_a_table(self):
+        fixture = json.loads(json.dumps(FIXTURE))
+        fixture["schema"] = 2
+        fixture["variance"] = [
+            {"engine": "halogen", "phase": "variance-halogen", "metric": "decode_tps",
+             "unit": "tok/s", "condition": "decode chat", "n": 3, "median": 53.6,
+             "min": 51.1, "max": 54.7, "raw_path": "runs/variance-halogen/variance.json"},
+            {"engine": "halogen", "phase": "variance-halogen", "metric": "ttft_s",
+             "unit": "s", "condition": "prompt ~262K", "n": 3, "median": 149.1,
+             "min": 149.003, "max": 149.307, "raw_path": "runs/variance-halogen/variance.json"},
+        ]
+        self.summary_path.write_text(json.dumps(fixture))
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html, md = (out / "index.html").read_text(), issue.read_text()
+        self.assertIn("<h2>Variance</h2>", html)
+        self.assertIn("149.0–149.3", html)
+        self.assertIn("| Decode | decode chat | Halogen | 3 |", md)
+
     def test_privacy_guard_refuses_a_host_path(self):
         (self.tmp / "results").mkdir(exist_ok=True)
         (self.tmp / "results" / "findings.md").write_text("the log lives in /home/someone/apps\n")

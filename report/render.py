@@ -313,7 +313,9 @@ def variance_table(summary: dict) -> str:
     return ('<h2>Variance</h2>'
             '<p class="sub">The same configuration measured three times in one start, for '
             'the numbers the verdict leans on. The headline table above is the original run; '
-            'this is how far a repetition of it travels.</p>'
+            "this is how far a repetition of it travels. Decode rows are the original "
+            "run's three repetitions per prompt class, the same data as Repetitions above; "
+            "the context and N=4 rows were re-measured.</p>"
             '<div class="tablewrap" role="region" aria-label="Variance" tabindex="0">'
             '<table class="spread"><thead><tr><th>Measurement</th><th>Condition</th>'
             '<th>Engine</th><th style="text-align:right">n</th>'
@@ -327,6 +329,8 @@ def variance_markdown(summary: dict) -> list[str]:
     if not rows:
         return []
     out = ["## Variance", "",
+           "Decode rows are the original run's three repetitions per prompt class (the same "
+           "data as the Repetitions table); the context and N=4 rows were re-measured.", "",
            "| Measurement | Condition | Engine | n | Median | Range |",
            "|---|---|---|---:|---:|---:|"]
     for v in rows:
@@ -825,7 +829,7 @@ def validate(summary: dict) -> None:
     problems: list[str] = []
     if not isinstance(summary, dict) or "measurements" not in summary:
         raise SystemExit("summary: no 'measurements' list")
-    if summary.get("schema") != 1:
+    if summary.get("schema") not in (1, 2):
         problems.append(f"summary: unsupported schema {summary.get('schema')!r}")
     if not summary["measurements"]:
         problems.append("summary: no measurements at all")
@@ -867,6 +871,32 @@ def validate(summary: dict) -> None:
                 problems.append(f"{where}: value is not finite ({value!r})")
             elif float(value) < 0:
                 problems.append(f"{where}: negative value ({value!r})")
+    variance_keys = ("engine", "phase", "metric", "condition", "unit", "n",
+                     "median", "min", "max")
+    for i, v in enumerate(summary.get("variance") or []):
+        where = f"variance[{i}] {v.get('metric')!r}/{v.get('condition')!r}"
+        if not isinstance(v, dict):
+            problems.append(f"variance[{i}]: not an object")
+            continue
+        missing = [k for k in variance_keys if k not in v]
+        if missing:
+            problems.append(f"{where}: missing field(s) {missing}")
+            continue
+        if v["metric"] not in METRICS or v["unit"] != METRICS[v["metric"]]:
+            problems.append(f"{where}: metric/unit {v['metric']!r}/{v['unit']!r}")
+            continue
+        if v["engine"] not in ENGINES:
+            problems.append(f"{where}: engine {v['engine']!r}")
+        if not str(v["condition"]).strip():
+            problems.append(f"{where}: empty condition")
+        if isinstance(v["n"], bool) or not isinstance(v["n"], int) or v["n"] < 2:
+            problems.append(f"{where}: n={v['n']!r}, need at least two repetitions")
+        nums = [v["median"], v["min"], v["max"]]
+        if any(isinstance(x, bool) or not isinstance(x, (int, float)) or not math.isfinite(float(x))
+               for x in nums):
+            problems.append(f"{where}: non-finite statistic {nums!r}")
+        elif not (v["min"] <= v["median"] <= v["max"]):
+            problems.append(f"{where}: min/median/max out of order {nums!r}")
     counts = summary.get("counts") or {}
     for key in ("total", "measured", "not_run", "aborted"):
         wanted = (len(summary["measurements"]) if key == "total"

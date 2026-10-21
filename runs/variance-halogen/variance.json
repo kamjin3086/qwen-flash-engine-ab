@@ -1,4 +1,10 @@
 {
+ "engine": "halogen",
+ "config": {
+  "ctx": "halogen",
+  "conc4": "halogen",
+  "decode": "halogen/bench.txt"
+ },
  "ctx": [
   {
    "label": "halogen",
@@ -3020,5 +3026,34 @@
     "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
    }
   }
- ]
+ ],
+ "decode": {
+  "source": "bench.py, original run (runs/halogen/bench.txt)",
+  "classes": {
+   "prose": {
+    "tok_s": 49.5,
+    "runs": [
+     47.4,
+     49.5,
+     49.6
+    ]
+   },
+   "chat": {
+    "tok_s": 53.6,
+    "runs": [
+     53.6,
+     54.7,
+     51.1
+    ]
+   },
+   "code": {
+    "tok_s": 60.8,
+    "runs": [
+     60.5,
+     60.8,
+     61.6
+    ]
+   }
+  }
+ }
 }

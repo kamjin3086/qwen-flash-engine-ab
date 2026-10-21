@@ -85,6 +85,8 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 
 ## Variance
 
+Decode rows are the original run's three repetitions per prompt class (the same data as the Repetitions table); the context and N=4 rows were re-measured.
+
 | Measurement | Condition | Engine | n | Median | Range |
 |---|---|---|---:|---:|---:|
 | Prefill | prompt ~32K | Halogen | 3 | 1,850 | 1,840–1,878 |
@@ -96,6 +98,9 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 | Aggregate decode, all requests | N=4 | Halogen | 3 | 39.2 | 39.2–40.8 |
 | Decode per request (median) | N=4 | Halogen | 3 | 27.2 | 26.5–28.0 |
 | First token, median across requests | N=4 | Halogen | 3 | 16.4 | 16.3–16.7 |
+| Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
+| Decode | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
+| Decode | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
 | Prefill | prompt ~32K | Kyojin | 3 | 1,337 | 1,329–1,346 |
 | Time to first token | prompt ~32K | Kyojin | 3 | 23.5 | 23.4–23.7 |
 | Prefill | prompt ~128K | Kyojin | 3 | 1,290 | 1,285–1,300 |
@@ -105,6 +110,9 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 | Aggregate decode, all requests | N=4 | Kyojin | 3 | 31.9 | 31.8–32.1 |
 | Decode per request (median) | N=4 | Kyojin | 3 | 16.6 | 16.2–16.7 |
 | First token, median across requests | N=4 | Kyojin | 3 | 22.9 | 22.7–22.9 |
+| Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
+| Decode | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
+| Decode | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
 
 - Halogen, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-pagoda.html (`sha256:7e2e0cae24db`)
 - Halogen, hexagon: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-hexagon.html (`sha256:ba64ac847a1c`)

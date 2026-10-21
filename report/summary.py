@@ -237,26 +237,30 @@ def bench_json(path: Path) -> dict | None:
 def variance_block(runs: Path) -> list[dict]:
     """Statistics over the repetitions a `bench.sh variance` phase recorded.
 
-    Kept out of the headline table: the headline stays the run as it happened, and this is
-    the same configuration measured again to show how far one observation travels.
+    Each record lives in `runs/variance-<engine>/variance.json`, which is not a measurement
+    phase: `collect` skips those directories, so a repetition can never leak into the
+    headline table. The decode block is the original run's three repetitions per prompt
+    class, labelled as such — the phase records its own decode block when it is run again.
     """
     out: list[dict] = []
-    for phase in PHASES:
-        path = runs / phase / "variance.json"
+    for path in sorted(runs.glob("variance-*/variance.json")):
         doc = load(path)
         if not doc:
             continue
-        engine = engine_of(phase)
+        engine = doc.get("engine") or path.parent.name.removeprefix("variance-")
         raw = str(path.relative_to(runs.parent))
 
-        def add(metric: str, condition: str, values: list) -> None:
+        def add(metric: str, condition: str, values: list, source: str | None = None) -> None:
             vals = [v for v in values if isinstance(v, (int, float)) and not isinstance(v, bool)]
             if len(vals) < 2:
                 return
-            out.append({"engine": engine, "phase": phase, "metric": metric,
-                        "unit": METRICS[metric], "condition": condition,
-                        "n": len(vals), "median": round(statistics.median(vals), 2),
-                        "min": min(vals), "max": max(vals), "raw_path": raw})
+            entry = {"engine": engine, "phase": path.parent.name, "metric": metric,
+                     "unit": METRICS[metric], "condition": condition,
+                     "n": len(vals), "median": round(statistics.median(vals), 2),
+                     "min": min(vals), "max": max(vals), "raw_path": raw}
+            if source:
+                entry["source"] = source
+            out.append(entry)
 
         ctx = doc.get("ctx") or []
         for size in (32000, 128000, 262144):
@@ -273,6 +277,10 @@ def variance_block(runs: Path) -> list[dict]:
                                 if v is not None])
              for rep in conc if rep.get("summary", {}).get("per_request_decode_tps")])
         add("ttft_p50_s", "N=4", [rep.get("summary", {}).get("ttft_p50") for rep in conc])
+        decode = (doc.get("decode") or {}).get("classes") or {}
+        for cat, blob in decode.items():
+            add("decode_tps", f"decode {cat}", blob.get("runs"),
+                source=(doc.get("decode") or {}).get("source"))
     return out
 
 
@@ -281,7 +289,8 @@ def collect(runs: Path) -> dict:
     present = [p for p in PHASES if (runs / p).is_dir()]
     if not present:
         raise SystemExit(f"no phase directories under {runs}")
-    for phase in sorted(p.name for p in runs.iterdir() if p.is_dir() and not p.name.startswith("_")):
+    for phase in sorted(p.name for p in runs.iterdir()
+                        if p.is_dir() and not p.name.startswith(("_", "variance-"))):
         unknown = sorted(f.name for f in (runs / phase).iterdir()
                          if f.is_file() and f.suffix == ".json" and f.name not in KNOWN_FILES)
         if unknown:
@@ -478,7 +487,7 @@ def collect(runs: Path) -> dict:
     measured = [e for e in entries if e["status"] == "measured"]
     var = variance_block(runs)
     doc = {
-        "schema": 1,
+        "schema": 2,
         "phases": present,
         "engines": sorted({e["engine"] for e in entries}),
         "measurements": sorted(entries, key=lambda e: (e["metric"], e["condition"], e["engine"])),
