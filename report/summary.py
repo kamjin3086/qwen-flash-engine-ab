@@ -149,7 +149,8 @@ class Collector:
 
     def add(self, phase: str, metric: str, condition: str, value, raw: Path,
             status: str = "measured", abort_rule: str | None = None,
-            provenance_source: str = "phase env.txt") -> None:
+            provenance_source: str = "phase env.txt",
+            spread: dict | None = None) -> None:
         if metric not in METRICS:
             raise SystemExit(f"unknown metric {metric!r} from {raw}")
         if status == "measured" and value is None:
@@ -170,6 +171,8 @@ class Collector:
             "abort_rule": abort_rule,
             "provenance_source": provenance_source,
         }
+        if spread:
+            entry["spread"] = spread
         key = (metric, condition)
         cell = self.rows.setdefault(key, {}).get(entry["engine"])
         # a measured value always wins over a not_run recorded by another phase; between two
@@ -202,6 +205,14 @@ def read_startup(path: Path) -> dict:
             except ValueError:
                 out[k] = v
     return out
+
+
+def spread_of(values) -> dict | None:
+    """The repetitions behind one number, when the tool recorded them."""
+    vals = [v for v in (values or []) if isinstance(v, (int, float)) and not isinstance(v, bool)]
+    if len(vals) < 2:
+        return None
+    return {"n": len(vals), "min": min(vals), "max": max(vals)}
 
 
 def bench_json(path: Path) -> dict | None:
@@ -252,10 +263,12 @@ def collect(runs: Path) -> dict:
         bj = bench_json(d / "bench.txt")
         if bj and "prefill" in bj:
             cond = "bench.py method"
-            c.add(phase, "prefill_tps", cond, bj["prefill"].get("tok_s"), d / "bench.txt")
+            c.add(phase, "prefill_tps", cond, bj["prefill"].get("tok_s"), d / "bench.txt",
+                  spread=spread_of(bj["prefill"].get("runs")))
             c.add(phase, "prompt_tokens", cond, bj["prefill"].get("prompt_tokens"), d / "bench.txt")
             for cat, blob in (bj.get("decode") or {}).items():
-                c.add(phase, "decode_tps", f"decode {cat}", blob.get("tok_s"), d / "bench.txt")
+                c.add(phase, "decode_tps", f"decode {cat}", blob.get("tok_s"), d / "bench.txt",
+                      spread=spread_of(blob.get("runs")))
         else:
             c.not_run(phase, "prefill_tps", "bench.py method", d / "bench.txt", abort)
 

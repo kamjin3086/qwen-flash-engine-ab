@@ -213,6 +213,69 @@ def cell_table(measurements: list[dict]) -> str:
         + "".join(rows) + "</tbody></table></div>")
 
 
+def spread_rows(measurements: list[dict]) -> list[tuple[TableRow, dict[str, dict]]]:
+    rows = []
+    for row in table_rows(measurements):
+        cells = {e: row.engine(e) for e in ENGINES}
+        if any(c and c.get("spread") for c in cells.values()):
+            rows.append((row, cells))
+    return rows
+
+
+def spread_table(measurements: list[dict]) -> str:
+    """The repetitions behind the numbers that have them, as their own small table."""
+    rows = spread_rows(measurements)
+    if not rows:
+        return ""
+    body = []
+    for row, cells in rows:
+        for engine in ENGINES:
+            e = cells.get(engine)
+            if not e or not e.get("spread"):
+                continue
+            sp = e["spread"]
+            body.append(
+                f'<tr><th scope="row">{escape(row.label)}</th>'
+                f'<td class="cond">{escape(row.condition)}</td>'
+                f'<td>{escape(ENGINE_LABEL.get(engine, engine.title()))}</td>'
+                f'<td class="num">{sp["n"]}</td>'
+                f'<td class="num">{fmt(row.metric, e["value"], "measured")}</td>'
+                f'<td class="num">{fmt(row.metric, sp["min"], "measured")}–'
+                f'{fmt(row.metric, sp["max"], "measured")}</td></tr>')
+    return ('<h2>Repetitions</h2>'
+            '<p class="sub">Prefill and decode at the author\'s sizes are the median of '
+            'three runs. This is what the three runs were, so a reader can see whether a '
+            'difference is larger than the spread.</p>'
+            '<div class="tablewrap" role="region" aria-label="Repetitions" tabindex="0">'
+            '<table class="spread"><thead><tr><th>Measurement</th><th>Condition</th>'
+            '<th>Engine</th><th style="text-align:right">n</th>'
+            '<th style="text-align:right">Median</th>'
+            '<th style="text-align:right">Range</th></tr></thead><tbody>'
+            + "".join(body) + "</tbody></table></div>")
+
+
+def spread_markdown(measurements: list[dict]) -> list[str]:
+    rows = spread_rows(measurements)
+    if not rows:
+        return []
+    out = ["## Repetitions", "",
+           "| Measurement | Condition | Engine | n | Median | Range |",
+           "|---|---|---|---:|---:|---:|"]
+    for row, cells in rows:
+        for engine in ENGINES:
+            e = cells.get(engine)
+            if not e or not e.get("spread"):
+                continue
+            sp = e["spread"]
+            out.append(f'| {row.label} | {row.condition} | '
+                       f'{ENGINE_LABEL.get(engine, engine.title())} | {sp["n"]} | '
+                       f'{fmt(row.metric, e["value"], "measured")} | '
+                       f'{fmt(row.metric, sp["min"], "measured")}–'
+                       f'{fmt(row.metric, sp["max"], "measured")} |')
+    out.append("")
+    return out
+
+
 def rel(raw_path: str) -> str:
     """Link from docs/ back to the repository root."""
     return "../" + raw_path.lstrip("./")
@@ -551,6 +614,7 @@ a{color:var(--h)}code{background:#1d252f;padding:1px 5px;border-radius:4px;font-
 .sub{color:var(--mut);font-size:.9rem;margin:0 0 18px}
 table{border-collapse:collapse;width:100%;font-size:.9rem}
 table.md{font-size:.88rem;margin:12px 0 18px}
+table.spread{font-size:.85rem}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 thead th{color:var(--mut);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -615,6 +679,7 @@ Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 {abort_band(m)}
 {cell_table(m)}
 {note_html}
+{spread_table(m)}
 
 <h2>What this is not</h2>
 <div class="scope"><ul>{"".join(f"<li>{inline(x)}</li>" for x in SCOPE)}</ul></div>
@@ -670,6 +735,7 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
     ]
     if note:
         lines += [f"_{note}_", ""]
+    lines += spread_markdown(m)
     for a in artifacts:
         lines.append(f'- {a["engine"].title()}, {a["task"]}: {repo_url}/blob/main/docs/{a["path"]} '
                      f'(`sha256:{a["sha256"][:12]}`)')

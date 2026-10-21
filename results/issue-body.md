@@ -70,6 +70,19 @@ One machine, one model, two engines, measured one at a time. Kyojin was raised f
 
 _Kyojin's /health answers, but publishes no in-flight or queued counters, so request occupancy cannot be observed on that engine._
 
+## Repetitions
+
+| Measurement | Condition | Engine | n | Median | Range |
+|---|---|---|---:|---:|---:|
+| Prefill | bench.py method | Halogen | 3 | 1,601 | 1,563–1,663 |
+| Prefill | bench.py method | Kyojin | 3 | 1,251 | 1,226–1,309 |
+| Decode | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
+| Decode | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
+| Decode | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
+| Decode | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
+| Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
+| Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
+
 - Halogen, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-pagoda.html (`sha256:7e2e0cae24db`)
 - Halogen, hexagon: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-hexagon.html (`sha256:ba64ac847a1c`)
 - Kyojin, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/kyojin-pagoda.html (`sha256:f8cfbfff99b2`)
@@ -108,6 +121,11 @@ forward pass throughput.
 chat and code. The two engines trade the lead per prompt class and the spread between
 classes inside one engine is larger than the spread between engines. Anyone quoting a
 single decode number from this comparison is quoting noise.
+
+The three runs behind each prefill and decode figure are in the *Repetitions* table on the
+page, and they make that statement precise: the prefill ranges do not overlap, so the gap
+there is not noise; the decode ranges overlap on chat and separate on prose and code, in
+opposite directions. The ordering depends on the prompt class more than on the engine.
 
 **Time to first token at 250K** follows the prefill gap: 148 s against 204 s.
 

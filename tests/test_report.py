@@ -171,6 +171,40 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(p.returncode, 0, p.stderr)
         self.assertIn("results/measurements.csv", (out / "index.html").read_text())
 
+    def test_a_measurement_with_repetitions_gets_its_own_table(self):
+        fixture = json.loads(json.dumps(FIXTURE))
+        for e in fixture["measurements"]:
+            if e["metric"] == "prefill_tps" and e["engine"] == "halogen":
+                e["spread"] = {"n": 3, "min": 1563.4, "max": 1663.2}
+        self.summary_path.write_text(json.dumps(fixture))
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html = (out / "index.html").read_text()
+        self.assertIn("<h2>Repetitions</h2>", html)
+        self.assertIn("1,563–1,663", html)
+        self.assertIn("| Halogen | 3 |", issue.read_text())
+
+    def test_bench_repetitions_become_a_spread(self):
+        runs = self.tmp / "runs" / "halogen"
+        runs.mkdir(parents=True)
+        (runs / "env.txt").write_text("halogen_digest x\n")
+        bench = {"prefill": {"tok_s": 1600.7, "prompt_tokens": 2737,
+                             "runs": [1600.7, 1563.4, 1663.2]},
+                 "decode": {"chat": {"tok_s": 53.6, "runs": [53.6, 54.7, 51.1]}}}
+        (runs / "bench.txt").write_text(
+            "### benchmark\n\n```json\n" + json.dumps(bench) + "\n```\n")
+        out = self.tmp / "s.json"
+        subprocess.run([sys.executable, "report/summary.py", "--runs", str(self.tmp / "runs"),
+                        "--out", str(out), "--csv", str(self.tmp / "m.csv")],
+                       cwd=REPO, capture_output=True, check=True)
+        doc = json.loads(out.read_text())
+        spreads = {(e["metric"], e["condition"]): e["spread"]
+                   for e in doc["measurements"] if e.get("spread")}
+        self.assertEqual(spreads[("prefill_tps", "bench.py method")],
+                         {"n": 3, "min": 1563.4, "max": 1663.2})
+        self.assertEqual(spreads[("decode_tps", "decode chat")],
+                         {"n": 3, "min": 51.1, "max": 54.7})
+
     def test_privacy_guard_refuses_a_host_path(self):
         (self.tmp / "results").mkdir(exist_ok=True)
         (self.tmp / "results" / "findings.md").write_text("the log lives in /home/someone/apps\n")

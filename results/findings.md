@@ -30,6 +30,11 @@ chat and code. The two engines trade the lead per prompt class and the spread be
 classes inside one engine is larger than the spread between engines. Anyone quoting a
 single decode number from this comparison is quoting noise.
 
+The three runs behind each prefill and decode figure are in the *Repetitions* table on the
+page, and they make that statement precise: the prefill ranges do not overlap, so the gap
+there is not noise; the decode ranges overlap on chat and separate on prose and code, in
+opposite directions. The ordering depends on the prompt class more than on the engine.
+
 **Time to first token at 250K** follows the prefill gap: 148 s against 204 s.
 
 **Startup is the largest single difference in the whole comparison.** 37 s against 561 s

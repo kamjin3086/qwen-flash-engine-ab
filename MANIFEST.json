@@ -27,9 +27,9 @@
       "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
     },
     {
-      "bytes": 60301,
+      "bytes": 62556,
       "path": "docs/index.html",
-      "sha256": "7c0803402e20c553659583e9c9a8b607b63d0858d5b596c1b96d6ac47e739a28"
+      "sha256": "9c44473bd4dcb94fd2181d5a8005bade6ec6d89be1b6afb2fd160f88d5743dbc"
     },
     {
       "bytes": 2119,
@@ -152,14 +152,14 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 36621,
+      "bytes": 39508,
       "path": "report/render.py",
-      "sha256": "c52d319ed226cda71c02cd8276fec6cf16c29069a2b2288d5fd537f027f84dc8"
+      "sha256": "27845e843d54bdf4af022d7808c8b25e37d4aa4a2e3ce2c688f71e47af671092"
     },
     {
-      "bytes": 22239,
+      "bytes": 22774,
       "path": "report/summary.py",
-      "sha256": "a9462042400dccc4023505943cd062f8c87daeadff3ce11244fbb25f36f12f16"
+      "sha256": "4a6cdd5421d371066caa66b4caa2f4cf1c25b36b8b8b77657e4adc01937a8427"
     },
     {
       "bytes": 7657,
@@ -202,9 +202,9 @@
       "sha256": "d1af77b71b8fe0d6f23670136dd1ab391dfcc84779f182ea9c2c93cf702ee12a"
     },
     {
-      "bytes": 14092,
+      "bytes": 15980,
       "path": "tests/test_report.py",
-      "sha256": "f03ef08b24f9ded70d0bf099e9c6f2b8ed2d4cc21d92c3e5e6a646cfe2febe1d"
+      "sha256": "c892bf5ff45dee558bacb55748a6ab2f48416a48bd4c2c0d15ec829e9d924589"
     },
     {
       "bytes": 4199,
@@ -212,9 +212,9 @@
       "sha256": "326163ac77c922d2406b5abece85da8040c6b956d767aaacc03dd4aadc1b386b"
     },
     {
-      "bytes": 53336,
+      "bytes": 54016,
       "path": "results/summary.json",
-      "sha256": "0d0c2b9dce67f1355818f66ba23f7472e286ee60df0d30e9a882c174a58266b1"
+      "sha256": "089a6d05c73129e3ee457351f0d0c1189eb3a77992b7eaaf1efb1517533e1634"
     },
     {
       "bytes": 22927,
@@ -222,14 +222,14 @@
       "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
-      "bytes": 15449,
+      "bytes": 16403,
       "path": "results/issue-body.md",
-      "sha256": "726a6bcb06f401c65c80edc05bac10373cdef0ccc413a7ac5db14b62b3ab7ec6"
+      "sha256": "db9c179236a17c262c4f82945018530ab8cdbc8498d7b5e04e2f0a113b39fe57"
     },
     {
-      "bytes": 9100,
+      "bytes": 9458,
       "path": "results/findings.md",
-      "sha256": "4e990b531dca6d2b78994b8c977078b46f5a1a4377ffd30547d15b8727803d57"
+      "sha256": "306e4f9b34d3bd1120511560084dd602d05f0805b3c77f7482329c1d0856e12f"
     },
     {
       "bytes": 5706,

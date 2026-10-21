@@ -175,6 +175,11 @@
       "phase": "halogen",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/halogen/bench.txt",
+      "spread": {
+        "max": 54.7,
+        "min": 51.1,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 53.6
@@ -188,6 +193,11 @@
       "phase": "kyojin-s1",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/kyojin-s1/bench.txt",
+      "spread": {
+        "max": 51.9,
+        "min": 50.3,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 50.9
@@ -201,6 +211,11 @@
       "phase": "halogen",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/halogen/bench.txt",
+      "spread": {
+        "max": 61.6,
+        "min": 60.5,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 60.8
@@ -214,6 +229,11 @@
       "phase": "kyojin-s1",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/kyojin-s1/bench.txt",
+      "spread": {
+        "max": 57.8,
+        "min": 53.0,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 56.8
@@ -227,6 +247,11 @@
       "phase": "halogen",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/halogen/bench.txt",
+      "spread": {
+        "max": 49.6,
+        "min": 47.4,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 49.5
@@ -240,6 +265,11 @@
       "phase": "kyojin-s1",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/kyojin-s1/bench.txt",
+      "spread": {
+        "max": 54.6,
+        "min": 52.6,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 53.4
@@ -461,6 +491,11 @@
       "phase": "halogen",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/halogen/bench.txt",
+      "spread": {
+        "max": 1663.2,
+        "min": 1563.4,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 1600.7
@@ -474,6 +509,11 @@
       "phase": "kyojin-s1",
       "provenance_source": "phase env.txt",
       "raw_path": "runs/kyojin-s1/bench.txt",
+      "spread": {
+        "max": 1309.1,
+        "min": 1225.9,
+        "n": 3
+      },
       "status": "measured",
       "unit": "tok/s",
       "value": 1251.0
