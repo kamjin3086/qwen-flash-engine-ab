@@ -3,7 +3,8 @@
 Captured on the host after the run, 2026-10-21. Serial numbers, UUIDs, asset tags and MAC
 addresses are removed; the rest is what the firmware and the OS report, unfiltered.
 
-`AZW GTR Pro` is the DMI product name; the machine is sold as the Beelink GTR9 Pro.
+AZW is the DMI vendor string, `GTR Pro` the product string; the machine is sold as the
+Beelink GTR9 Pro.
 
 | | |
 |---|---|
@@ -11,7 +12,7 @@ addresses are removed; the rest is what the firmware and the OS report, unfilter
 | CPU | AMD Ryzen AI Max+ 395, 16 cores / 32 threads, 625–5187 MHz, 768 KiB L1d, 16 MiB L2, 64 MiB L3 |
 | Memory | 8 × 16 GiB Micron LPDDR5-8000 (`MT62F4G32D8DV-023 WT`), one per channel (P0 A–H), 8000 MT/s configured |
 | Memory bandwidth | 256-bit at 8000 MT/s, so 256 GB/s peak by arithmetic. Not measured; no bandwidth benchmark was run |
-| GPU | Radeon 8060S, PCI `1002:1586` rev c1, gfx1151, unified memory, no dedicated VRAM |
+| GPU | Radeon 8060S, PCI `1002:1586` rev c1, gfx1151, unified memory, no dedicated VRAM. The compute-unit count is not exposed by sysfs, and `rocminfo` is not installed on the host (it lives inside the engine image), so neither is quoted here |
 | OS | Fedora 44, kernel `7.2.9-201.fc44.x86_64` |
 | CPU power | `amd_pstate` active, governor `powersave`; the box exposes no vendor power-profile interface |
 | Storage | one 1.8 TB SSD, one 8 GiB zram device |

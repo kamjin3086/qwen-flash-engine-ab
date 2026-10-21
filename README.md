@@ -9,7 +9,9 @@ Everything below exists to answer that, and only that.
 
 ## Status
 
-Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted.
+Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted. These are the numbers of
+tag [`snapshot-2026-10-21-v2`](https://github.com/kamjin3086/qwen-flash-engine-ab/releases/tag/snapshot-2026-10-21-v2);
+later commits only change how the tables are formatted and what the documentation says.
 
 - The report: [`docs/index.html`](docs/index.html) — one self-contained file, open it from
   disk, or read it live at <https://kamjin3086.github.io/qwen-flash-engine-ab/>.
@@ -44,9 +46,9 @@ private constants and are skipped here by design; the rest run against this tree
 | Halogen | `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53…` (0.18.13) |
 | Kyojin | `ghcr.io/yamz-labs/kyojin-qwen:1.6` `@sha256:a0c48fea…` (repo commit recorded in `runs/*/env.txt`) |
 
-`AZW GTR Pro` is the DMI product name the firmware reports, and what every `runs/*/env.txt`
-records. The machine is sold as the **Beelink GTR9 Pro**; the firmware string is used here
-because it does not change with the marketing name.
+`AZW` is the DMI vendor string and `GTR Pro` the product string; every `runs/*/env.txt`
+records the product as `machine GTR Pro`. The machine is sold as the **Beelink GTR9 Pro**;
+the firmware strings are used here because they do not change with the marketing name.
 
 ## The reference configuration
 
@@ -109,7 +111,11 @@ To do this on another machine, start with [`docs/replicate.md`](docs/replicate.m
 4. `./bench.sh kyojin-s1` — phase B: stop Halogen, Kyojin cold start, deterministic
    matrix, artifacts 8 and 9.
 5. `./bench.sh kyojin-s4` — phase C: warm restart with `--sessions 4`, measurement 6.
-6. `./bench.sh restore` — phase D: stop Kyojin, bring Halogen back, verify it answers.
+6. `./bench.sh variance <label>` — repeat the numbers the verdict leans on, while that
+   engine is up: three passes of prefill/TTFT at 32K/128K/262K and three N=4 runs. This is
+   what the Variance table is built from; use the same session count as the phase being
+   repeated.
+7. `./bench.sh restore` — phase D: stop Kyojin, bring Halogen back, verify it answers.
 
 ## What the run required, and why
 

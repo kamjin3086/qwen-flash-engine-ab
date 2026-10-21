@@ -127,6 +127,12 @@ class ValueFormattingTest(unittest.TestCase):
             self.assertEqual(page_plain, issue.strip("_"),
                              f"{metric}/{status}: page {page!r} vs issue {issue!r}")
 
+    def test_a_range_never_collapses_to_one_number(self):
+        # 149.003 and 149.307 both print as "149" at the metric's usual precision
+        self.assertEqual(render.fmt_range("ttft_s", 149.003, 149.307), "149.0–149.3")
+        self.assertEqual(render.fmt_range("prefill_tps", 1692.525, 1696.127), "1,693–1,696")
+        self.assertEqual(render.fmt_range("decode_tps", 53.0, 53.0), "53–53")  # a real zero width
+
     def test_quality_rate_is_a_percentage_on_both(self):
         self.assertEqual(render.md_cell("quality_pass_rate", 0.923, "measured"), "92%")
         self.assertIn("92%", render.fmt("quality_pass_rate", 0.923, "measured"))

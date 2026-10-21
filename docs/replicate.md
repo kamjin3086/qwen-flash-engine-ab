@@ -27,13 +27,18 @@ written for someone who has never opened this repository.
 ./bench.sh halogen      # phase A: cold start, matrix, artifacts, concurrency, warm start
 ./bench.sh kyojin-s1    # phase B: stop Halogen, cold start Kyojin at --sessions 1
 ./bench.sh kyojin-s4    # phase C: warm restart at --sessions 4, concurrency arm
+./bench.sh variance <label>  # optional: repeat the verdict's numbers, engine up
 ./bench.sh restore      # phase D: Halogen back, answering
 python3 report/build.py # summary, page, issue body, export
 ```
 
 `bench.sh` writes `runs/<phase>/` and appends to `runs/session.log`, which is how the report
-found every number. Read the abort rules in the [README](../README.md#abort-rules) before you
-start: two of them exist because this hardware can be left unusable.
+found every number. `./bench.sh variance <label>` repeats the numbers the verdict leans on
+(three passes of prefill and first-token latency at 32K/128K/262K, and three N=4 runs) while
+that engine is up; it uses whatever session count is running, so repeat the configuration you
+mean to repeat. Read the abort rules in the [README](../README.md#abort-rules) before you
+start; two of them exist because this hardware can be left unusable, and they bite at the
+swap between engines and after a failed start.
 
 ## The four things that cost time here
 
@@ -69,6 +74,8 @@ in [`artifacts.md`](artifacts.md), the rest is judgement.
 
 ## How many times each number was measured
 
-See the top of the [findings](../results/findings.md): prefill and decode at the author's
-sizes are the median of three; everything else is one observation. Reproduce with the same
-sample sizes or state yours.
+See the top of the [findings](../results/findings.md) and the Repetitions and Variance
+tables on the [report](../docs/index.html). Prefill and decode at the author's sizes and the
+newly repeated points (32K/128K/262K prefill and TTFT, N=4) have three observations; startup
+and the artifacts are single observations. Reproduce with the same sample sizes or state
+yours.

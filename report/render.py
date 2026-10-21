@@ -104,6 +104,29 @@ def fmt(metric: str, value, status: str) -> str:
     return escape(text)
 
 
+def fmt_range(metric: str, lo, hi) -> str:
+    """Both endpoints, never collapsed into the same printed number.
+
+    An interval of 149.003–149.307 s is not "149–149": at the metric's usual precision the
+    two ends print alike, which reads as no spread at all. Only when that happens, both
+    ends get one decimal more.
+    """
+    a, b = render_value(metric, lo, "measured"), render_value(metric, hi, "measured")
+    if a == b:
+        a, b = _one_digit_more(lo), _one_digit_more(hi)
+    return f"{a}–{b}"
+
+
+def _one_digit_more(value) -> str:
+    if isinstance(value, int):
+        return f"{value:,}"
+    if abs(value) >= 100:
+        return f"{value:,.1f}"
+    if abs(value) >= 10:
+        return f"{value:,.2f}".rstrip("0").rstrip(".")
+    return f"{value:.3f}".rstrip("0").rstrip(".")
+
+
 def digest_short(d: str | None) -> str:
     if not d:
         return "unknown"
@@ -240,8 +263,7 @@ def spread_table(measurements: list[dict]) -> str:
                 f'<td>{escape(ENGINE_LABEL.get(engine, engine.title()))}</td>'
                 f'<td class="num">{sp["n"]}</td>'
                 f'<td class="num">{fmt(row.metric, e["value"], "measured")}</td>'
-                f'<td class="num">{fmt(row.metric, sp["min"], "measured")}–'
-                f'{fmt(row.metric, sp["max"], "measured")}</td></tr>')
+                f'<td class="num">{escape(fmt_range(row.metric, sp["min"], sp["max"]))}</td></tr>')
     return ('<h2>Repetitions</h2>'
             '<p class="sub">Prefill and decode at the author\'s sizes are the median of '
             'three runs. This is what the three runs were, so a reader can see whether a '
@@ -270,8 +292,7 @@ def spread_markdown(measurements: list[dict]) -> list[str]:
             out.append(f'| {row.label} | {row.condition} | '
                        f'{ENGINE_LABEL.get(engine, engine.title())} | {sp["n"]} | '
                        f'{fmt(row.metric, e["value"], "measured")} | '
-                       f'{fmt(row.metric, sp["min"], "measured")}–'
-                       f'{fmt(row.metric, sp["max"], "measured")} |')
+                       f'{fmt_range(row.metric, sp["min"], sp["max"])} |')
     out.append("")
     return out
 
@@ -288,8 +309,7 @@ def variance_table(summary: dict) -> str:
             f'<td>{escape(ENGINE_LABEL.get(v["engine"], v["engine"].title()))}</td>'
             f'<td class="num">{v["n"]}</td>'
             f'<td class="num">{fmt(v["metric"], v["median"], "measured")}</td>'
-            f'<td class="num">{fmt(v["metric"], v["min"], "measured")}–'
-            f'{fmt(v["metric"], v["max"], "measured")}</td></tr>')
+            f'<td class="num">{escape(fmt_range(v["metric"], v["min"], v["max"]))}</td></tr>')
     return ('<h2>Variance</h2>'
             '<p class="sub">The same configuration measured three times in one start, for '
             'the numbers the verdict leans on. The headline table above is the original run; '
@@ -313,7 +333,7 @@ def variance_markdown(summary: dict) -> list[str]:
         out.append(f'| {LABEL.get(v["metric"], v["metric"])} | {v["condition"]} | '
                    f'{ENGINE_LABEL.get(v["engine"], v["engine"].title())} | {v["n"]} | '
                    f'{fmt(v["metric"], v["median"], "measured")} | '
-                   f'{fmt(v["metric"], v["min"], "measured")}–{fmt(v["metric"], v["max"], "measured")} |')
+                   f'{fmt_range(v["metric"], v["min"], v["max"])} |')
     out.append("")
     return out
 

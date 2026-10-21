@@ -92,7 +92,7 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 | Prefill | prompt ~128K | Halogen | 3 | 1,796 | 1,790–1,807 |
 | Time to first token | prompt ~128K | Halogen | 3 | 68.7 | 68.0–69.0 |
 | Prefill | prompt ~262K | Halogen | 3 | 1,693 | 1,693–1,696 |
-| Time to first token | prompt ~262K | Halogen | 3 | 149 | 149–149 |
+| Time to first token | prompt ~262K | Halogen | 3 | 149 | 149.0–149.3 |
 | Aggregate decode, all requests | N=4 | Halogen | 3 | 39.2 | 39.2–40.8 |
 | Decode per request (median) | N=4 | Halogen | 3 | 27.2 | 26.5–28.0 |
 | First token, median across requests | N=4 | Halogen | 3 | 16.4 | 16.3–16.7 |
