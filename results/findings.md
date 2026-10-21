@@ -9,6 +9,14 @@ is no; if the question is "is the EXL3 route competitive", the decode numbers sa
 Everything below is a value from the tables above. Nothing here is a judgement of the
 model, only of what came out of each engine.
 
+**How many times each number was measured.** Prefill and decode at the author's sizes are
+the median of three runs. Everything else is one observation: the 32K / 128K / 262K prefill
+and first-token figures, both retrieval depths, the tool call, the concurrency rows, the two
+prefix requests, the two starts, and the artifacts were each measured once. One observation
+on one machine is enough to say *this is how it behaved here*; it is not a distribution. The
+prefill ratio is quoted because it holds across four prompt sizes, not because it was
+repeated.
+
 ## Where the two engines actually differ
 
 **Prefill is the real gap, and it is uniform.** Halogen is faster at every context length
@@ -33,7 +41,7 @@ number is what a new user meets; the second is what an existing user meets every
 Four 8K-prompt, 512-token requests released at once:
 
 | | wall | aggregate | per request | first token (median) |
-|---|---|---|---|---|
+|---|---:|---:|---:|---:|
 | Halogen, 1 request | 10.1 s | 35.1 tok/s | 60.8 tok/s | 4.3 s |
 | Halogen, 4 requests | 33.4 s | 42.4 tok/s | 16.6 tok/s | 11.6 s |
 | Kyojin, 1 request | 12.3 s | 28.5 tok/s | 53.4 tok/s | 5.8 s |
@@ -55,7 +63,7 @@ An agent re-sends its whole history every turn, so the number that shapes daily 
 the second one:
 
 | | cold prefix (97K) | same prefix again | cached tokens |
-|---|---|---|---|
+|---|---:|---:|---:|
 | Halogen | 53.5 s | **0.58 s** | 95,680 of 95,728 |
 | Kyojin | 74.9 s | **2.96 s** | 94,208 of 97,538 |
 

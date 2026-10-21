@@ -18,9 +18,11 @@ Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted.
 - The summary everything else reads: [`results/summary.json`](results/summary.json).
 - The Markdown body for the maintainer's issue: [`results/issue-body.md`](results/issue-body.md).
 
-Reproduce the report from the raw records with `python3 report/build.py`. The unit tests
-that guard it stay in the working repository, because their fixtures name containers that
-are not part of this comparison.
+Reproduce the report from the raw records with `python3 report/build.py`. If it leaves the
+tree unchanged — `git diff --exit-code` is empty — then every published surface still agrees
+with the records it was built from. The unit tests that guard the generator stay in the
+working repository, because their fixtures name containers that are not part of this
+comparison.
 
 ## What this is not
 

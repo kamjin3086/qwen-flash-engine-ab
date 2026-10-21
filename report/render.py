@@ -432,39 +432,107 @@ def artifact_section(artifacts: list[dict]) -> str:
 
 # ---------------------------------------------------------------- markdown-lite
 
+TABLE_DELIMITER = re.compile(r"^:?-{2,}:?$")
+
+
+def md_cells(line: str) -> list[str]:
+    """Split one pipe-table row. The outer pipes are optional; inner empties are cells."""
+    body = line.strip()
+    body = body[1:] if body.startswith("|") else body
+    body = body[:-1] if body.endswith("|") else body
+    return [cell.strip() for cell in body.split("|")]
+
+
+def is_table_delimiter(line: str) -> bool:
+    cells = [c.replace(" ", "") for c in md_cells(line)]
+    return bool(cells) and all(TABLE_DELIMITER.match(c) for c in cells)
+
+
+def table_align(cell: str) -> str:
+    c = cell.replace(" ", "")
+    left, right = c.startswith(":"), c.endswith(":")
+    return "center" if left and right else "right" if right else "left" if left else ""
+
+
+def table_html(header: list[str], aligns: list[str], rows: list[list[str]]) -> str:
+    def cell(tag: str, text: str, i: int) -> str:
+        align = aligns[i] if i < len(aligns) else ""
+        style = f' style="text-align:{align}"' if align else ""
+        return f"<{tag}{style}>{inline(text)}</{tag}>"
+
+    head = "".join(cell("th", h, i) for i, h in enumerate(header))
+    body = "".join("<tr>" + "".join(cell("td", c, i) for i, c in enumerate(row)) + "</tr>"
+                   for row in rows)
+    # findings.md carries tables (concurrency, prefix reuse); they are data, so they scroll
+    # in a box of their own on a phone instead of widening the page
+    return ('<div class="tablewrap" role="region" tabindex="0">'
+            f'<table class="md"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>')
+
+
 def md_to_html(text: str) -> str:
-    out, in_list = [], False
-    for raw in text.splitlines():
-        line = raw.rstrip()
+    """The small Markdown the findings file uses: headings, lists, pipe tables, inline.
+
+    Source lines are hard-wrapped at about 80 columns, so a line break is not a paragraph
+    and not a new list item: consecutive lines are joined until a blank line, a heading, a
+    list marker or a table ends the block. Without that, every source line renders as its
+    own paragraph, and a bold span that wraps renders as literal asterisks.
+    """
+    lines = text.splitlines()
+    out: list[str] = []
+    para: list[str] = []
+    items: list[list[str]] = []
+
+    def flush() -> None:
+        if para:
+            out.append(f"<p>{inline(' '.join(para))}</p>")
+            para.clear()
+        if items:
+            out.append("<ul>" + "".join(f"<li>{inline(' '.join(item))}</li>" for item in items)
+                       + "</ul>")
+            items.clear()
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
         if not line.strip():
-            if in_list:
-                out.append("</ul>")
-                in_list = False
+            flush()
+            i += 1
+            continue
+        if (line.lstrip().startswith("|") and i + 1 < len(lines)
+                and is_table_delimiter(lines[i + 1])):
+            flush()
+            header = md_cells(line)
+            aligns = [table_align(c) for c in md_cells(lines[i + 1])]
+            i += 2
+            rows = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append(md_cells(lines[i]))
+                i += 1
+            out.append(table_html(header, aligns, rows))
             continue
         if line.startswith("#"):
-            if in_list:
-                out.append("</ul>")
-                in_list = False
+            flush()
             level = min(4, len(line) - len(line.lstrip("#")))
             out.append(f"<h{level + 1}>{inline(line.lstrip('# ').strip())}</h{level + 1}>")
         elif line.lstrip().startswith(("- ", "* ")):
-            if not in_list:
-                out.append("<ul>")
-                in_list = True
-            out.append(f"<li>{inline(line.lstrip()[2:])}</li>")
+            if para:
+                flush()
+            items.append([line.lstrip()[2:]])
+        elif items and line.startswith((" ", "\t")):
+            items[-1].append(line.strip())
         else:
-            if in_list:
-                out.append("</ul>")
-                in_list = False
-            out.append(f"<p>{inline(line)}</p>")
-    if in_list:
-        out.append("</ul>")
+            if items:
+                flush()
+            para.append(line.strip())
+        i += 1
+    flush()
     return "\n".join(out)
 
 
 def inline(text: str) -> str:
     t = escape(text)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", t)
     t = re.sub(r"`(.+?)`", r"<code>\1</code>", t)
     t = re.sub(r"(?<![\"=])(https?://[^\s<]+)", r'<a href="\1">\1</a>', t)
     return t
@@ -482,6 +550,7 @@ h3{font-size:1rem;margin:20px 0 6px}
 a{color:var(--h)}code{background:#1d252f;padding:1px 5px;border-radius:4px;font-size:.86em}
 .sub{color:var(--mut);font-size:.9rem;margin:0 0 18px}
 table{border-collapse:collapse;width:100%;font-size:.9rem}
+table.md{font-size:.88rem;margin:12px 0 18px}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 thead th{color:var(--mut);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
