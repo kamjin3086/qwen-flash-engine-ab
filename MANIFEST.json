@@ -27,9 +27,9 @@
       "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
     },
     {
-      "bytes": 58565,
+      "bytes": 59014,
       "path": "docs/index.html",
-      "sha256": "160ccc0db6be74ce9c5a3ca4fc76ee74c1162ecab27cdba9cfeed3321e9adb5f"
+      "sha256": "a8245a75c0d1ead6687a01ac8de31443d27f104cca8e23bf9ea53217f224d1d7"
     },
     {
       "bytes": 2119,
@@ -137,9 +137,9 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 33055,
+      "bytes": 33526,
       "path": "report/render.py",
-      "sha256": "881085f6c555c17f4633fa7a7fd46ee5983a2b5101b9b679147d5686e3e4bf4a"
+      "sha256": "c666a4478320c216d37ddb40487890c2476843f43c303772bda838b66454bce6"
     },
     {
       "bytes": 20975,

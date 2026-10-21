@@ -205,6 +205,8 @@ def cell_table(measurements: list[dict]) -> str:
     # unbreakable by design). Scroll the table, not the page: role+tabindex so a keyboard
     # can reach it, which a plain overflow box does not give.
     return (
+        '<p class="tscroll">The table scrolls sideways when the screen is too narrow for '
+        'both engines; the measurement column stays put.</p>'
         '<div class="tablewrap" role="region" aria-label="Measurements" tabindex="0">'
         '<table class="headline"><thead><tr><th scope="col">Measurement</th>'
         f'<th scope="col">Condition</th>{head}</tr></thead><tbody>'
@@ -501,8 +503,11 @@ td.cond{color:var(--mut)}
 .art .shot{display:block;width:100%;height:auto;border-top:1px solid var(--line)}
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tablewrap:focus-visible{outline:2px solid var(--h);outline-offset:2px}
+.headline th[scope=row],.headline thead th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+.tscroll{display:none;color:var(--mut);font-size:.8rem;margin:0 0 8px}
 .flag{color:var(--k)}
-@media(max-width:640px){td.num,th{white-space:normal}.art iframe{height:300px}}
+@media(max-width:640px){td.num,th{white-space:normal}th,td{padding:4px 5px}.prov{font-size:.64rem}thead th{font-size:.72rem;letter-spacing:0}.art iframe{height:300px}}
+@media(max-width:420px){.tscroll{display:block}}
 """
 
 
