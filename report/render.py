@@ -514,7 +514,7 @@ def render_html(summary: dict, artifacts: list[dict], findings: str, stamp: str)
     m = summary["measurements"]
     digest = {e["engine"]: e["digest"] for e in m if e.get("digest")}
     counts = summary["counts"]
-    machine = "AZW GTR Pro, Ryzen AI Max+ 395, 128 GB unified, gfx1151"
+    machine = "AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified, gfx1151"
     note = not_run_note(m)
     note_html = f'<p class="sub"><strong>Not run.</strong> {escape(note)}</p>' if note else ""
     return f"""<!doctype html>
@@ -577,7 +577,8 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
         "",
         f"- Halogen: `{digest.get('halogen') or 'unknown'}`",
         f"- Kyojin: `{digest.get('kyojin') or 'unknown'}`",
-        "- Machine: AZW GTR Pro, Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.",
+        "- Machine: AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified (gfx1151), "
+        "Fedora 44, kernel 7.2.9.",
         "",
         "## Numbers",
         "",

@@ -4,7 +4,7 @@ One machine, one model, two engines, measured one at a time. Kyojin was raised f
 
 - Halogen: `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc`
 - Kyojin: `ghcr.io/yamz-labs/kyojin-qwen@sha256:a0c48fea49a605da3e5eaeee4fcd82aa5a8591063976bbbbbca7c2c4f9c20b51`
-- Machine: AZW GTR Pro, Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.
+- Machine: AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.
 
 ## Numbers
 

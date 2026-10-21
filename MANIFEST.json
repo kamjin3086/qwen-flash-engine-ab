@@ -2,9 +2,9 @@
   "count": 127,
   "files": [
     {
-      "bytes": 8635,
+      "bytes": 8871,
       "path": "README.md",
-      "sha256": "391a73935be33bfeb1be191ebbc42b1a31875f64d98b2ab0342fd1b220eeb08e"
+      "sha256": "41bee028bc3c77469768e4cde9230b133621e64022f2f9b59fb2b1b6449f7eb4"
     },
     {
       "bytes": 2958,
@@ -27,9 +27,9 @@
       "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
     },
     {
-      "bytes": 58267,
+      "bytes": 58286,
       "path": "docs/index.html",
-      "sha256": "d8ed8df3aeb0722e919197e80bdda66354a68dd337d5b391b32ec0eb34aaba2e"
+      "sha256": "e41a9ea9e03d86b7ae6ffaf4e2bb862812000977f98221209325131b22abf346"
     },
     {
       "bytes": 2119,
@@ -132,9 +132,9 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 32556,
+      "bytes": 32605,
       "path": "report/render.py",
-      "sha256": "0a79a03cae2d28fd0b99c4a5aa35622ff7be5565c8189f6b2633249f60d0e22c"
+      "sha256": "dbdc1c334394b78ec82c0f87db4b1cb4da2e93cbcf382c383096ac6dcf3aa175"
     },
     {
       "bytes": 20975,
@@ -162,9 +162,9 @@
       "sha256": "0d0c2b9dce67f1355818f66ba23f7472e286ee60df0d30e9a882c174a58266b1"
     },
     {
-      "bytes": 14866,
+      "bytes": 14885,
       "path": "results/issue-body.md",
-      "sha256": "b087ec2b6345f984c16a7048b07188c54582da497d9aa5a3e5f662ee5345620b"
+      "sha256": "7b1a61f3a16de749b653a8eb57922d32146e335aab97750e140197d680fc7311"
     },
     {
       "bytes": 8536,

@@ -41,6 +41,10 @@ are not part of this comparison.
 | Halogen | `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53…` (0.18.13) |
 | Kyojin | `ghcr.io/yamz-labs/kyojin-qwen:1.6` `@sha256:a0c48fea…` (repo commit recorded in `runs/*/env.txt`) |
 
+`AZW GTR Pro` is the DMI product name the firmware reports, and what every `runs/*/env.txt`
+records. The machine is sold as the **Beelink GTR9 Pro**; the firmware string is used here
+because it does not change with the marketing name.
+
 ## The reference configuration
 
 Halogen's daily configuration is the yardstick and is not varied. Kyojin is raised
