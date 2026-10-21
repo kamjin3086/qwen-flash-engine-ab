@@ -28,6 +28,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default="runs")
     ap.add_argument("--summary", default="results/summary.json")
+    ap.add_argument("--csv", default="results/measurements.csv")
     ap.add_argument("--docs", default="docs")
     ap.add_argument("--issue", default="results/issue-body.md")
     ap.add_argument("--dest", default="build/publish")
@@ -35,7 +36,7 @@ def main() -> None:
     a = ap.parse_args()
 
     py = sys.executable
-    run([py, "report/summary.py", "--runs", a.runs, "--out", a.summary])
+    run([py, "report/summary.py", "--runs", a.runs, "--out", a.summary, "--csv", a.csv])
     run([py, "report/render.py", "--summary", a.summary, "--out", a.docs, "--issue", a.issue])
     if not a.skip_export:
         run([py, "report/export.py", "--dest", a.dest, "--check"])

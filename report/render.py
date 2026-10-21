@@ -596,6 +596,9 @@ def render_html(summary: dict, artifacts: list[dict], findings: str, stamp: str)
     counts = summary["counts"]
     machine = "AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified, gfx1151"
     note = not_run_note(m)
+    csv_link = ('<li><a href="../results/measurements.csv">results/measurements.csv</a> '
+                '&mdash; every row above, flattened</li>'
+                if (LINK_ROOT / "results" / "measurements.csv").is_file() else "")
     note_html = f'<p class="sub"><strong>Not run.</strong> {escape(note)}</p>' if note else ""
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -631,7 +634,7 @@ comparable to the gallery's timings; they are here so you can click them.</p>
 <h2>Raw data</h2>
 <p class="sub">Every number above traces to one of these files. The report page is derived; the raw records are
 the artifact of record.</p>
-<ul>{"".join(f'<li><a href="{escape(rel(p))}">{escape(p)}</a></li>'
+<ul>{csv_link}{"".join(f'<li><a href="{escape(rel(p))}">{escape(p)}</a></li>'
              for p in sorted({e["raw_path"] for e in m if e["raw_path"]})
              if (LINK_ROOT / p).is_file())}</ul>
 

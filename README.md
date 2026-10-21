@@ -15,14 +15,15 @@ Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted.
   disk, or read it live at <https://kamjin3086.github.io/qwen-flash-engine-ab/>.
 - The analysis: [`results/findings.md`](results/findings.md) — what the numbers say, and
   what they do not.
-- The summary everything else reads: [`results/summary.json`](results/summary.json).
+- The summary everything else reads: [`results/summary.json`](results/summary.json), and the
+  same rows flattened as [`results/measurements.csv`](results/measurements.csv).
 - The Markdown body for the maintainer's issue: [`results/issue-body.md`](results/issue-body.md).
 
 Reproduce the report from the raw records with `python3 report/build.py`. If it leaves the
 tree unchanged — `git diff --exit-code` is empty — then every published surface still agrees
-with the records it was built from. The unit tests that guard the generator stay in the
-working repository, because their fixtures name containers that are not part of this
-comparison.
+with the records it was built from. The tests that guard the generator ship with it:
+`python3 -m unittest discover -s tests`. Three of them assert on the working repository's
+private constants and are skipped here by design; the rest run against this tree.
 
 ## What this is not
 
@@ -38,7 +39,7 @@ comparison.
 
 | | |
 |---|---|
-| Machine | AZW GTR Pro (Ryzen AI Max+ 395, 128 GB unified, gfx1151) |
+| Machine | AZW GTR Pro (Ryzen AI Max+ 395, 128 GB unified, gfx1151) — [firmware, memory and GPU as reported](docs/machine.md) |
 | Kernel | 7.2.9-201.fc44.x86_64 |
 | Halogen | `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53…` (0.18.13) |
 | Kyojin | `ghcr.io/yamz-labs/kyojin-qwen:1.6` `@sha256:a0c48fea…` (repo commit recorded in `runs/*/env.txt`) |
@@ -50,7 +51,7 @@ because it does not change with the marketing name.
 ## The reference configuration
 
 Halogen's daily configuration is the yardstick and is not varied. Kyojin is raised
-to meet it. See `docs/adr/0001-single-arm-halogen-as-yardstick.md` for why there is
+to meet it. The exact invocations, as executed, are in [`docs/commands.md`](docs/commands.md). See `docs/adr/0001-single-arm-halogen-as-yardstick.md` for why there is
 no "fair" second arm.
 
 | Dimension | Halogen (reference) | Kyojin (raised to meet it) |
@@ -99,6 +100,8 @@ concurrency phase needs its own Kyojin run (`--sessions 4`) and its N = 1 refere
 comes from the deterministic phase. Halogen needs no such split.
 
 ## Run order
+
+To do this on another machine, start with [`docs/replicate.md`](docs/replicate.md).
 
 1. `./bench.sh preflight` — record environment, digests, GTT, availability.
 2. `./bench.sh smoke` — tooling check at tiny sizes against the engine that is up.

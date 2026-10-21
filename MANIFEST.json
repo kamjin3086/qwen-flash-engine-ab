@@ -1,10 +1,10 @@
 {
-  "count": 128,
+  "count": 139,
   "files": [
     {
-      "bytes": 9032,
+      "bytes": 9421,
       "path": "README.md",
-      "sha256": "9b9b0930d29729b37841f1bebb737fd7b56e13ddd821013adaee6948ad740627"
+      "sha256": "4c8497aa265471eee99ee6e5c82573fb052c70c76d60287d45d1ce7d36648d84"
     },
     {
       "bytes": 2958,
@@ -27,9 +27,9 @@
       "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
     },
     {
-      "bytes": 60191,
+      "bytes": 60301,
       "path": "docs/index.html",
-      "sha256": "49b4e3dc8757c068bb2408f0e54b5ab005b1f6e978b755a4e6261fc5976589ee"
+      "sha256": "7c0803402e20c553659583e9c9a8b607b63d0858d5b596c1b96d6ac47e739a28"
     },
     {
       "bytes": 2119,
@@ -55,6 +55,21 @@
       "bytes": 1865,
       "path": "docs/artifacts.md",
       "sha256": "8b2a7fb6471cb71cfec054902cc5421dd160cc7c7c136155798155a2de91433b"
+    },
+    {
+      "bytes": 4363,
+      "path": "docs/commands.md",
+      "sha256": "90e512b75307b47d88d3ee5ebad6b89bb83e9475f84af9ac0ab83cb679a75d9d"
+    },
+    {
+      "bytes": 2784,
+      "path": "docs/machine.md",
+      "sha256": "f76aea138ea2ca8c5c88e75ad8eff48ab88c1f2e44d64295afcf07fdd727985c"
+    },
+    {
+      "bytes": 4122,
+      "path": "docs/replicate.md",
+      "sha256": "e08cc08d5fd5d26e1b6805f6cdcdc0e16b81ed6a980699145556eea950e8cc72"
     },
     {
       "bytes": 8426,
@@ -117,9 +132,9 @@
       "sha256": "fc3b9b3583fe3a0cd466eab25a213ebeea07f44ce6132d854d1b0b03978468ea"
     },
     {
-      "bytes": 1411,
+      "bytes": 1492,
       "path": "report/build.py",
-      "sha256": "35b4c185ce51981a3962912b0e98e656527597c5a80e0945f9e2bc2ebf172f8e"
+      "sha256": "865214d32a5caf3e4d5f48fd2f4e463ef71182444d21a2e6593deb5e693af6e6"
     },
     {
       "bytes": 6932,
@@ -127,9 +142,9 @@
       "sha256": "5a22403553e2e2a4d574b6067b89b9b04e4fe2f779c39dfc3223e001e21c398f"
     },
     {
-      "bytes": 6011,
+      "bytes": 6133,
       "path": "report/export.py",
-      "sha256": "816a410a8855931dbe97ee970ab68fc8e22465cfc6fbaac37692459247999456"
+      "sha256": "36f5ae6a9911470f8125bd0c4975da9d40577cf2676438e89805341b01fa95bd"
     },
     {
       "bytes": 5445,
@@ -137,14 +152,14 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 36380,
+      "bytes": 36621,
       "path": "report/render.py",
-      "sha256": "c23bd6bf72a6a36a3759440236279ccb90cbbb8562892bb51019f957a2a76ff5"
+      "sha256": "c52d319ed226cda71c02cd8276fec6cf16c29069a2b2288d5fd537f027f84dc8"
     },
     {
-      "bytes": 20975,
+      "bytes": 22239,
       "path": "report/summary.py",
-      "sha256": "bbe3eef9606ea7967779c6b236ad9292857e0d2eecfa77fbb1f900b1defc0cb0"
+      "sha256": "a9462042400dccc4023505943cd062f8c87daeadff3ce11244fbb25f36f12f16"
     },
     {
       "bytes": 7657,
@@ -162,9 +177,49 @@
       "sha256": "6dc87fbd5145d11ee3ee22c5ee45bb30aa607570ee9b680f2f6177cb5211549e"
     },
     {
+      "bytes": 2198,
+      "path": "tests/test_csv.py",
+      "sha256": "9a9407d517fc11ac2244a75bc5a46e6bd580d5517540361a068d22d195290489"
+    },
+    {
+      "bytes": 7649,
+      "path": "tests/test_export.py",
+      "sha256": "3fe0c5e1c41dab8e28cc1cb91e187649b517bf92eac84ab7381dc5c8babb8c03"
+    },
+    {
+      "bytes": 5831,
+      "path": "tests/test_findings.py",
+      "sha256": "5e267f6ef66ff8ed62f64c8500fcd0248f190aa203c8bd35f4e036e5a6892a50"
+    },
+    {
+      "bytes": 17732,
+      "path": "tests/test_guards.py",
+      "sha256": "dfcc25d6d28a8e13ac13de6bd863a2d968db2935a0a0a9f46e52c815b932e1e4"
+    },
+    {
+      "bytes": 4927,
+      "path": "tests/test_readme.py",
+      "sha256": "d1af77b71b8fe0d6f23670136dd1ab391dfcc84779f182ea9c2c93cf702ee12a"
+    },
+    {
+      "bytes": 14092,
+      "path": "tests/test_report.py",
+      "sha256": "f03ef08b24f9ded70d0bf099e9c6f2b8ed2d4cc21d92c3e5e6a646cfe2febe1d"
+    },
+    {
+      "bytes": 4199,
+      "path": "tests/test_rows.py",
+      "sha256": "326163ac77c922d2406b5abece85da8040c6b956d767aaacc03dd4aadc1b386b"
+    },
+    {
       "bytes": 53336,
       "path": "results/summary.json",
       "sha256": "0d0c2b9dce67f1355818f66ba23f7472e286ee60df0d30e9a882c174a58266b1"
+    },
+    {
+      "bytes": 22927,
+      "path": "results/measurements.csv",
+      "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
       "bytes": 15449,

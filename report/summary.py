@@ -9,11 +9,14 @@ digest, under which condition, whether it was measured / not run / aborted, and 
 raw file proves it. A measurement that is absent is an entry with status `not_run`,
 never a missing key: absence is how a report silently loses a result.
 
-    python3 report/summary.py --runs runs --out results/summary.json
+    python3 report/summary.py --runs runs --out results/summary.json \
+        [--csv results/measurements.csv]
 """
 from __future__ import annotations
 
 import argparse
+import csv
+import io
 import json
 import re
 import statistics
@@ -432,10 +435,40 @@ def collect(runs: Path) -> dict:
     }
 
 
+CSV_COLUMNS = ("engine", "phase", "metric", "unit", "condition", "value", "status",
+               "digest", "raw_path", "abort_rule")
+
+
+def csv_text(doc: dict) -> str:
+    """The same rows as the summary, flattened, for readers who want to plot them."""
+    buf = io.StringIO()
+    writer = csv.writer(buf, lineterminator="\n")
+    writer.writerow(CSV_COLUMNS)
+    for e in doc["measurements"]:
+        row = []
+        for key in CSV_COLUMNS:
+            value = e.get(key)
+            if key == "value" and isinstance(value, bool):
+                value = "true" if value else "false"
+            row.append("" if value is None else value)
+        writer.writerow(row)
+    return buf.getvalue()
+
+
+def write_if_changed(path: Path, text: str, label: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_file() and path.read_text() == text:
+        print(f"{path}: unchanged")
+    else:
+        path.write_text(text)
+        print(f"{path}: {label}")
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--runs", default="runs")
     p.add_argument("--out", default="results/summary.json")
+    p.add_argument("--csv", default="results/measurements.csv")
     a = p.parse_args()
     runs = Path(a.runs)
     doc = collect(runs)
@@ -450,6 +483,9 @@ def main() -> None:
               f"{doc['counts']['aborted']} aborted")
     if doc["counts"]["measured"] == 0:
         sys.exit("no measured values: refusing to call that a summary")
+    if a.csv:
+        write_if_changed(Path(a.csv), csv_text(doc),
+                         f"{len(doc['measurements'])} rows, {len(CSV_COLUMNS)} columns")
 
 
 if __name__ == "__main__":
