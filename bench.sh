@@ -12,6 +12,7 @@
 #   ./bench.sh kyojin-s4    # K2 warm start (sessions=4) + concurrency arm
 #   ./bench.sh status       # where the run is, without reading logs
 #   ./bench.sh extras LABEL # repeated-prefix cost + concurrency N=2, on whatever is up
+#   ./bench.sh variance LABEL # 3 reps of prefill/TTFT at 32K/128K/262K and N=4, engine up
 #   ./bench.sh restore      # back to Halogen, verified answering
 #
 # Every phase writes runs/<phase>/ and appends to runs/session.log.
@@ -364,6 +365,34 @@ cmd_extras() { # label — the two additions the reframing needs
   log "extras done: $d"
 }
 
+cmd_variance() { # label — repetitions of the claims the verdict leans on
+  resolve_digests
+  local label="${1:?usage: bench.sh variance <label>}"
+  local url; case "$label" in halogen) url="$HALOGEN_URL";; *) url="$KYOJIN_URL";; esac
+  local d; d=$(phase_dir "$label")
+  local tmp; tmp=$(mktemp -d)
+  log "[$label] variance: 3 x prefill/TTFT at 32K/128K/262K and 3 x N=4"
+  local i
+  for i in 1 2 3; do
+    "$PY" "$KB" --base "$url/v1" --label "$label" --phase "$label" --digest "$(digest_for "$url")" \
+      --out "$tmp/ctx-$i.json" ctx --sizes 32000,128000,262144
+    "$PY" "$KB" --base "$url/v1" --label "$label" --phase "$label" --digest "$(digest_for "$url")" \
+      --out "$tmp/conc4-$i.json" conc --n 4 --prompt-tokens 8000 --max-tokens 512
+  done
+  "$PY" - "$tmp" "$d/variance.json" <<'PY'
+import json, sys
+from pathlib import Path
+tmp, out = Path(sys.argv[1]), Path(sys.argv[2])
+def reps(prefix):
+    return [json.loads(p.read_text()) for p in sorted(tmp.glob(f"{prefix}-*.json"))]
+doc = {"ctx": reps("ctx"), "conc4": reps("conc4")}
+out.write_text(json.dumps(doc, indent=1))
+print(f"{out}: {len(doc['ctx'])} ctx reps, {len(doc['conc4'])} concurrency reps")
+PY
+  rm -rf "$tmp"
+  log "variance done: $d"
+}
+
 cmd_status() {
   echo "--- phases present ---"
   for d in "$ROOT"/runs/*/; do
@@ -408,6 +437,7 @@ case "${1:-}" in
   kyojin-s4)  cmd_kyojin_s4 ;;
   status)     cmd_status ;;
   extras)     cmd_extras "${2:-}" ;;
+  variance)   cmd_variance "${2:-}" ;;
   restore)    cmd_restore ;;
   *) sed -n '2,18p' "${BASH_SOURCE[0]}"; exit 2 ;;
 esac

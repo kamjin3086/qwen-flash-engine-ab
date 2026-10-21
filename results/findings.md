@@ -17,6 +17,11 @@ on one machine is enough to say *this is how it behaved here*; it is not a distr
 prefill ratio is quoted because it holds across four prompt sizes, not because it was
 repeated.
 
+The repetitions added after the run cover prefill and first-token latency at 32K / 128K /
+262K and the N=4 row, three times each in one start per engine. Startup is still a single
+observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
+worth the machine time it would have taken from the rest.
+
 ## Where the two engines actually differ
 
 **Prefill is the real gap, and it is uniform.** Halogen is faster at every context length
@@ -56,7 +61,8 @@ Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 %
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long the fourth request waits for its first token**: 11.6 s against
-23.0 s.
+23.0 s in this run, and 16.3–16.7 s against 22.7–22.9 s across three repetitions. The
+absolute number moves by a few seconds; the ordering does not.
 
 Kyojin's own startup log names the reason its parallel mode is not free, and it is right
 to warn: at four sessions its decode attention kernel splits differently and its output

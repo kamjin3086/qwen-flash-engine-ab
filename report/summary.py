@@ -62,7 +62,7 @@ OPTIONAL_METRICS = {"peak_in_flight", "prompt_cache_hit_tokens"}
 # The files a phase is allowed to contain. Anything else is a capture this step does not
 # understand, and ignoring it is how a result goes missing without anyone noticing.
 KNOWN_FILES = {
-    "env.txt", "health.json", "models.json", "metrics.txt", "bench.txt", "ctx.json",
+    "env.txt", "health.json", "models.json", "metrics.txt", "bench.txt", "ctx.json", "variance.json",
     "ctx-warmup.json", "needle.json", "tool.json", "image.json", "thinking.json",
     "conc.json", "conc1.json", "conc2.json", "conc4.json", "reuse.json", "warmup.json",
     "artifact-pagoda.json", "artifact-pagoda.html", "artifact-hexagon.json",
@@ -232,6 +232,48 @@ def bench_json(path: Path) -> dict | None:
         return json.loads(m.group(1))
     except json.JSONDecodeError as e:
         raise SystemExit(f"{path}: fenced JSON does not parse ({e})")
+
+
+def variance_block(runs: Path) -> list[dict]:
+    """Statistics over the repetitions a `bench.sh variance` phase recorded.
+
+    Kept out of the headline table: the headline stays the run as it happened, and this is
+    the same configuration measured again to show how far one observation travels.
+    """
+    out: list[dict] = []
+    for phase in PHASES:
+        path = runs / phase / "variance.json"
+        doc = load(path)
+        if not doc:
+            continue
+        engine = engine_of(phase)
+        raw = str(path.relative_to(runs.parent))
+
+        def add(metric: str, condition: str, values: list) -> None:
+            vals = [v for v in values if isinstance(v, (int, float)) and not isinstance(v, bool)]
+            if len(vals) < 2:
+                return
+            out.append({"engine": engine, "phase": phase, "metric": metric,
+                        "unit": METRICS[metric], "condition": condition,
+                        "n": len(vals), "median": round(statistics.median(vals), 2),
+                        "min": min(vals), "max": max(vals), "raw_path": raw})
+
+        ctx = doc.get("ctx") or []
+        for size in (32000, 128000, 262144):
+            cond = f"prompt ~{size // 1000}K"
+            runs_at = [next((r for r in rep.get("runs", []) if r.get("requested_tokens") == size),
+                            None) for rep in ctx]
+            add("prefill_tps", cond, [r.get("prefill_tps_server") for r in runs_at if r])
+            add("ttft_s", cond, [r.get("ttft_s") for r in runs_at if r])
+        conc = doc.get("conc4") or []
+        add("aggregate_decode_tps", "N=4", [rep.get("summary", {}).get("aggregate_decode_tps")
+                                           for rep in conc])
+        add("per_request_decode_tps", "N=4",
+            [statistics.median([v for v in rep.get("summary", {}).get("per_request_decode_tps") or []
+                                if v is not None])
+             for rep in conc if rep.get("summary", {}).get("per_request_decode_tps")])
+        add("ttft_p50_s", "N=4", [rep.get("summary", {}).get("ttft_p50") for rep in conc])
+    return out
 
 
 def collect(runs: Path) -> dict:
@@ -434,7 +476,8 @@ def collect(runs: Path) -> dict:
                 e["phase"] = prov["phase"]
 
     measured = [e for e in entries if e["status"] == "measured"]
-    return {
+    var = variance_block(runs)
+    doc = {
         "schema": 1,
         "phases": present,
         "engines": sorted({e["engine"] for e in entries}),
@@ -446,6 +489,9 @@ def collect(runs: Path) -> dict:
             "aborted": sum(1 for e in entries if e["status"] == "aborted"),
         },
     }
+    if var:
+        doc["variance"] = var
+    return doc
 
 
 CSV_COLUMNS = ("engine", "phase", "metric", "unit", "condition", "value", "status",

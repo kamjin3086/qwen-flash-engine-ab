@@ -83,6 +83,29 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 | Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
 | Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
 
+## Variance
+
+| Measurement | Condition | Engine | n | Median | Range |
+|---|---|---|---:|---:|---:|
+| Prefill | prompt ~32K | Halogen | 3 | 1,850 | 1,840–1,878 |
+| Time to first token | prompt ~32K | Halogen | 3 | 16.6 | 16.4–16.7 |
+| Prefill | prompt ~128K | Halogen | 3 | 1,796 | 1,790–1,807 |
+| Time to first token | prompt ~128K | Halogen | 3 | 68.7 | 68.0–69.0 |
+| Prefill | prompt ~262K | Halogen | 3 | 1,693 | 1,693–1,696 |
+| Time to first token | prompt ~262K | Halogen | 3 | 149 | 149–149 |
+| Aggregate decode, all requests | N=4 | Halogen | 3 | 39.2 | 39.2–40.8 |
+| Decode per request (median) | N=4 | Halogen | 3 | 27.2 | 26.5–28.0 |
+| First token, median across requests | N=4 | Halogen | 3 | 16.4 | 16.3–16.7 |
+| Prefill | prompt ~32K | Kyojin | 3 | 1,337 | 1,329–1,346 |
+| Time to first token | prompt ~32K | Kyojin | 3 | 23.5 | 23.4–23.7 |
+| Prefill | prompt ~128K | Kyojin | 3 | 1,290 | 1,285–1,300 |
+| Time to first token | prompt ~128K | Kyojin | 3 | 97.1 | 96.4–97.5 |
+| Prefill | prompt ~262K | Kyojin | 3 | 1,244 | 1,244–1,248 |
+| Time to first token | prompt ~262K | Kyojin | 3 | 206 | 206–207 |
+| Aggregate decode, all requests | N=4 | Kyojin | 3 | 31.9 | 31.8–32.1 |
+| Decode per request (median) | N=4 | Kyojin | 3 | 16.6 | 16.2–16.7 |
+| First token, median across requests | N=4 | Kyojin | 3 | 22.9 | 22.7–22.9 |
+
 - Halogen, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-pagoda.html (`sha256:7e2e0cae24db`)
 - Halogen, hexagon: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-hexagon.html (`sha256:ba64ac847a1c`)
 - Kyojin, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/kyojin-pagoda.html (`sha256:f8cfbfff99b2`)
@@ -108,6 +131,11 @@ prefix requests, the two starts, and the artifacts were each measured once. One 
 on one machine is enough to say *this is how it behaved here*; it is not a distribution. The
 prefill ratio is quoted because it holds across four prompt sizes, not because it was
 repeated.
+
+The repetitions added after the run cover prefill and first-token latency at 32K / 128K /
+262K and the N=4 row, three times each in one start per engine. Startup is still a single
+observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
+worth the machine time it would have taken from the rest.
 
 ## Where the two engines actually differ
 
@@ -148,7 +176,8 @@ Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 %
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long the fourth request waits for its first token**: 11.6 s against
-23.0 s.
+23.0 s in this run, and 16.3–16.7 s against 22.7–22.9 s across three repetitions. The
+absolute number moves by a few seconds; the ordering does not.
 
 Kyojin's own startup log names the reason its parallel mode is not free, and it is right
 to warn: at four sessions its decode attention kernel splits differently and its output

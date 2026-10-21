@@ -276,6 +276,48 @@ def spread_markdown(measurements: list[dict]) -> list[str]:
     return out
 
 
+def variance_table(summary: dict) -> str:
+    rows = summary.get("variance") or []
+    if not rows:
+        return ""
+    body = []
+    for v in rows:
+        body.append(
+            f'<tr><th scope="row">{escape(LABEL.get(v["metric"], v["metric"]))}</th>'
+            f'<td class="cond">{escape(v["condition"])}</td>'
+            f'<td>{escape(ENGINE_LABEL.get(v["engine"], v["engine"].title()))}</td>'
+            f'<td class="num">{v["n"]}</td>'
+            f'<td class="num">{fmt(v["metric"], v["median"], "measured")}</td>'
+            f'<td class="num">{fmt(v["metric"], v["min"], "measured")}–'
+            f'{fmt(v["metric"], v["max"], "measured")}</td></tr>')
+    return ('<h2>Variance</h2>'
+            '<p class="sub">The same configuration measured three times in one start, for '
+            'the numbers the verdict leans on. The headline table above is the original run; '
+            'this is how far a repetition of it travels.</p>'
+            '<div class="tablewrap" role="region" aria-label="Variance" tabindex="0">'
+            '<table class="spread"><thead><tr><th>Measurement</th><th>Condition</th>'
+            '<th>Engine</th><th style="text-align:right">n</th>'
+            '<th style="text-align:right">Median</th>'
+            '<th style="text-align:right">Range</th></tr></thead><tbody>'
+            + "".join(body) + "</tbody></table></div>")
+
+
+def variance_markdown(summary: dict) -> list[str]:
+    rows = summary.get("variance") or []
+    if not rows:
+        return []
+    out = ["## Variance", "",
+           "| Measurement | Condition | Engine | n | Median | Range |",
+           "|---|---|---|---:|---:|---:|"]
+    for v in rows:
+        out.append(f'| {LABEL.get(v["metric"], v["metric"])} | {v["condition"]} | '
+                   f'{ENGINE_LABEL.get(v["engine"], v["engine"].title())} | {v["n"]} | '
+                   f'{fmt(v["metric"], v["median"], "measured")} | '
+                   f'{fmt(v["metric"], v["min"], "measured")}–{fmt(v["metric"], v["max"], "measured")} |')
+    out.append("")
+    return out
+
+
 def rel(raw_path: str) -> str:
     """Link from docs/ back to the repository root."""
     return "../" + raw_path.lstrip("./")
@@ -680,6 +722,7 @@ Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 {cell_table(m)}
 {note_html}
 {spread_table(m)}
+{variance_table(summary)}
 
 <h2>What this is not</h2>
 <div class="scope"><ul>{"".join(f"<li>{inline(x)}</li>" for x in SCOPE)}</ul></div>
@@ -736,6 +779,7 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
     if note:
         lines += [f"_{note}_", ""]
     lines += spread_markdown(m)
+    lines += variance_markdown(summary)
     for a in artifacts:
         lines.append(f'- {a["engine"].title()}, {a["task"]}: {repo_url}/blob/main/docs/{a["path"]} '
                      f'(`sha256:{a["sha256"][:12]}`)')

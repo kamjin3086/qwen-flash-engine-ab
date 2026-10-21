@@ -1,0 +1,3024 @@
+{
+ "ctx": [
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "ctx",
+   "runs": [
+    {
+     "ttft_s": 16.405,
+     "wall_s": 16.406,
+     "prompt_tokens": 30791,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1876.9,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1877.675,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 16330.3,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 30791,
+      "completion_tokens": 1,
+      "total_tokens": 30792,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 30663,
+      "predicted_n": 1,
+      "prompt_ms": 16330.3,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1877.675,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 160,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 32000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 67.986,
+     "wall_s": 67.988,
+     "prompt_tokens": 122457,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1801.2,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1807.171,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 67690.9,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 122457,
+      "completion_tokens": 1,
+      "total_tokens": 122458,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 122329,
+      "predicted_n": 1,
+      "prompt_ms": 67690.9,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1807.171,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 176,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 128000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 149.307,
+     "wall_s": 149.311,
+     "prompt_tokens": 250550,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1678.1,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1692.525,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 147957.6,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 250550,
+      "completion_tokens": 1,
+      "total_tokens": 250551,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 250422,
+      "predicted_n": 1,
+      "prompt_ms": 147957.6,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1692.525,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 176,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 262144,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  },
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "ctx",
+   "runs": [
+    {
+     "ttft_s": 16.642,
+     "wall_s": 16.643,
+     "prompt_tokens": 30791,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1850.2,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1850.457,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 16570.5,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 30791,
+      "completion_tokens": 1,
+      "total_tokens": 30792,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 30663,
+      "predicted_n": 1,
+      "prompt_ms": 16570.5,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1850.457,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 163,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 32000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 68.684,
+     "wall_s": 68.686,
+     "prompt_tokens": 122457,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1782.9,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1795.708,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 68123.0,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 122457,
+      "completion_tokens": 1,
+      "total_tokens": 122458,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 122329,
+      "predicted_n": 1,
+      "prompt_ms": 68123.0,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1795.708,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 175,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 128000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 149.003,
+     "wall_s": 149.007,
+     "prompt_tokens": 250550,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1681.5,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1696.127,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 147643.4,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 250550,
+      "completion_tokens": 1,
+      "total_tokens": 250551,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 250422,
+      "predicted_n": 1,
+      "prompt_ms": 147643.4,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1696.127,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 176,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 262144,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  },
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "ctx",
+   "runs": [
+    {
+     "ttft_s": 16.738,
+     "wall_s": 16.738,
+     "prompt_tokens": 30791,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1839.6,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1840.008,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 16664.6,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 30791,
+      "completion_tokens": 1,
+      "total_tokens": 30792,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 30663,
+      "predicted_n": 1,
+      "prompt_ms": 16664.6,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1840.008,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 163,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 32000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 68.972,
+     "wall_s": 68.975,
+     "prompt_tokens": 122457,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1775.5,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1789.548,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 68357.5,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 122457,
+      "completion_tokens": 1,
+      "total_tokens": 122458,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 122329,
+      "predicted_n": 1,
+      "prompt_ms": 68357.5,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1789.548,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 176,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 128000,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    },
+    {
+     "ttft_s": 149.288,
+     "wall_s": 149.292,
+     "prompt_tokens": 250550,
+     "completion_tokens": 1,
+     "prefill_tps_client": 1678.3,
+     "decode_tps_client": null,
+     "prefill_tps_server": 1693.13,
+     "decode_tps_server": 0.0,
+     "prompt_ms_server": 147904.8,
+     "predicted_ms_server": 0.0,
+     "cache_n": 128,
+     "draft_n": 0,
+     "draft_n_accepted": 0,
+     "finish_reason": "length",
+     "chunks": 1,
+     "chars": 2,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 250550,
+      "completion_tokens": 1,
+      "total_tokens": 250551,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 250422,
+      "predicted_n": 1,
+      "prompt_ms": 147904.8,
+      "predicted_ms": 0.0,
+      "prompt_per_second": 1693.13,
+      "predicted_per_second": 0.0,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 175,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 0,
+       "head": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     },
+     "requested_tokens": 262144,
+     "sizing_factor": 0.96,
+     "chars_per_token": 2.561
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  }
+ ],
+ "conc4": [
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "conc",
+   "summary": {
+    "n": 4,
+    "requested_prompt_tokens": 8000,
+    "max_tokens": 512,
+    "wall_s": 38.58,
+    "completed": 4,
+    "errors": [],
+    "aggregate_decode_tps": 40.82,
+    "requests_that_hit_prompt_cache": 4,
+    "ttft_s": [
+     4.656,
+     9.49,
+     23.401,
+     29.484
+    ],
+    "per_request_decode_tps": [
+     26.76,
+     28.27,
+     39.12,
+     27.74
+    ],
+    "per_request_decode_tps_server": [
+     26.836,
+     28.34,
+     39.235,
+     27.807
+    ],
+    "health_available": true,
+    "peak_in_flight": 4,
+    "health_samples": 71,
+    "ttft_p50": 16.4455,
+    "ttft_p95": 29.484
+   },
+   "health_timeline": [
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    }
+   ],
+   "runs": [
+    {
+     "ttft_s": 4.656,
+     "wall_s": 18.592,
+     "prompt_tokens": 7789,
+     "completion_tokens": 374,
+     "prefill_tps_client": 1673.0,
+     "decode_tps_client": 26.76,
+     "prefill_tps_server": 1684.032,
+     "decode_tps_server": 26.836,
+     "prompt_ms_server": 4549.2,
+     "predicted_ms_server": 13936.4,
+     "cache_n": 128,
+     "draft_n": 206,
+     "draft_n_accepted": 176,
+     "finish_reason": "stop",
+     "chunks": 373,
+     "chars": 1340,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 374,
+      "total_tokens": 8163,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 374,
+      "prompt_ms": 4549.2,
+      "predicted_ms": 13936.4,
+      "prompt_per_second": 1684.032,
+      "predicted_per_second": 26.836,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 206,
+      "draft_n_accepted": 176,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 198,
+       "head": {
+        "rounds": 198,
+        "drafted": 206,
+        "accepted": 176
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 23.401,
+     "wall_s": 38.326,
+     "prompt_tokens": 7789,
+     "completion_tokens": 423,
+     "prefill_tps_client": 332.9,
+     "decode_tps_client": 28.27,
+     "prefill_tps_server": 1610.164,
+     "decode_tps_server": 28.34,
+     "prompt_ms_server": 4757.9,
+     "predicted_ms_server": 14925.8,
+     "cache_n": 128,
+     "draft_n": 243,
+     "draft_n_accepted": 203,
+     "finish_reason": "stop",
+     "chunks": 422,
+     "chars": 1364,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 423,
+      "total_tokens": 8212,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 423,
+      "prompt_ms": 4757.9,
+      "predicted_ms": 14925.8,
+      "prompt_per_second": 1610.164,
+      "predicted_per_second": 28.34,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 243,
+      "draft_n_accepted": 203,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 220,
+       "head": {
+        "rounds": 217,
+        "drafted": 234,
+        "accepted": 195
+       },
+       "lookup": {
+        "rounds": 3,
+        "drafted": 9,
+        "accepted": 8
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 29.484,
+     "wall_s": 38.583,
+     "prompt_tokens": 7789,
+     "completion_tokens": 357,
+     "prefill_tps_client": 264.2,
+     "decode_tps_client": 39.12,
+     "prefill_tps_server": 1605.306,
+     "decode_tps_server": 39.235,
+     "prompt_ms_server": 4772.3,
+     "predicted_ms_server": 9099.0,
+     "cache_n": 128,
+     "draft_n": 197,
+     "draft_n_accepted": 164,
+     "finish_reason": "stop",
+     "chunks": 356,
+     "chars": 1256,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 357,
+      "total_tokens": 8146,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 357,
+      "prompt_ms": 4772.3,
+      "predicted_ms": 9099.0,
+      "prompt_per_second": 1605.306,
+      "predicted_per_second": 39.235,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 197,
+      "draft_n_accepted": 164,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 193,
+       "head": {
+        "rounds": 192,
+        "drafted": 194,
+        "accepted": 161
+       },
+       "lookup": {
+        "rounds": 1,
+        "drafted": 3,
+        "accepted": 3
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 9.49,
+     "wall_s": 24.63,
+     "prompt_tokens": 7789,
+     "completion_tokens": 421,
+     "prefill_tps_client": 820.8,
+     "decode_tps_client": 27.74,
+     "prefill_tps_server": 1601.246,
+     "decode_tps_server": 27.807,
+     "prompt_ms_server": 4784.4,
+     "predicted_ms_server": 15140.0,
+     "cache_n": 128,
+     "draft_n": 231,
+     "draft_n_accepted": 197,
+     "finish_reason": "stop",
+     "chunks": 420,
+     "chars": 1340,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 421,
+      "total_tokens": 8210,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 421,
+      "prompt_ms": 4784.4,
+      "predicted_ms": 15140.0,
+      "prompt_per_second": 1601.246,
+      "predicted_per_second": 27.807,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 231,
+      "draft_n_accepted": 197,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 223,
+       "head": {
+        "rounds": 223,
+        "drafted": 231,
+        "accepted": 197
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  },
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "conc",
+   "summary": {
+    "n": 4,
+    "requested_prompt_tokens": 8000,
+    "max_tokens": 512,
+    "wall_s": 38.6,
+    "completed": 4,
+    "errors": [],
+    "aggregate_decode_tps": 39.23,
+    "requests_that_hit_prompt_cache": 4,
+    "ttft_s": [
+     4.704,
+     9.548,
+     23.093,
+     29.131
+    ],
+    "per_request_decode_tps": [
+     41.41,
+     26.25,
+     25.48,
+     26.74
+    ],
+    "per_request_decode_tps_server": [
+     41.523,
+     26.314,
+     25.557,
+     26.813
+    ],
+    "health_available": true,
+    "peak_in_flight": 4,
+    "health_samples": 71,
+    "ttft_p50": 16.3205,
+    "ttft_p95": 29.131
+   },
+   "health_timeline": [
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    }
+   ],
+   "runs": [
+    {
+     "ttft_s": 29.131,
+     "wall_s": 38.596,
+     "prompt_tokens": 7789,
+     "completion_tokens": 393,
+     "prefill_tps_client": 267.4,
+     "decode_tps_client": 41.41,
+     "prefill_tps_server": 1614.61,
+     "decode_tps_server": 41.523,
+     "prompt_ms_server": 4744.8,
+     "predicted_ms_server": 9464.7,
+     "cache_n": 128,
+     "draft_n": 232,
+     "draft_n_accepted": 192,
+     "finish_reason": "stop",
+     "chunks": 392,
+     "chars": 1453,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 393,
+      "total_tokens": 8182,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 393,
+      "prompt_ms": 4744.8,
+      "predicted_ms": 9464.7,
+      "prompt_per_second": 1614.61,
+      "predicted_per_second": 41.523,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 232,
+      "draft_n_accepted": 192,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 201,
+       "head": {
+        "rounds": 201,
+        "drafted": 232,
+        "accepted": 192
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 9.548,
+     "wall_s": 24.331,
+     "prompt_tokens": 7789,
+     "completion_tokens": 389,
+     "prefill_tps_client": 815.8,
+     "decode_tps_client": 26.25,
+     "prefill_tps_server": 1598.073,
+     "decode_tps_server": 26.314,
+     "prompt_ms_server": 4793.9,
+     "predicted_ms_server": 14783.2,
+     "cache_n": 128,
+     "draft_n": 217,
+     "draft_n_accepted": 178,
+     "finish_reason": "stop",
+     "chunks": 388,
+     "chars": 1308,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 389,
+      "total_tokens": 8178,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 389,
+      "prompt_ms": 4793.9,
+      "predicted_ms": 14783.2,
+      "prompt_per_second": 1598.073,
+      "predicted_per_second": 26.314,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 217,
+      "draft_n_accepted": 178,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 211,
+       "head": {
+        "rounds": 211,
+        "drafted": 217,
+        "accepted": 178
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 4.704,
+     "wall_s": 18.282,
+     "prompt_tokens": 7789,
+     "completion_tokens": 347,
+     "prefill_tps_client": 1655.8,
+     "decode_tps_client": 25.48,
+     "prefill_tps_server": 1656.898,
+     "decode_tps_server": 25.557,
+     "prompt_ms_server": 4623.7,
+     "predicted_ms_server": 13577.7,
+     "cache_n": 128,
+     "draft_n": 196,
+     "draft_n_accepted": 160,
+     "finish_reason": "stop",
+     "chunks": 346,
+     "chars": 1292,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 347,
+      "total_tokens": 8136,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 347,
+      "prompt_ms": 4623.7,
+      "predicted_ms": 13577.7,
+      "prompt_per_second": 1656.898,
+      "predicted_per_second": 25.557,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 196,
+      "draft_n_accepted": 160,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 186,
+       "head": {
+        "rounds": 186,
+        "drafted": 196,
+        "accepted": 160
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 23.093,
+     "wall_s": 37.453,
+     "prompt_tokens": 7789,
+     "completion_tokens": 385,
+     "prefill_tps_client": 337.3,
+     "decode_tps_client": 26.74,
+     "prefill_tps_server": 1608.102,
+     "decode_tps_server": 26.813,
+     "prompt_ms_server": 4764.0,
+     "predicted_ms_server": 14358.9,
+     "cache_n": 128,
+     "draft_n": 217,
+     "draft_n_accepted": 177,
+     "finish_reason": "stop",
+     "chunks": 384,
+     "chars": 1326,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 385,
+      "total_tokens": 8174,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 385,
+      "prompt_ms": 4764.0,
+      "predicted_ms": 14358.9,
+      "prompt_per_second": 1608.102,
+      "predicted_per_second": 26.813,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 162,
+      "draft_n": 217,
+      "draft_n_accepted": 177,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 207,
+       "head": {
+        "rounds": 204,
+        "drafted": 208,
+        "accepted": 173
+       },
+       "lookup": {
+        "rounds": 3,
+        "drafted": 9,
+        "accepted": 4
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  },
+  {
+   "label": "halogen",
+   "base": "http://127.0.0.1:8731/v1",
+   "model": "halogen-qwen3.8-flash-next",
+   "kind": "conc",
+   "summary": {
+    "n": 4,
+    "requested_prompt_tokens": 8000,
+    "max_tokens": 512,
+    "wall_s": 38.07,
+    "completed": 4,
+    "errors": [],
+    "aggregate_decode_tps": 39.19,
+    "requests_that_hit_prompt_cache": 4,
+    "ttft_s": [
+     4.701,
+     9.547,
+     23.769,
+     29.395
+    ],
+    "per_request_decode_tps": [
+     26.38,
+     40.46,
+     28.07,
+     26.19
+    ],
+    "per_request_decode_tps_server": [
+     26.452,
+     40.58,
+     28.133,
+     26.265
+    ],
+    "health_available": true,
+    "peak_in_flight": 4,
+    "health_samples": 71,
+    "ttft_p50": 16.658,
+    "ttft_p95": 29.395
+   },
+   "health_timeline": [
+    {
+     "busy": false,
+     "in_flight": 0,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": true,
+     "in_flight": 4,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 3,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 2,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    },
+    {
+     "busy": false,
+     "in_flight": 1,
+     "queued": 0,
+     "slots": 4,
+     "longest_wait_s": 0.0
+    }
+   ],
+   "runs": [
+    {
+     "ttft_s": 4.701,
+     "wall_s": 18.839,
+     "prompt_tokens": 7789,
+     "completion_tokens": 374,
+     "prefill_tps_client": 1657.0,
+     "decode_tps_client": 26.38,
+     "prefill_tps_server": 1657.4,
+     "decode_tps_server": 26.452,
+     "prompt_ms_server": 4622.3,
+     "predicted_ms_server": 14138.7,
+     "cache_n": 128,
+     "draft_n": 209,
+     "draft_n_accepted": 175,
+     "finish_reason": "stop",
+     "chunks": 373,
+     "chars": 1340,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 374,
+      "total_tokens": 8163,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 374,
+      "prompt_ms": 4622.3,
+      "predicted_ms": 14138.7,
+      "prompt_per_second": 1657.4,
+      "predicted_per_second": 26.452,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 161,
+      "draft_n": 209,
+      "draft_n_accepted": 175,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 199,
+       "head": {
+        "rounds": 199,
+        "drafted": 209,
+        "accepted": 175
+       },
+       "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 29.395,
+     "wall_s": 38.07,
+     "prompt_tokens": 7789,
+     "completion_tokens": 352,
+     "prefill_tps_client": 265.0,
+     "decode_tps_client": 40.46,
+     "prefill_tps_server": 1598.373,
+     "decode_tps_server": 40.58,
+     "prompt_ms_server": 4793.0,
+     "predicted_ms_server": 8674.2,
+     "cache_n": 128,
+     "draft_n": 219,
+     "draft_n_accepted": 168,
+     "finish_reason": "stop",
+     "chunks": 351,
+     "chars": 1413,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 352,
+      "total_tokens": 8141,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 352,
+      "prompt_ms": 4793.0,
+      "predicted_ms": 8674.2,
+      "prompt_per_second": 1598.373,
+      "predicted_per_second": 40.58,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 161,
+      "draft_n": 219,
+      "draft_n_accepted": 168,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 184,
+       "head": {
+        "rounds": 183,
+        "drafted": 216,
+        "accepted": 167
+       },
+       "lookup": {
+        "rounds": 1,
+        "drafted": 3,
+        "accepted": 1
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 9.547,
+     "wall_s": 24.547,
+     "prompt_tokens": 7789,
+     "completion_tokens": 422,
+     "prefill_tps_client": 815.9,
+     "decode_tps_client": 28.07,
+     "prefill_tps_server": 1596.807,
+     "decode_tps_server": 28.133,
+     "prompt_ms_server": 4797.7,
+     "predicted_ms_server": 15000.1,
+     "cache_n": 128,
+     "draft_n": 241,
+     "draft_n_accepted": 206,
+     "finish_reason": "stop",
+     "chunks": 421,
+     "chars": 1321,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 422,
+      "total_tokens": 8211,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 422,
+      "prompt_ms": 4797.7,
+      "predicted_ms": 15000.1,
+      "prompt_per_second": 1596.807,
+      "predicted_per_second": 28.133,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 161,
+      "draft_n": 241,
+      "draft_n_accepted": 206,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 215,
+       "head": {
+        "rounds": 214,
+        "drafted": 238,
+        "accepted": 205
+       },
+       "lookup": {
+        "rounds": 1,
+        "drafted": 3,
+        "accepted": 1
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    },
+    {
+     "ttft_s": 23.769,
+     "wall_s": 36.866,
+     "prompt_tokens": 7789,
+     "completion_tokens": 344,
+     "prefill_tps_client": 327.7,
+     "decode_tps_client": 26.19,
+     "prefill_tps_server": 1568.688,
+     "decode_tps_server": 26.265,
+     "prompt_ms_server": 4883.7,
+     "predicted_ms_server": 13097.5,
+     "cache_n": 128,
+     "draft_n": 199,
+     "draft_n_accepted": 162,
+     "finish_reason": "stop",
+     "chunks": 343,
+     "chars": 1275,
+     "tool_calls": [],
+     "usage": {
+      "prompt_tokens": 7789,
+      "completion_tokens": 344,
+      "total_tokens": 8133,
+      "prompt_tokens_details": {
+       "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+       "reasoning_tokens": 0
+      }
+     },
+     "timings": {
+      "prompt_n": 7661,
+      "predicted_n": 344,
+      "prompt_ms": 4883.7,
+      "predicted_ms": 13097.5,
+      "prompt_per_second": 1568.688,
+      "predicted_per_second": 26.265,
+      "cache_n": 128,
+      "disk_restore_n": 0,
+      "disk_restore_ms": 0.0,
+      "prefix_n": 161,
+      "draft_n": 199,
+      "draft_n_accepted": 162,
+      "speculation": {
+       "drafter": "mtp",
+       "rounds": 181,
+       "head": {
+        "rounds": 177,
+        "drafted": 187,
+        "accepted": 152
+       },
+       "lookup": {
+        "rounds": 4,
+        "drafted": 12,
+        "accepted": 10
+       },
+       "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+       }
+      }
+     }
+    }
+   ],
+   "provenance": {
+    "phase": "halogen",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+   }
+  }
+ ]
+}

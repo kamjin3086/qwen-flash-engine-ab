@@ -1,5 +1,5 @@
 {
-  "count": 139,
+  "count": 142,
   "files": [
     {
       "bytes": 9421,
@@ -22,14 +22,14 @@
       "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
     },
     {
-      "bytes": 20691,
+      "bytes": 22040,
       "path": "bench.sh",
-      "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
+      "sha256": "182ff1f3b09f14dd0ff56c94fef80d0a78a8064d33195aff681c5da144a1f6e5"
     },
     {
-      "bytes": 62556,
+      "bytes": 66721,
       "path": "docs/index.html",
-      "sha256": "9c44473bd4dcb94fd2181d5a8005bade6ec6d89be1b6afb2fd160f88d5743dbc"
+      "sha256": "d6a43577e081ef5f2d1086b4369144e88f8898eb50886a309413215bac45c051"
     },
     {
       "bytes": 2119,
@@ -152,14 +152,14 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 39508,
+      "bytes": 41630,
       "path": "report/render.py",
-      "sha256": "27845e843d54bdf4af022d7808c8b25e37d4aa4a2e3ce2c688f71e47af671092"
+      "sha256": "d970c4c7858e48743bfba32d3a91d102cb2350de0172436cb547d8822a4820b3"
     },
     {
-      "bytes": 22774,
+      "bytes": 24987,
       "path": "report/summary.py",
-      "sha256": "4a6cdd5421d371066caa66b4caa2f4cf1c25b36b8b8b77657e4adc01937a8427"
+      "sha256": "4edd24a46c6bc8f36a9f8f7dad08a2241f594d1fd20e47d3e816d5cc6217109f"
     },
     {
       "bytes": 7657,
@@ -212,9 +212,9 @@
       "sha256": "326163ac77c922d2406b5abece85da8040c6b956d767aaacc03dd4aadc1b386b"
     },
     {
-      "bytes": 54016,
+      "bytes": 59148,
       "path": "results/summary.json",
-      "sha256": "089a6d05c73129e3ee457351f0d0c1189eb3a77992b7eaaf1efb1517533e1634"
+      "sha256": "922328afd6724f99cac30bcbc152f96fc09652443488b8e562b19fe5e220f996"
     },
     {
       "bytes": 22927,
@@ -222,14 +222,14 @@
       "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
-      "bytes": 16403,
+      "bytes": 18255,
       "path": "results/issue-body.md",
-      "sha256": "db9c179236a17c262c4f82945018530ab8cdbc8498d7b5e04e2f0a113b39fe57"
+      "sha256": "33c5df31bbdff70999d2f68dab923bb0c3ba47b0cb4057b91caae3e91b6295c1"
     },
     {
-      "bytes": 9458,
+      "bytes": 9934,
       "path": "results/findings.md",
-      "sha256": "306e4f9b34d3bd1120511560084dd602d05f0805b3c77f7482329c1d0856e12f"
+      "sha256": "ed29dd5fc32d36717b6eadbacc67295e5c827c34cdadf432ce992e6c4a3ab960"
     },
     {
       "bytes": 5706,
@@ -295,6 +295,11 @@
       "bytes": 597,
       "path": "runs/halogen/tool.json",
       "sha256": "c04cfd5e5bafcbf4f9b04550e108c8dac75a5992ae09beaaacd1235327bee427"
+    },
+    {
+      "bytes": 60028,
+      "path": "runs/halogen/variance.json",
+      "sha256": "ac54b2d7602f28a110e2742a2e58f584c583f459054b3fac21f26843f022bbc6"
     },
     {
       "bytes": 1032,
@@ -372,6 +377,11 @@
       "sha256": "924a9c2bf84ddb81820c41815949e756b994bf873704eb34f6802c9126bae446"
     },
     {
+      "bytes": 11434,
+      "path": "runs/kyojin-s1/variance.json",
+      "sha256": "3fe579713af0c1fd9e196a842c621e6a80c10792d6ddb0e2d6752d51e2a050d1"
+    },
+    {
       "bytes": 647,
       "path": "runs/kyojin-s1/warmup.json",
       "sha256": "5f31d64b58258c89e5da9a1766ab815ef6c4edc869d0556d4f712df677b7597a"
@@ -392,6 +402,11 @@
       "sha256": "aa31161d6c5c636e82f89454b15adad304d9b9b2f13fab62e7869d05dff95237"
     },
     {
+      "bytes": 16008,
+      "path": "runs/kyojin-s4/variance.json",
+      "sha256": "c14dec2b82a5be0987f384f575b3edbb80525646b1d24679187100588b65248a"
+    },
+    {
       "bytes": 7448,
       "path": "runs/restore/health.json",
       "sha256": "a2bf671d6ab6f573449c927b92d1c0a1af2f68a715a837a7359bdf4bfa7c3695"
@@ -399,7 +414,7 @@
     {
       "bytes": 928,
       "path": "runs/restore/smoke.json",
-      "sha256": "09103f2f072a4e8ea0c345ea01f49aab48bce15b855001db64e5bcdc626859bd"
+      "sha256": "b753c309d6194fb353b71fb3d93337e7fb32fde22ce2a5e01e6cb1eadb3c589c"
     },
     {
       "bytes": 4893,
@@ -559,12 +574,12 @@
     {
       "bytes": 740,
       "path": "runs/restore/env.txt",
-      "sha256": "2d101b18eb3795e48a8c0148434b38772f7237cccb197fe73f0fed01679535ca"
+      "sha256": "21cd1fec44e6343f3444465681d13f00bd76c0d389c4ba696bb843d63031897b"
     },
     {
       "bytes": 31,
       "path": "runs/restore/stop-state.txt",
-      "sha256": "9db5c9e7b025232b8fbf310044e251e91ded0c7e0d4b0b0ff20297dcf2e7a075"
+      "sha256": "fd8cff69142dfc05a914f5a2e6cffc936770a37dfe73cdb6d19a848bbc244f2d"
     },
     {
       "bytes": 5850,
