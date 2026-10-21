@@ -4,7 +4,9 @@ One machine, one model, two engines, measured one at a time. Kyojin was raised f
 
 - Halogen: `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc`
 - Kyojin: `ghcr.io/yamz-labs/kyojin-qwen@sha256:a0c48fea49a605da3e5eaeee4fcd82aa5a8591063976bbbbbca7c2c4f9c20b51`
-- Machine: AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.
+- Machine: AZW GTR Pro (the firmware's DMI strings; sold as Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.
+
+No action is requested here: this is a benchmark report, not a support request.
 
 ## Numbers
 
@@ -95,9 +97,6 @@ Decode rows are the original run's three repetitions per prompt class (the same 
 | Time to first token | prompt ~128K | Halogen | 3 | 68.7 | 68.0–69.0 |
 | Prefill | prompt ~262K | Halogen | 3 | 1,693 | 1,693–1,696 |
 | Time to first token | prompt ~262K | Halogen | 3 | 149 | 149.0–149.3 |
-| Aggregate decode, all requests | N=4 | Halogen | 3 | 39.2 | 39.2–40.8 |
-| Decode per request (median) | N=4 | Halogen | 3 | 27.2 | 26.5–28.0 |
-| First token, median across requests | N=4 | Halogen | 3 | 16.4 | 16.3–16.7 |
 | Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
 | Decode | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
 | Decode | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
@@ -107,12 +106,11 @@ Decode rows are the original run's three repetitions per prompt class (the same 
 | Time to first token | prompt ~128K | Kyojin | 3 | 97.1 | 96.4–97.5 |
 | Prefill | prompt ~262K | Kyojin | 3 | 1,244 | 1,244–1,248 |
 | Time to first token | prompt ~262K | Kyojin | 3 | 206 | 206–207 |
-| Aggregate decode, all requests | N=4 | Kyojin | 3 | 31.9 | 31.8–32.1 |
-| Decode per request (median) | N=4 | Kyojin | 3 | 16.6 | 16.2–16.7 |
-| First token, median across requests | N=4 | Kyojin | 3 | 22.9 | 22.7–22.9 |
 | Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
 | Decode | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
 | Decode | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
+
+> N=4 repetitions are not shown for either engine: Halogen's repeated runs had prompt-cache hits on all requests ([4, 4, 4] per run) while the original run had none. Without a matched pair the comparison is not like-for-like.
 
 - Halogen, pagoda: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-pagoda.html (`sha256:7e2e0cae24db`)
 - Halogen, hexagon: https://github.com/kamjin3086/qwen-flash-engine-ab/blob/main/docs/artifacts/halogen-hexagon.html (`sha256:ba64ac847a1c`)
@@ -121,12 +119,10 @@ Decode rows are the original run's three repetitions per prompt class (the same 
 
 ## What the numbers say
 
-# What the numbers say
-
 **One sentence:** on this machine, with these two packs, Kyojin is not slower at decoding
-than the engine I already run — but it is 28–37 % slower at prefill, 2.7× slower to come
-back after a reboot, and it produced an incomplete page on the task the comparison was
-originally about. If the question is "should I switch my daily driver", the answer here
+than the engine I already run — but it needs 28–37 % more time to prefill (1.28–1.37× lower
+throughput), it is 2.7× slower to come back after a reboot on a warm start, and it produced
+an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
 
 Everything below is a value from the tables above. Nothing here is a judgement of the
@@ -141,9 +137,11 @@ prefill ratio is quoted because it holds across four prompt sizes, not because i
 repeated.
 
 The repetitions added after the run cover prefill and first-token latency at 32K / 128K /
-262K and the N=4 row, three times each in one start per engine. Startup is still a single
+262K, three times each in one start per engine. The N=4 row was repeated too, but the
+repeated runs hit the prompt cache on all four requests while the original run had none, so
+they are not like-for-like and are not shown as variance. Startup is still a single
 observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
-worth the machine time it would have taken from the rest.
+worth the machine time.
 
 ## Where the two engines actually differ
 
@@ -156,7 +154,7 @@ forward pass throughput.
 **Decode is a tie.** 49.5 / 53.6 / 60.8 tok/s against 53.4 / 50.9 / 56.8 across prose,
 chat and code. The two engines trade the lead per prompt class and the spread between
 classes inside one engine is larger than the spread between engines. Anyone quoting a
-single decode number from this comparison is quoting noise.
+single decode number from this comparison is describing one prompt class, not an engine.
 
 The three runs behind each prefill and decode figure are in the *Repetitions* table on the
 page, and they make that statement precise: the prefill ranges do not overlap, so the gap
@@ -184,12 +182,12 @@ Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 %
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long the fourth request waits for its first token**: 11.6 s against
-23.0 s in this run, and 16.3–16.7 s against 22.7–22.9 s across three repetitions. The
-absolute number moves by a few seconds; the ordering does not.
+23.0 s. That row is a single observation: when it was repeated, every request in the repeat
+hit the prompt cache, so the repeat measures a different thing and is not quoted as a range.
 
-Kyojin's own startup log names the reason its parallel mode is not free, and it is right
-to warn: at four sessions its decode attention kernel splits differently and its output
-is no longer guaranteed to equal a solo run.
+Kyojin's own startup log names the reason its parallel mode is not free: at four sessions
+its decode attention kernel splits differently and its output is no longer guaranteed to
+equal a solo run.
 
 ## What an agent turn actually costs
 
@@ -244,8 +242,8 @@ Thirteen cases whose answers a script decides: 11 passed on Halogen, 8 on Kyojin
   with the 11th term instead of the 10th.
 
 With two packs of different precision, that split — identical on most, divergent on
-arithmetic — is the shape you would expect from quantization loss, and it is far more
-informative than a single "quality score".
+arithmetic — is consistent with quantization loss; it is a hypothesis from one run, not a
+measurement of the cause, and it is more informative than a single "quality score".
 
 ## Container experience
 

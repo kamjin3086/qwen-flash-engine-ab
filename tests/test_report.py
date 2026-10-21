@@ -205,6 +205,34 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(spreads[("decode_tps", "decode chat")],
                          {"n": 3, "min": 51.1, "max": 54.7})
 
+    def test_findings_title_is_not_repeated(self):
+        (self.tmp / "results").mkdir(exist_ok=True)
+        (self.tmp / "results" / "findings.md").write_text("# My findings title\n\nBody text.\n")
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html, md = (out / "index.html").read_text(), issue.read_text()
+        self.assertNotIn("<h1>My findings title</h1>", html)
+        self.assertNotIn("# My findings title", md)
+        self.assertIn("## What the numbers say", md)
+
+    def test_confounded_repetitions_are_dropped_with_a_note(self):
+        sys.path.insert(0, str(REPO / "report"))
+        import summary as summary_mod
+        runs = self.tmp / "runs"
+        d = runs / "variance-halogen"
+        d.mkdir(parents=True)
+        ctx = [{"runs": [{"requested_tokens": 32000, "prefill_tps_server": 1800 + i,
+                          "ttft_s": 16.0 + i}]} for i in range(3)]
+        conc = [{"summary": {"aggregate_decode_tps": 40, "per_request_decode_tps": [20, 20],
+                             "ttft_p50": 15, "requests_that_hit_prompt_cache": 4}}
+                for _ in range(3)]
+        (d / "variance.json").write_text(json.dumps(
+            {"engine": "halogen", "ctx": ctx, "conc4": conc}))
+        rows, notes = summary_mod.variance_block(runs)
+        self.assertTrue(notes and "prompt-cache" in notes[0])
+        self.assertFalse([r for r in rows if r["condition"] == "N=4"])
+        self.assertTrue([r for r in rows if r["condition"] == "prompt ~32K"])
+
     def test_variance_rows_render_as_a_table(self):
         fixture = json.loads(json.dumps(FIXTURE))
         fixture["schema"] = 2
@@ -223,6 +251,10 @@ class ReportTest(unittest.TestCase):
         self.assertIn("<h2>Variance</h2>", html)
         self.assertIn("149.0–149.3", html)
         self.assertIn("| Decode | decode chat | Halogen | 3 |", md)
+        fixture["variance_notes"] = ["N=4 repetitions are not like-for-like."]
+        self.summary_path.write_text(json.dumps(fixture))
+        p, out, issue = self.render()
+        self.assertIn("not like-for-like", (out / "index.html").read_text())
 
     def test_privacy_guard_refuses_a_host_path(self):
         (self.tmp / "results").mkdir(exist_ok=True)

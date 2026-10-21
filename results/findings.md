@@ -1,9 +1,9 @@
 # What the numbers say
 
 **One sentence:** on this machine, with these two packs, Kyojin is not slower at decoding
-than the engine I already run — but it is 28–37 % slower at prefill, 2.7× slower to come
-back after a reboot, and it produced an incomplete page on the task the comparison was
-originally about. If the question is "should I switch my daily driver", the answer here
+than the engine I already run — but it needs 28–37 % more time to prefill (1.28–1.37× lower
+throughput), it is 2.7× slower to come back after a reboot on a warm start, and it produced
+an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
 
 Everything below is a value from the tables above. Nothing here is a judgement of the
@@ -18,9 +18,11 @@ prefill ratio is quoted because it holds across four prompt sizes, not because i
 repeated.
 
 The repetitions added after the run cover prefill and first-token latency at 32K / 128K /
-262K and the N=4 row, three times each in one start per engine. Startup is still a single
+262K, three times each in one start per engine. The N=4 row was repeated too, but the
+repeated runs hit the prompt cache on all four requests while the original run had none, so
+they are not like-for-like and are not shown as variance. Startup is still a single
 observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
-worth the machine time it would have taken from the rest.
+worth the machine time.
 
 ## Where the two engines actually differ
 
@@ -33,7 +35,7 @@ forward pass throughput.
 **Decode is a tie.** 49.5 / 53.6 / 60.8 tok/s against 53.4 / 50.9 / 56.8 across prose,
 chat and code. The two engines trade the lead per prompt class and the spread between
 classes inside one engine is larger than the spread between engines. Anyone quoting a
-single decode number from this comparison is quoting noise.
+single decode number from this comparison is describing one prompt class, not an engine.
 
 The three runs behind each prefill and decode figure are in the *Repetitions* table on the
 page, and they make that statement precise: the prefill ranges do not overlap, so the gap
@@ -61,12 +63,12 @@ Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 %
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long the fourth request waits for its first token**: 11.6 s against
-23.0 s in this run, and 16.3–16.7 s against 22.7–22.9 s across three repetitions. The
-absolute number moves by a few seconds; the ordering does not.
+23.0 s. That row is a single observation: when it was repeated, every request in the repeat
+hit the prompt cache, so the repeat measures a different thing and is not quoted as a range.
 
-Kyojin's own startup log names the reason its parallel mode is not free, and it is right
-to warn: at four sessions its decode attention kernel splits differently and its output
-is no longer guaranteed to equal a solo run.
+Kyojin's own startup log names the reason its parallel mode is not free: at four sessions
+its decode attention kernel splits differently and its output is no longer guaranteed to
+equal a solo run.
 
 ## What an agent turn actually costs
 
@@ -121,8 +123,8 @@ Thirteen cases whose answers a script decides: 11 passed on Halogen, 8 on Kyojin
   with the 11th term instead of the 10th.
 
 With two packs of different precision, that split — identical on most, divergent on
-arithmetic — is the shape you would expect from quantization loss, and it is far more
-informative than a single "quality score".
+arithmetic — is consistent with quantization loss; it is a hypothesis from one run, not a
+measurement of the cause, and it is more informative than a single "quality score".
 
 ## Container experience
 

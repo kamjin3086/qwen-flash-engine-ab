@@ -301,6 +301,7 @@ def variance_table(summary: dict) -> str:
     rows = summary.get("variance") or []
     if not rows:
         return ""
+    notes = "".join(f'<p class="sub">{escape(n)}</p>' for n in summary.get("variance_notes") or [])
     body = []
     for v in rows:
         body.append(
@@ -315,7 +316,8 @@ def variance_table(summary: dict) -> str:
             'the numbers the verdict leans on. The headline table above is the original run; '
             "this is how far a repetition of it travels. Decode rows are the original "
             "run's three repetitions per prompt class, the same data as Repetitions above; "
-            "the context and N=4 rows were re-measured.</p>"
+            "the context rows were re-measured.</p>"
+            f'{notes}'
             '<div class="tablewrap" role="region" aria-label="Variance" tabindex="0">'
             '<table class="spread"><thead><tr><th>Measurement</th><th>Condition</th>'
             '<th>Engine</th><th style="text-align:right">n</th>'
@@ -338,8 +340,17 @@ def variance_markdown(summary: dict) -> list[str]:
                    f'{ENGINE_LABEL.get(v["engine"], v["engine"].title())} | {v["n"]} | '
                    f'{fmt(v["metric"], v["median"], "measured")} | '
                    f'{fmt_range(v["metric"], v["min"], v["max"])} |')
+    out += [""] + [f"> {n}" for n in summary.get("variance_notes") or []]
     out.append("")
     return out
+
+
+def strip_title(md: str) -> str:
+    """The findings file starts with its own H1; the page and the issue add the heading."""
+    lines = md.lstrip().splitlines()
+    if lines and lines[0].startswith("# "):
+        lines = lines[1:]
+    return "\n".join(lines).lstrip("\n")
 
 
 def rel(raw_path: str) -> str:
@@ -755,7 +766,7 @@ Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 {build_charts(m)}
 
 <h2>{escape(FINDINGS_HEADING)}</h2>
-{md_to_html(findings) if findings.strip() else '<p class="muted">Not written yet.</p>'}
+{md_to_html(strip_title(findings)) if findings.strip() else '<p class="muted">Not written yet.</p>'}
 
 <h2>Artifacts</h2>
 <p class="sub">Each engine's single-shot answer to the same prompt, one HTML file, no tools, no retry.
@@ -792,8 +803,10 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
         "",
         f"- Halogen: `{digest.get('halogen') or 'unknown'}`",
         f"- Kyojin: `{digest.get('kyojin') or 'unknown'}`",
-        "- Machine: AZW GTR Pro (Beelink GTR9 Pro), Ryzen AI Max+ 395, 128 GB unified (gfx1151), "
-        "Fedora 44, kernel 7.2.9.",
+        "- Machine: AZW GTR Pro (the firmware's DMI strings; sold as Beelink GTR9 Pro), "
+        "Ryzen AI Max+ 395, 128 GB unified (gfx1151), Fedora 44, kernel 7.2.9.",
+        "",
+        "No action is requested here: this is a benchmark report, not a support request.",
         "",
         "## Numbers",
         "",
@@ -807,7 +820,7 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
     for a in artifacts:
         lines.append(f'- {a["engine"].title()}, {a["task"]}: {repo_url}/blob/main/docs/{a["path"]} '
                      f'(`sha256:{a["sha256"][:12]}`)')
-    lines += ["", f"## {FINDINGS_HEADING}", "", findings.strip() or "_not written yet_", "",
+    lines += ["", f"## {FINDINGS_HEADING}", "", strip_title(findings).strip() or "_not written yet_", "",
               "## Everything else", "",
               f"Method, raw JSON, logs, the exact compose files and the artifact pages: {repo_url}",
               "", "_The two packs are different quantizations of the same model, so speed figures describe "

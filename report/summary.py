@@ -234,7 +234,7 @@ def bench_json(path: Path) -> dict | None:
         raise SystemExit(f"{path}: fenced JSON does not parse ({e})")
 
 
-def variance_block(runs: Path) -> list[dict]:
+def variance_block(runs: Path) -> tuple[list[dict], list[str]]:
     """Statistics over the repetitions a `bench.sh variance` phase recorded.
 
     Each record lives in `runs/variance-<engine>/variance.json`, which is not a measurement
@@ -243,6 +243,7 @@ def variance_block(runs: Path) -> list[dict]:
     class, labelled as such — the phase records its own decode block when it is run again.
     """
     out: list[dict] = []
+    notes: list[str] = []
     for path in sorted(runs.glob("variance-*/variance.json")):
         doc = load(path)
         if not doc:
@@ -270,18 +271,27 @@ def variance_block(runs: Path) -> list[dict]:
             add("prefill_tps", cond, [r.get("prefill_tps_server") for r in runs_at if r])
             add("ttft_s", cond, [r.get("ttft_s") for r in runs_at if r])
         conc = doc.get("conc4") or []
-        add("aggregate_decode_tps", "N=4", [rep.get("summary", {}).get("aggregate_decode_tps")
-                                           for rep in conc])
-        add("per_request_decode_tps", "N=4",
-            [statistics.median([v for v in rep.get("summary", {}).get("per_request_decode_tps") or []
-                                if v is not None])
-             for rep in conc if rep.get("summary", {}).get("per_request_decode_tps")])
-        add("ttft_p50_s", "N=4", [rep.get("summary", {}).get("ttft_p50") for rep in conc])
+        cached = [rep.get("summary", {}).get("requests_that_hit_prompt_cache") or 0
+                  for rep in conc]
+        if conc and any(cached):
+            # the repetition only counts if it ran under the same conditions as the original
+            notes.append(
+                "N=4 repetitions are not shown for either engine: Halogen's repeated runs had "
+                f"prompt-cache hits on all requests ({cached} per run) while the original run "
+                "had none. Without a matched pair the comparison is not like-for-like.")
+        else:
+            add("aggregate_decode_tps", "N=4",
+                [rep.get("summary", {}).get("aggregate_decode_tps") for rep in conc])
+            add("per_request_decode_tps", "N=4",
+                [statistics.median([v for v in rep.get("summary", {}).get(
+                    "per_request_decode_tps") or [] if v is not None])
+                 for rep in conc if rep.get("summary", {}).get("per_request_decode_tps")])
+            add("ttft_p50_s", "N=4", [rep.get("summary", {}).get("ttft_p50") for rep in conc])
         decode = (doc.get("decode") or {}).get("classes") or {}
         for cat, blob in decode.items():
             add("decode_tps", f"decode {cat}", blob.get("runs"),
                 source=(doc.get("decode") or {}).get("source"))
-    return out
+    return out, notes
 
 
 def collect(runs: Path) -> dict:
@@ -485,7 +495,9 @@ def collect(runs: Path) -> dict:
                 e["phase"] = prov["phase"]
 
     measured = [e for e in entries if e["status"] == "measured"]
-    var = variance_block(runs)
+    var, variance_notes = variance_block(runs)
+    if any("N=4 repetitions are not shown" in n for n in variance_notes):
+        var = [v for v in var if v["condition"] != "N=4"]
     doc = {
         "schema": 2,
         "phases": present,
@@ -500,6 +512,8 @@ def collect(runs: Path) -> dict:
     }
     if var:
         doc["variance"] = var
+    if variance_notes:
+        doc["variance_notes"] = variance_notes
     return doc
 
 
