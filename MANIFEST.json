@@ -1,5 +1,5 @@
 {
-  "count": 127,
+  "count": 128,
   "files": [
     {
       "bytes": 8871,
@@ -27,9 +27,9 @@
       "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
     },
     {
-      "bytes": 58286,
+      "bytes": 58565,
       "path": "docs/index.html",
-      "sha256": "e41a9ea9e03d86b7ae6ffaf4e2bb862812000977f98221209325131b22abf346"
+      "sha256": "160ccc0db6be74ce9c5a3ca4fc76ee74c1162ecab27cdba9cfeed3321e9adb5f"
     },
     {
       "bytes": 2119,
@@ -82,6 +82,11 @@
       "sha256": "82708cac09d9c2d137dfa8716b504fcb911fd9fd696d030b3c7d544617fcdf9c"
     },
     {
+      "bytes": 466526,
+      "path": "docs/shots/halogen-pagoda.png",
+      "sha256": "4e56fbc29b3f0dd6c5138d6f22adaed692eb6cfaeb9ce02e3d601d372cb08bd8"
+    },
+    {
       "bytes": 291925,
       "path": "docs/shots/kyojin-hexagon.png",
       "sha256": "f3d362802ad44846e61ff83a98477c20a46d006dd5a63f3deb6aa7c7e67477e2"
@@ -132,9 +137,9 @@
       "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
     },
     {
-      "bytes": 32605,
+      "bytes": 33055,
       "path": "report/render.py",
-      "sha256": "dbdc1c334394b78ec82c0f87db4b1cb4da2e93cbcf382c383096ac6dcf3aa175"
+      "sha256": "881085f6c555c17f4633fa7a7fd46ee5983a2b5101b9b679147d5686e3e4bf4a"
     },
     {
       "bytes": 20975,

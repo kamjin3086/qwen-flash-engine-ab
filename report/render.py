@@ -201,10 +201,14 @@ def cell_table(measurements: list[dict]) -> str:
             f'<tr><th scope="row">{escape(row.label)}</th>'
             f'<td class="cond">{escape(row.condition)}</td>{"".join(cells)}</tr>')
     head = "".join(f'<th scope="col">{escape(ENGINE_LABEL.get(e, e.title()))}</th>' for e in ENGINES)
+    # The table is wider than a phone at its natural width (numbers and provenance are
+    # unbreakable by design). Scroll the table, not the page: role+tabindex so a keyboard
+    # can reach it, which a plain overflow box does not give.
     return (
+        '<div class="tablewrap" role="region" aria-label="Measurements" tabindex="0">'
         '<table class="headline"><thead><tr><th scope="col">Measurement</th>'
         f'<th scope="col">Condition</th>{head}</tr></thead><tbody>'
-        + "".join(rows) + "</tbody></table>")
+        + "".join(rows) + "</tbody></table></div>")
 
 
 def rel(raw_path: str) -> str:
@@ -414,7 +418,7 @@ def artifact_section(artifacts: list[dict]) -> str:
         if shot.is_file():
             shot_html = (f'<a href="shots/{escape(a["engine"])}-{escape(a["task"])}.png">'
                          f'<img class="shot" src="shots/{escape(a["engine"])}-{escape(a["task"])}.png" '
-                         f'alt="{escape(a["engine"] + " " + a["task"])}" loading="lazy"></a>')
+                         f'alt="{escape(a["engine"] + " " + a["task"])}"></a>')
         cards.append(f'''<figure class="art">
   <figcaption><strong>{escape(a["engine"].title())}</strong>, {escape(a["task"])} &middot; {" &middot; ".join(escape(b) for b in bits)}
   <br><a href="{escape(a["path"])}">open full page</a> &middot; <code>sha256:{a["sha256"][:12]}</code></figcaption>
@@ -495,6 +499,8 @@ td.cond{color:var(--mut)}
 .art figcaption{padding:10px 14px;font-size:.85rem;color:var(--mut)}
 .art iframe{width:100%;height:420px;border:0;border-top:1px solid var(--line);background:#fff}
 .art .shot{display:block;width:100%;height:auto;border-top:1px solid var(--line)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap:focus-visible{outline:2px solid var(--h);outline-offset:2px}
 .flag{color:var(--k)}
 @media(max-width:640px){td.num,th{white-space:normal}.art iframe{height:300px}}
 """
