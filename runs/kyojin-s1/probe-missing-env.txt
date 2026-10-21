@@ -1,0 +1,3 @@
+error while interpolating services.qwen.group_add.[]: required variable VIDEO_GID is missing a value: Set VIDEO_GID in .env
+error while interpolating services.qwen.group_add.[]: required variable RENDER_GID is missing a value: Set RENDER_GID in .env
+exit=1

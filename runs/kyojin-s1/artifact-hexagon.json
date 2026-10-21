@@ -1,0 +1,47 @@
+{
+  "label": "kyojin",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "agent",
+  "prompt_file": "docs/prompts/hexagon.txt",
+  "stopped_by": "finish",
+  "turns": 2,
+  "tool_calls": 2,
+  "calls": [
+    "write_file",
+    "finish"
+  ],
+  "wall_s": 70.3,
+  "max_turns": 8,
+  "wall_cap_s": 600,
+  "produced_page": true,
+  "bytes": 12075,
+  "looks_complete_html": true,
+  "external_refs": [],
+  "files_written": [
+    "index.html"
+  ],
+  "artifact_sha256": "e5b933595f9fab0c076c027a3cf417a58f76b97e0838dce5555a47e8dc6c21e9",
+  "transcript": [
+    {
+      "turn": 1,
+      "content": "I'll create an animated HTML page with balls bouncing inside a rotating hexagon, including proper collision physics.",
+      "calls": [
+        {
+          "name": "write_file",
+          "args_bytes": 12635
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "content": "",
+      "calls": [
+        {
+          "name": "finish",
+          "args_bytes": 467
+        }
+      ]
+    }
+  ]
+}

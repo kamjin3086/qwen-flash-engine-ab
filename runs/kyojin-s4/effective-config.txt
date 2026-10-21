@@ -1,0 +1,4 @@
+qserve: WARNING --sessions 4 x (--ndt 7 + 1) = 32 verify rows is past 8: greedy output may differ from the same request run alone
+qserve: WARNING --sessions 4: greedy output is not guaranteed equal to the same request run alone, with either cache width (the 16-bit cache stayed equal on two short prompts; the attention kernel splits its work by batch)
+qserve: starting, model=/models ctx=262144 sessions=4 draft_policy=mix defaults={'temperature': 1.0, 'top_p': 0.95, 'top_k': 20, 'min_p': 0.0, 'reasoning_effort': 'xhigh'}
+qserve: READY on http://0.0.0.0:8731  model=kyojin-qwen38 ctx=262144 sessions=4 speculative=True vision=True (start-up 41 s)

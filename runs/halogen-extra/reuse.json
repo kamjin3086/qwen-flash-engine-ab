@@ -1,0 +1,225 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "reuse",
+  "summary": {
+    "cold_1": {
+      "prompt_tokens": 95728,
+      "cache_n": 0,
+      "ttft_s": 53.542,
+      "wall_s": 53.582,
+      "prefill_tps_server": 1794.871,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: first"
+    },
+    "reuse": {
+      "prompt_tokens": 95728,
+      "cache_n": 95680,
+      "ttft_s": 0.585,
+      "wall_s": 0.631,
+      "prefill_tps_server": 150.188,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: second"
+    },
+    "cold_2": {
+      "prompt_tokens": 95728,
+      "cache_n": 0,
+      "ttft_s": 53.337,
+      "wall_s": 53.376,
+      "prefill_tps_server": 1803.079,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: third"
+    },
+    "reused_prompt_tokens": 48,
+    "reuse_ttft_ratio_vs_cold1": 0.0109
+  },
+  "runs": [
+    {
+      "ttft_s": 53.542,
+      "wall_s": 53.582,
+      "prompt_tokens": 95728,
+      "completion_tokens": 2,
+      "prefill_tps_client": 1787.9,
+      "decode_tps_client": 24.84,
+      "prefill_tps_server": 1794.871,
+      "decode_tps_server": 51.948,
+      "prompt_ms_server": 53334.2,
+      "predicted_ms_server": 38.5,
+      "cache_n": 0,
+      "draft_n": 1,
+      "draft_n_accepted": 1,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 5,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 95728,
+        "completion_tokens": 2,
+        "total_tokens": 95730,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 95728,
+        "predicted_n": 2,
+        "prompt_ms": 53334.2,
+        "predicted_ms": 38.5,
+        "prompt_per_second": 1794.871,
+        "predicted_per_second": 51.948,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 159,
+        "draft_n": 1,
+        "draft_n_accepted": 1,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 1,
+          "head": {
+            "rounds": 1,
+            "drafted": 1,
+            "accepted": 1
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      },
+      "tail": "Reply with the single word: first"
+    },
+    {
+      "ttft_s": 0.585,
+      "wall_s": 0.631,
+      "prompt_tokens": 95728,
+      "completion_tokens": 2,
+      "prefill_tps_client": 163614.7,
+      "decode_tps_client": 21.93,
+      "prefill_tps_server": 150.188,
+      "decode_tps_server": 46.083,
+      "prompt_ms_server": 319.6,
+      "predicted_ms_server": 43.4,
+      "cache_n": 95680,
+      "draft_n": 1,
+      "draft_n_accepted": 1,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 6,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 95728,
+        "completion_tokens": 2,
+        "total_tokens": 95730,
+        "prompt_tokens_details": {
+          "cached_tokens": 95680
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 48,
+        "predicted_n": 2,
+        "prompt_ms": 319.6,
+        "predicted_ms": 43.4,
+        "prompt_per_second": 150.188,
+        "predicted_per_second": 46.083,
+        "cache_n": 95680,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 95718,
+        "draft_n": 1,
+        "draft_n_accepted": 1,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 1,
+          "head": {
+            "rounds": 1,
+            "drafted": 1,
+            "accepted": 1
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      },
+      "tail": "Reply with the single word: second"
+    },
+    {
+      "ttft_s": 53.337,
+      "wall_s": 53.376,
+      "prompt_tokens": 95728,
+      "completion_tokens": 2,
+      "prefill_tps_client": 1794.8,
+      "decode_tps_client": 26.07,
+      "prefill_tps_server": 1803.079,
+      "decode_tps_server": 55.096,
+      "prompt_ms_server": 53091.4,
+      "predicted_ms_server": 36.3,
+      "cache_n": 0,
+      "draft_n": 1,
+      "draft_n_accepted": 1,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 5,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 95728,
+        "completion_tokens": 2,
+        "total_tokens": 95730,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 95728,
+        "predicted_n": 2,
+        "prompt_ms": 53091.4,
+        "predicted_ms": 36.3,
+        "prompt_per_second": 1803.079,
+        "predicted_per_second": 55.096,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 174,
+        "draft_n": 1,
+        "draft_n_accepted": 1,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 1,
+          "head": {
+            "rounds": 1,
+            "drafted": 1,
+            "accepted": 1
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      },
+      "tail": "Reply with the single word: third"
+    }
+  ]
+}

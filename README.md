@@ -1,0 +1,162 @@
+# Halogen vs Kyojin, one model, one machine
+
+Two engines serving Qwen3.8-Flash-Next on a single AMD Strix Halo mini PC, measured
+one at a time because they cannot both be resident. The question is narrow:
+
+> The engine I run every day is Halogen. Can Kyojin replace it?
+
+Everything below exists to answer that, and only that.
+
+## Status
+
+Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted.
+
+- The report: [`docs/index.html`](docs/index.html) — one self-contained file, open it from
+  disk, or read it live at <https://kamjin3086.github.io/qwen-flash-engine-ab/>.
+- The analysis: [`results/findings.md`](results/findings.md) — what the numbers say, and
+  what they do not.
+- The summary everything else reads: [`results/summary.json`](results/summary.json).
+- The Markdown body for the maintainer's issue: [`results/issue-body.md`](results/issue-body.md).
+
+Reproduce the report from the raw records with `python3 report/build.py`. The unit tests
+that guard it stay in the working repository, because their fixtures name containers that
+are not part of this comparison.
+
+## What this is not
+
+- **Not an engine shootout at stock defaults.** Kyojin's container ships 65536
+  positions of context and no vision; measuring it there would say nothing about
+  whether it can replace a server that runs 262144 with vision.
+- **Not a model quality verdict.** The two engines load different quantizations of
+  the same model. Output impressions are labelled as impressions.
+- **Not a packaging review of Kyojin for everyone.** It is one user's daily
+  workflow, on one machine, reported so the maintainer can act on it.
+
+## Machine and versions
+
+| | |
+|---|---|
+| Machine | AZW GTR Pro (Ryzen AI Max+ 395, 128 GB unified, gfx1151) |
+| Kernel | 7.2.9-201.fc44.x86_64 |
+| Halogen | `ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53…` (0.18.13) |
+| Kyojin | `ghcr.io/yamz-labs/kyojin-qwen:1.6` `@sha256:a0c48fea…` (repo commit recorded in `runs/*/env.txt`) |
+
+## The reference configuration
+
+Halogen's daily configuration is the yardstick and is not varied. Kyojin is raised
+to meet it. See `docs/adr/0001-single-arm-halogen-as-yardstick.md` for why there is
+no "fair" second arm.
+
+| Dimension | Halogen (reference) | Kyojin (raised to meet it) |
+|---|---|---|
+| Context | `HALOGEN_CTX=262144` | `-c 262144` |
+| Parallel requests | `HALOGEN_KV_SLOTS=4` over one 262144 pool | `--sessions 4` over one `-c` pool; `--sessions 1` for deterministic runs |
+| Reply budget | `HALOGEN_MAX_TOK=16384` | `--default-max-tokens 16384` |
+| Vision | on | on (no `--no-vision`) |
+| Speculative decoding | MTP drafter, default | `--draft-policy mix`, `--ndt 7`, default |
+| Prompt cache | on, 2.7 GiB of RAM | engine default |
+| Sampling | greedy at temperature 0 | greedy at temperature 0 |
+| Thinking, speed runs | `enable_thinking: false` | `enable_thinking: false` |
+| Thinking, one sample | `--reasoning_effort xhigh` | `--default-reasoning-effort xhigh` |
+
+### Variables that cannot be aligned, and are disclosed instead
+
+- **Pack.** Halogen loads a 62.1 GiB `.hgn` checkpoint whose lookup table is read
+  from disk; Kyojin loads an EXL3 4.0 bpw pack (89 GiB on disk, vision and MTP
+  towers at 6 bits). Speed figures therefore describe engine **and** quantization.
+- **Chat template.** Halogen runs a local custom template; Kyojin runs the template
+  shipped in its image. Both are greedy, so this affects the shape of the answer,
+  not its sampling.
+- **Concurrency cost.** Kyojin's `--sessions N` is not free: above one session the
+  decode attention kernel splits differently, and the server itself warns that
+  greedy output is no longer guaranteed to match a solo run, and that
+  `sessions × (ndt + 1) > 8` costs decode throughput. Halogen runs four slots and
+  its MTP drafter at the same time. That difference is a finding, not a setting.
+
+## Measurement matrix
+
+| # | Measurement | How | Both engines |
+|---|---|---|---|
+| 1 | Cold start and warm start to `/v1/models` | `bench.sh` wall clock | yes |
+| 2 | Prefill and decode at the author's sizes | upstream `bench.py`, same corpus | yes |
+| 3 | Prefill and TTFT at 32K / 128K / 262144 | `kbench.py ctx` | yes |
+| 4 | Two facts at 40 % and 85 % of ~250K | `kbench.py needle` | yes |
+| 5 | One tool call | `kbench.py tool` | yes |
+| 6 | N-way concurrency, 8K prompt, 512 out, N = 1 and 4 | `kbench.py conc` | yes, see caveat below |
+| 7 | One thinking-on sample at `xhigh` | one request | yes |
+| 8 | One-shot artifact: the gallery's voxel-pagoda prompt, one HTML file, no tools | manual, rendered and screenshotted | yes |
+| 9 | Bounded agent run: the gallery's hexagon prompt, 8 turns / 600 s cap, `tools/agentrun.py` | `bench.sh` + manual | yes |
+| 10 | Container experience: cache survives restart, missing `.env` error text, port already in use | manual | Kyojin only |
+
+Caveat on 6: N = 1 on Kyojin requires `--sessions 1`, a start flag, so the
+concurrency phase needs its own Kyojin run (`--sessions 4`) and its N = 1 reference
+comes from the deterministic phase. Halogen needs no such split.
+
+## Run order
+
+1. `./bench.sh preflight` — record environment, digests, GTT, availability.
+2. `./bench.sh smoke` — tooling check at tiny sizes against the engine that is up.
+3. `./bench.sh halogen` — phase A, the reference engine while it is warm.
+4. `./bench.sh kyojin-s1` — phase B: stop Halogen, Kyojin cold start, deterministic
+   matrix, artifacts 8 and 9.
+5. `./bench.sh kyojin-s4` — phase C: warm restart with `--sessions 4`, measurement 6.
+6. `./bench.sh restore` — phase D: stop Kyojin, bring Halogen back, verify it answers.
+
+## What the run required, and why
+
+Four things were not obvious from the Kyojin container guide and cost time to find. They
+are recorded here because the next person measuring this image will hit them too.
+
+- **The n-gram/PLE table must be forced to disk.** `EXL3_NGRAM_STREAM=1`. Left unset, the
+  engine decides by comparing available memory against table size plus 48 GiB, but it
+  decides *while the 89 GB pack is still loading*, when `MemAvailable` does not yet
+  include the weights. It chose RAM, and the host froze hard enough that it had to be
+  rebooted. See `runs/_incident-freeze/`.
+- **Server settings go through environment variables**, not a compose `command:`. The
+  entrypoint does append its command line to the server invocation, but a `command:` that
+  never reaches the container leaves the server on its defaults (65,536 tokens, vision
+  off) and the only signal is one line in the log.
+- **Pins belong on digests, not tags.** The compose file this work started from asked for
+  `1.5.2`, which the registry never published. The newest published image is `1.6.0`,
+  also tagged `latest` and `1.6`.
+- **A cold start means a cold page cache.** `sync` + `drop_caches` before timing, or the
+  "cold" start is served from RAM. Both engines are timed that way here.
+
+## Abort rules
+
+- **A1** Halogen not healthy within 15 minutes of the restore: stop everything,
+  report, do not keep trying.
+- **A2** GTT not released after stopping Halogen (more than 2 GiB still held): do
+  **not** start Kyojin. Report. A reboot is the only known remedy and is not
+  authorised.
+- **A3** Kyojin out of memory at 262144: drop to 131072 once, record the drop as a
+  finding, do not retry further.
+- **A4** Any OOM kill that reaches a service outside the two engines: abort and
+  restore Halogen immediately.
+
+Never, at any point: `docker compose down -v`, deleting `models/` or `cache/`, or
+editing an existing compose file. Kyojin argument overrides go in a separate
+override file.
+
+## Publication
+
+- A **generated public export** (`qwen-flash-engine-ab`), produced from the private
+  working repository by an allowlist copy with a path, account and container-name check —
+  never a history mirror. See
+  `docs/adr/0003-private-work-public-export.md`. Contents: scripts, scrubbed raw
+  JSON, logs, screenshots, method, and the two licenses below.
+- One `benchmark_report` issue in the Kyojin repository: the numbers, the machine,
+  the exact server command, and the notes the template asks for.
+- Separate `bug_report` issues, only for defects found by measurement 10.
+- A short reply in the Reddit thread linking both.
+
+The task prompts for measurement 8 and 9 are the ones published in the author's
+gallery, quoted verbatim in `docs/artifacts.md`.
+
+## License
+
+- Code — `bench.sh`, `report/`, `tools/` — is MIT: [`LICENSE`](LICENSE).
+- Measurements, prose and the artifact pages are CC-BY-4.0:
+  [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0).
+
+Neither engine image is redistributed here; each carries its own license.

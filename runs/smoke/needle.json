@@ -1,0 +1,36 @@
+{
+  "label": "smoke",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "needle",
+  "positions": [
+    0.4,
+    0.85
+  ],
+  "needles": {
+    "slot": "cabinet-729850",
+    "who": "engineer-272152"
+  },
+  "runs": [
+    {
+      "question": "In which cabinet is the spare pressure valve for loop C stored?",
+      "answer": "cabinet-729850",
+      "found": true,
+      "prompt_tokens": 8131,
+      "ttft_s": 4.335,
+      "wall_s": 4.44
+    },
+    {
+      "question": "Who last certified the spare pressure valve for loop C?",
+      "answer": "engineer-272152",
+      "found": true,
+      "prompt_tokens": 8129,
+      "ttft_s": 0.23,
+      "wall_s": 0.331
+    }
+  ],
+  "provenance": {
+    "phase": "smoke",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+  }
+}

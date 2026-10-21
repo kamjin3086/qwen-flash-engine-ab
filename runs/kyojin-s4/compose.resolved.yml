@@ -1,0 +1,53 @@
+name: kyojin-trial
+services:
+  qwen:
+    restart: 'no'
+    container_name: kyojin-qwen-trial
+    devices:
+      - source: /dev/kfd
+        target: /dev/kfd
+        permissions: rwm
+      - source: /dev/dri
+        target: /dev/dri
+        permissions: rwm
+    environment:
+      CONTEXT: "262144"
+      EXL3_NGRAM_STREAM: "1"
+      KYOJIN_CACHE_DIR: /root/.cache
+      KYOJIN_DOWNLOAD: "1"
+      KYOJIN_ENABLE_UNCENSOR: "0"
+      KYOJIN_ENABLE_VISION: "1"
+      KYOJIN_EXTRA_ARGS: --sessions 4 --default-max-tokens 16384 --default-reasoning-effort
+        xhigh
+      KYOJIN_MODEL_ID: kyojin-qwen38
+    group_add:
+      - "39"
+      - "105"
+    image: ghcr.io/yamz-labs/kyojin-qwen@sha256:a0c48fea49a605da3e5eaeee4fcd82aa5a8591063976bbbbbca7c2c4f9c20b51
+    ipc: host
+    networks:
+      default: null
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - type: bind
+        source: ~/apps/kyojin-compose-starter/models/qwen
+        target: /models
+        bind:
+          selinux: Z
+      - type: bind
+        source: ~/apps/kyojin-compose-starter/cache
+        target: /root/.cache
+        bind:
+          selinux: Z
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 8731
+        published: "8732"
+        protocol: tcp
+networks:
+  default:
+    name: kyojin-trial_default

@@ -1,0 +1,2 @@
+qserve: starting, model=/models ctx=262144 sessions=1 draft_policy=mix defaults={'temperature': 1.0, 'top_p': 0.95, 'top_k': 20, 'min_p': 0.0, 'reasoning_effort': 'xhigh'}
+qserve: READY on http://0.0.0.0:8731  model=kyojin-qwen38 ctx=262144 sessions=1 speculative=True vision=True (start-up 558 s)

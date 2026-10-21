@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouncing Balls in a Spinning Hexagon</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, #1a2036, #070a14 70%);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: #cdd6f4;
+    overflow: hidden;
+  }
+  #wrap {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+  canvas { display: block; touch-action: none; }
+  #hud {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    background: rgba(10,14,26,0.55);
+    border: 1px solid rgba(120,140,200,0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    backdrop-filter: blur(6px);
+    user-select: none;
+  }
+  #hud b { color: #89b4ff; }
+  #hud .hint { color: #7f8aa8; font-size: 11px; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="c"></canvas></div>
+<div id="hud">
+  <div><b>Balls:</b> <span id="count">10</span></div>
+  <div><b>Spin:</b> <span id="spin">0.40</span> rad/s</div>
+  <div><b>Gravity:</b> <span id="grav">900</span></div>
+  <div class="hint">drag to spin &middot; scroll to zoom &middot; click to add ball</div>
+</div>
+<script>
+(() => {
+  "use strict";
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  let W = 0, H = 0, DPR = 1;
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  // ---- Config ----
+  const GRAVITY = 900;        // px/s^2
+  const RESTITUTION = 0.86;   // wall bounciness
+  const WALL_FRICTION = 0.02; // tangential damping on wall hit
+  const AIR = 0.9995;         // per-frame-ish air drag
+  let spinSpeed = 0.40;       // rad/s
+  let hexRadius = 0;          // computed on resize
+  const SIDES = 6;
+
+  const cx = () => W / 2;
+  const cy = () => H / 2;
+  function computeRadius() {
+    hexRadius = Math.min(W, H) * 0.42;
+  }
+  computeRadius();
+  window.addEventListener("resize", computeRadius);
+
+  // ---- Balls ----
+  const COLORS = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#f368e0",
+                  "#ff9f43","#54a0ff","#00d2d3","#ee5253","#c8d6e5"];
+  const balls = [];
+  function makeBall(i) {
+    const a = Math.random() * Math.PI * 2;
+    const r = Math.random() * hexRadius * 0.4;
+    return {
+      x: cx() + Math.cos(a) * r,
+      y: cy() + Math.sin(a) * r,
+      vx: (Math.random() - 0.5) * 400,
+      vy: (Math.random() - 0.5) * 400,
+      r: 10 + Math.random() * 14,
+      color: COLORS[i % COLORS.length]
+    };
+  }
+  for (let i = 0; i < 10; i++) balls.push(makeBall(i));
+
+  // ---- Hexagon geometry ----
+  let angle = 0;
+  function hexVertices() {
+    const v = [];
+    for (let i = 0; i < SIDES; i++) {
+      const a = angle + i * (Math.PI * 2 / SIDES);
+      v.push({ x: cx() + Math.cos(a) * hexRadius,
+               y: cy() + Math.sin(a) * hexRadius });
+    }
+    return v;
+  }
+
+  // ---- Physics ----
+  function collideWalls(b) {
+    const verts = hexVertices();
+    for (let i = 0; i < SIDES; i++) {
+      const a = verts[i], c = verts[(i + 1) % SIDES];
+      const ex = c.x - a.x, ey = c.y - a.y;
+      const len2 = ex * ex + ey * ey;
+      // closest point on segment
+      let t = ((b.x - a.x) * ex + (b.y - a.y) * ey) / len2;
+      t = Math.max(0, Math.min(1, t));
+      const px = a.x + ex * t, py = a.y + ey * t;
+      let nx = b.x - px, ny = b.y - py;
+      let dist = Math.hypot(nx, ny);
+      if (dist < b.r) {
+        if (dist < 1e-6) { nx = 0; ny = -1; dist = 1e-6; }
+        nx /= dist; ny /= dist;
+        // push out
+        const pen = b.r - dist;
+        b.x += nx * pen; b.y += ny * pen;
+        // wall velocity at contact point due to rotation: omega x r
+        const rx = px - cx(), ry = py - cy();
+        const wvx = -spinSpeed * ry;
+        const wvy =  spinSpeed * rx;
+        // relative velocity
+        let rvx = b.vx - wvx, rvy = b.vy - wvy;
+        const vn = rvx * nx + rvy * ny;
+        if (vn < 0) {
+          // reflect normal component
+          rvx -= (1 + RESTITUTION) * vn * nx;
+          rvy -= (1 + RESTITUTION) * vn * ny;
+          // tangential friction
+          const tvx = rvx - (rvx * nx + rvy * ny) * nx;
+          const tvy = rvy - (rvx * nx + rvy * ny) * ny;
+          rvx -= tvx * WALL_FRICTION;
+          rvy -= tvy * WALL_FRICTION;
+          b.vx = rvx + wvx;
+          b.vy = rvy + wvy;
+        }
+      }
+    }
+  }
+
+  function collideBalls() {
+    for (let i = 0; i < balls.length; i++) {
+      for (let j = i + 1; j < balls.length; j++) {
+        const a = balls[i], b = balls[j];
+        let nx = b.x - a.x, ny = b.y - a.y;
+        let dist = Math.hypot(nx, ny);
+        const min = a.r + b.r;
+        if (dist < min) {
+          if (dist < 1e-6) { nx = 1; ny = 0; dist = 1e-6; }
+          nx /= dist; ny /= dist;
+          const overlap = (min - dist) / 2;
+          a.x -= nx * overlap; a.y -= ny * overlap;
+          b.x += nx * overlap; b.y += ny * overlap;
+          const rvx = b.vx - a.vx, rvy = b.vy - a.vy;
+          const vn = rvx * nx + rvy * ny;
+          if (vn < 0) {
+            const m1 = a.r * a.r, m2 = b.r * b.r;
+            const imp = -(1 + RESTITUTION) * vn / (1 / m1 + 1 / m2);
+            const ix = imp * nx, iy = imp * ny;
+            a.vx -= ix / m1; a.vy -= iy / m1;
+            b.vx += ix / m2; b.vy += iy / m2;
+          }
+        }
+      }
+    }
+  }
+
+  function step(dt) {
+    angle += spinSpeed * dt;
+    for (const b of balls) {
+      b.vy += GRAVITY * dt;
+      b.vx *= AIR; b.vy *= AIR;
+      b.x += b.vx * dt;
+      b.y += b.vy * dt;
+    }
+    for (const b of balls) collideWalls(b);
+    collideBalls();
+  }
+
+  // ---- Render ----
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const verts = hexVertices();
+
+    // hexagon fill + glow
+    ctx.beginPath();
+    ctx.moveTo(verts[0].x, verts[0].y);
+    for (let i = 1; i < SIDES; i++) ctx.lineTo(verts[i].x, verts[i].y);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(40,60,110,0.12)";
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#89b4ff";
+    ctx.shadowColor = "#4d7cff";
+    ctx.shadowBlur = 20;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // balls
+    for (const b of balls) {
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = b.color;
+      ctx.shadowColor = b.color;
+      ctx.shadowBlur = 14;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      // highlight
+      ctx.beginPath();
+      ctx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255,0.35)";
+      ctx.fill();
+    }
+  }
+
+  // ---- Loop ----
+  let last = performance.now();
+  function frame(now) {
+    let dt = (now - last) / 1000;
+    last = now;
+    if (dt > 0.05) dt = 0.05; // clamp big gaps
+    // substeps for stability
+    const sub = 4, sdt = dt / sub;
+    for (let s = 0; s < sub; s++) step(sdt);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // ---- Interaction ----
+  let dragging = false, lastX = 0;
+  canvas.addEventListener("pointerdown", e => {
+    dragging = true; lastX = e.clientX;
+  });
+  window.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    lastX = e.clientX;
+    spinSpeed += dx * 0.0009;
+    spinSpeed = Math.max(-4, Math.min(4, spinSpeed));
+    document.getElementById("spin").textContent = spinSpeed.toFixed(2);
+  });
+  window.addEventListener("pointerup", () => dragging = false);
+
+  canvas.addEventListener("wheel", e => {
+    e.preventDefault();
+    hexRadius *= (e.deltaY < 0 ? 1.06 : 0.94);
+    hexRadius = Math.max(80, Math.min(Math.min(W, H) * 0.48, hexRadius));
+  }, { passive: false });
+
+  canvas.addEventListener("click", e => {
+    if (Math.abs(e.movementX) > 3) return; // ignore drag-clicks roughly
+    const b = makeBall(balls.length);
+    b.x = e.clientX; b.y = e.clientY;
+    balls.push(b);
+    document.getElementById("count").textContent = balls.length;
+  });
+})();
+</script>
+</body>
+</html>

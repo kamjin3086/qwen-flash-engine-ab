@@ -1,0 +1,710 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "conc",
+  "summary": {
+    "n": 4,
+    "requested_prompt_tokens": 8000,
+    "max_tokens": 512,
+    "wall_s": 33.39,
+    "completed": 4,
+    "errors": [],
+    "aggregate_decode_tps": 42.43,
+    "requests_that_hit_prompt_cache": 0,
+    "ttft_s": [
+      4.287,
+      9.136,
+      14.049,
+      19.118
+    ],
+    "per_request_decode_tps": [
+      23.89,
+      13.01,
+      17.73,
+      15.4
+    ],
+    "per_request_decode_tps_server": [
+      23.958,
+      13.041,
+      17.779,
+      15.441
+    ],
+    "health_available": true,
+    "peak_in_flight": 4,
+    "health_samples": 61,
+    "ttft_p50": 11.5925,
+    "ttft_p95": 19.118
+  },
+  "health_timeline": [
+    {
+      "busy": false,
+      "in_flight": 0,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": true,
+      "in_flight": 4,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": false,
+      "in_flight": 3,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    },
+    {
+      "busy": false,
+      "in_flight": 2,
+      "queued": 0,
+      "slots": 4,
+      "longest_wait_s": 0.0
+    }
+  ],
+  "runs": [
+    {
+      "ttft_s": 19.118,
+      "wall_s": 33.393,
+      "prompt_tokens": 7788,
+      "completion_tokens": 342,
+      "prefill_tps_client": 407.4,
+      "decode_tps_client": 23.89,
+      "prefill_tps_server": 1558.972,
+      "decode_tps_server": 23.958,
+      "prompt_ms_server": 4995.6,
+      "predicted_ms_server": 14275.2,
+      "cache_n": 0,
+      "draft_n": 188,
+      "draft_n_accepted": 154,
+      "finish_reason": "stop",
+      "chunks": 341,
+      "chars": 1342,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 7788,
+        "completion_tokens": 342,
+        "total_tokens": 8130,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 7788,
+        "predicted_n": 342,
+        "prompt_ms": 4995.6,
+        "predicted_ms": 14275.2,
+        "prompt_per_second": 1558.972,
+        "predicted_per_second": 23.958,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 161,
+        "draft_n": 188,
+        "draft_n_accepted": 154,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 188,
+          "head": {
+            "rounds": 188,
+            "drafted": 188,
+            "accepted": 154
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      }
+    },
+    {
+      "ttft_s": 4.287,
+      "wall_s": 32.275,
+      "prompt_tokens": 7788,
+      "completion_tokens": 365,
+      "prefill_tps_client": 1816.5,
+      "decode_tps_client": 13.01,
+      "prefill_tps_server": 1838.484,
+      "decode_tps_server": 13.041,
+      "prompt_ms_server": 4236.1,
+      "predicted_ms_server": 27988.2,
+      "cache_n": 0,
+      "draft_n": 198,
+      "draft_n_accepted": 170,
+      "finish_reason": "stop",
+      "chunks": 364,
+      "chars": 1242,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 7788,
+        "completion_tokens": 365,
+        "total_tokens": 8153,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 7788,
+        "predicted_n": 365,
+        "prompt_ms": 4236.1,
+        "predicted_ms": 27988.2,
+        "prompt_per_second": 1838.484,
+        "predicted_per_second": 13.041,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 161,
+        "draft_n": 198,
+        "draft_n_accepted": 170,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 195,
+          "head": {
+            "rounds": 195,
+            "drafted": 198,
+            "accepted": 170
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      }
+    },
+    {
+      "ttft_s": 14.049,
+      "wall_s": 33.004,
+      "prompt_tokens": 7788,
+      "completion_tokens": 337,
+      "prefill_tps_client": 554.3,
+      "decode_tps_client": 17.73,
+      "prefill_tps_server": 1602.568,
+      "decode_tps_server": 17.779,
+      "prompt_ms_server": 4859.7,
+      "predicted_ms_server": 18954.6,
+      "cache_n": 0,
+      "draft_n": 188,
+      "draft_n_accepted": 148,
+      "finish_reason": "stop",
+      "chunks": 336,
+      "chars": 1322,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 7788,
+        "completion_tokens": 337,
+        "total_tokens": 8125,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 7788,
+        "predicted_n": 337,
+        "prompt_ms": 4859.7,
+        "predicted_ms": 18954.6,
+        "prompt_per_second": 1602.568,
+        "predicted_per_second": 17.779,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 161,
+        "draft_n": 188,
+        "draft_n_accepted": 148,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 188,
+          "head": {
+            "rounds": 188,
+            "drafted": 188,
+            "accepted": 148
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      }
+    },
+    {
+      "ttft_s": 9.136,
+      "wall_s": 33.292,
+      "prompt_tokens": 7788,
+      "completion_tokens": 373,
+      "prefill_tps_client": 852.4,
+      "decode_tps_client": 15.4,
+      "prefill_tps_server": 1619.43,
+      "decode_tps_server": 15.441,
+      "prompt_ms_server": 4809.1,
+      "predicted_ms_server": 24156.1,
+      "cache_n": 0,
+      "draft_n": 203,
+      "draft_n_accepted": 169,
+      "finish_reason": "stop",
+      "chunks": 372,
+      "chars": 1331,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 7788,
+        "completion_tokens": 373,
+        "total_tokens": 8161,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 7788,
+        "predicted_n": 373,
+        "prompt_ms": 4809.1,
+        "predicted_ms": 24156.1,
+        "prompt_per_second": 1619.43,
+        "predicted_per_second": 15.441,
+        "cache_n": 0,
+        "disk_restore_n": 0,
+        "disk_restore_ms": 0.0,
+        "prefix_n": 161,
+        "draft_n": 203,
+        "draft_n_accepted": 169,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 203,
+          "head": {
+            "rounds": 203,
+            "drafted": 203,
+            "accepted": 169
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      }
+    }
+  ]
+}

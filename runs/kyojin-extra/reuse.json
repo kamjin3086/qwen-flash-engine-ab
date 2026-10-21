@@ -1,0 +1,159 @@
+{
+  "label": "kyojin",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "reuse",
+  "summary": {
+    "cold_1": {
+      "prompt_tokens": 97538,
+      "cache_n": 0,
+      "ttft_s": 74.873,
+      "wall_s": 74.873,
+      "prefill_tps_server": 1308.3997109715576,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: first"
+    },
+    "reuse": {
+      "prompt_tokens": 97538,
+      "cache_n": 94208,
+      "ttft_s": 2.956,
+      "wall_s": 2.957,
+      "prefill_tps_server": 1221.9415220927513,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: second"
+    },
+    "cold_2": {
+      "prompt_tokens": 97538,
+      "cache_n": 0,
+      "ttft_s": 74.649,
+      "wall_s": 74.649,
+      "prefill_tps_server": 1314.6696750657625,
+      "finish_reason": "stop",
+      "tail": "Reply with the single word: third"
+    },
+    "reused_prompt_tokens": 3330,
+    "reuse_ttft_ratio_vs_cold1": 0.0395
+  },
+  "runs": [
+    {
+      "ttft_s": 74.873,
+      "wall_s": 74.873,
+      "prompt_tokens": 97538,
+      "completion_tokens": 2,
+      "prefill_tps_client": 1302.7,
+      "decode_tps_client": 5672.31,
+      "prefill_tps_server": 1308.3997109715576,
+      "decode_tps_server": 22.614704423404575,
+      "prompt_ms_server": 74547.55544662476,
+      "predicted_ms_server": 88.43803405761719,
+      "cache_n": 0,
+      "draft_n": null,
+      "draft_n_accepted": null,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 5,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 97538,
+        "completion_tokens": 2,
+        "total_tokens": 97540,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 97538,
+        "prompt_ms": 74547.55544662476,
+        "predicted_n": 2,
+        "predicted_ms": 88.43803405761719,
+        "prompt_per_second": 1308.3997109715576,
+        "predicted_per_second": 22.614704423404575,
+        "speculative": true,
+        "accepted_draft_tokens": 1,
+        "rejected_draft_tokens": 4
+      },
+      "tail": "Reply with the single word: first"
+    },
+    {
+      "ttft_s": 2.956,
+      "wall_s": 2.957,
+      "prompt_tokens": 97538,
+      "completion_tokens": 2,
+      "prefill_tps_client": 32991.4,
+      "decode_tps_client": 5296.61,
+      "prefill_tps_server": 1221.9415220927513,
+      "decode_tps_server": 24.067296326474402,
+      "prompt_ms_server": 2725.1713275909424,
+      "predicted_ms_server": 83.1003189086914,
+      "cache_n": 94208,
+      "draft_n": null,
+      "draft_n_accepted": null,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 6,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 97538,
+        "completion_tokens": 2,
+        "total_tokens": 97540,
+        "prompt_tokens_details": {
+          "cached_tokens": 94208
+        }
+      },
+      "timings": {
+        "cache_n": 94208,
+        "prompt_n": 3330,
+        "prompt_ms": 2725.1713275909424,
+        "predicted_n": 2,
+        "predicted_ms": 83.1003189086914,
+        "prompt_per_second": 1221.9415220927513,
+        "predicted_per_second": 24.067296326474402,
+        "speculative": true,
+        "accepted_draft_tokens": 1,
+        "rejected_draft_tokens": 4
+      },
+      "tail": "Reply with the single word: second"
+    },
+    {
+      "ttft_s": 74.649,
+      "wall_s": 74.649,
+      "prompt_tokens": 97538,
+      "completion_tokens": 2,
+      "prefill_tps_client": 1306.6,
+      "decode_tps_client": 5581.91,
+      "prefill_tps_server": 1314.6696750657625,
+      "decode_tps_server": 30.951988783115638,
+      "prompt_ms_server": 74192.02089309692,
+      "predicted_ms_server": 64.61620330810547,
+      "cache_n": 0,
+      "draft_n": null,
+      "draft_n_accepted": null,
+      "finish_reason": "stop",
+      "chunks": 1,
+      "chars": 5,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 97538,
+        "completion_tokens": 2,
+        "total_tokens": 97540,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 97538,
+        "prompt_ms": 74192.02089309692,
+        "predicted_n": 2,
+        "predicted_ms": 64.61620330810547,
+        "prompt_per_second": 1314.6696750657625,
+        "predicted_per_second": 30.951988783115638,
+        "speculative": true,
+        "accepted_draft_tokens": 1,
+        "rejected_draft_tokens": 2
+      },
+      "tail": "Reply with the single word: third"
+    }
+  ]
+}

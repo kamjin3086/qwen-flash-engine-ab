@@ -1,0 +1,157 @@
+{
+  "label": "kyojin",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "quality",
+  "runs": [
+    {
+      "id": "r-bat-ball",
+      "kind": "reasoning",
+      "pass": false,
+      "detail": "last number 0.1, expected 0.05",
+      "output": "$0.10",
+      "finish_reason": "stop",
+      "completion_tokens": 6,
+      "wall_s": 0.39,
+      "error": null
+    },
+    {
+      "id": "r-widgets",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 5, expected 5",
+      "output": "5",
+      "finish_reason": "stop",
+      "completion_tokens": 2,
+      "wall_s": 0.33,
+      "error": null
+    },
+    {
+      "id": "r-trailing-zeros",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 24, expected 24",
+      "output": "24",
+      "finish_reason": "stop",
+      "completion_tokens": 3,
+      "wall_s": 0.35,
+      "error": null
+    },
+    {
+      "id": "r-painted-cube",
+      "kind": "reasoning",
+      "pass": false,
+      "detail": "last number 4, expected 12",
+      "output": "4",
+      "finish_reason": "stop",
+      "completion_tokens": 2,
+      "wall_s": 0.35,
+      "error": null
+    },
+    {
+      "id": "r-geometric",
+      "kind": "reasoning",
+      "pass": false,
+      "detail": "last number 118098, expected 39366",
+      "output": "118098",
+      "finish_reason": "stop",
+      "completion_tokens": 7,
+      "wall_s": 0.46,
+      "error": null
+    },
+    {
+      "id": "r-arrival-time",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last time 18:35, expected 18:35",
+      "output": "18:35",
+      "finish_reason": "stop",
+      "completion_tokens": 6,
+      "wall_s": 0.39,
+      "error": null
+    },
+    {
+      "id": "r-sum-not-div3",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 3367, expected 3367",
+      "output": "3367",
+      "finish_reason": "stop",
+      "completion_tokens": 5,
+      "wall_s": 0.38,
+      "error": null
+    },
+    {
+      "id": "r-three-items",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 20, expected 20",
+      "output": "20",
+      "finish_reason": "stop",
+      "completion_tokens": 3,
+      "wall_s": 0.37,
+      "error": null
+    },
+    {
+      "id": "c-iso-duration",
+      "kind": "code",
+      "pass": true,
+      "detail": "all assertions passed",
+      "output": "```python\nimport re\nfrom datetime import timedelta\n\ndef parse_duration(s: str) -> timedelta:\n    \"\"\"\n    Parse an ISO-8601 duration string into a datetime.timedelta.\n    Supports weeks (W), days (D), hours (H), minutes (M), and seconds (S).\n    Format: P[n]W[n]DT[n]H[n]M[n]S\n    \"\"\"\n    if not s or not s.startswith('P'):\n        raise ValueError(f\"Invalid ISO-8601 duration string: {s}\")\n    \n    # Remove the leading 'P'\n    rest = s[1:]\n    \n    # Split into date and time parts if 'T' is present\n    if 'T' in rest:\n        date_part, time_part = rest.split('T', 1)\n    else:\n        date_part = rest\n        time_part = ''\n    \n    weeks = 0\n    days = 0\n    hours = 0\n    minutes = 0\n    seconds = 0\n    \n    # Parse date part (weeks and days)\n    if date_part:\n        # Find all number-unit pairs\n        matches = re.findall(r'(\\d+)([WD])', date_part)\n        for value, unit in matches:\n            val = int(value)\n            if unit == 'W':\n                weeks += val\n            elif unit == 'D':\n                days += val\n    \n    # Parse time part (hours, minutes, seconds)\n    if time_part:\n        matches = re.findall(r'(\\d+)([HMS])', time_part)\n        for value, unit in matches:\n            val = int(value)\n            if unit == 'H':\n                hours += val\n            elif unit == 'M':\n                minutes += val\n            elif unit == 'S':\n                seconds += val\n    \n    total_days = weeks * 7 + days\n    return timedelta(days=total_days, hours=hours, minutes=minutes, seconds=seconds)\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 440,
+      "wall_s": 6.82,
+      "error": null
+    },
+    {
+      "id": "c-rle-roundtrip",
+      "kind": "code",
+      "pass": false,
+      "detail": "AssertionError: ('AbC123!', '1A1b1C1112131!', 'AbC!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "output": "```python\ndef rle_encode(s):\n    if not s:\n        return \"\"\n    result = []\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            result.append(f\"{count}{s[i - 1]}\")\n            count = 1\n    result.append(f\"{count}{s[-1]}\")\n    return \"\".join(result)\n\ndef rle_decode(s):\n    if not s:\n        return \"\"\n    result = []\n    i = 0\n    while i < len(s):\n        # Read digits for the count\n        j = i\n        while j < len(s) and s[j].isdigit():\n            j += 1\n        count = int(s[i:j])\n        char = s[j]\n        result.append(char * count)\n        i = j + 1\n    return \"\".join(result)\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 217,
+      "wall_s": 3.49,
+      "error": null
+    },
+    {
+      "id": "c-csv-line",
+      "kind": "code",
+      "pass": true,
+      "detail": "all assertions passed",
+      "output": "```python\ndef parse_csv_line(line):\n    import csv\n    import io\n    reader = csv.reader(io.StringIO(line))\n    for row in reader:\n        return row\n    return []\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 46,
+      "wall_s": 0.94,
+      "error": null
+    },
+    {
+      "id": "d-bullets-haiku",
+      "kind": "constraint",
+      "pass": true,
+      "detail": "5 bullets, word caps, no 'and', 3 haiku lines",
+      "output": "- The cat sleeps on the warm rug.\n- Birds sing loudly in trees.\n- Sun shines bright in sky.\n- Flowers bloom in garden beds.\n- Wind blows gently through leaves.\n\nSoft rain falls down\nWashing dust from green leaves\nEarth smells fresh again",
+      "finish_reason": "stop",
+      "completion_tokens": 59,
+      "wall_s": 1.93,
+      "error": null
+    },
+    {
+      "id": "d-json-shape",
+      "kind": "constraint",
+      "pass": false,
+      "detail": "wrong values {'vowels': 16}, expected {'vowels': 17, 'words': 6, 'longest_word': 'afternoons'}",
+      "output": "{\"vowels\": 16, \"words\": 6, \"longest_word\": \"afternoons\"}",
+      "finish_reason": "stop",
+      "completion_tokens": 26,
+      "wall_s": 0.74,
+      "error": null
+    }
+  ],
+  "summary": {
+    "cases": 13,
+    "passed": 8,
+    "failed": 5,
+    "failure_rate": 0.385
+  }
+}

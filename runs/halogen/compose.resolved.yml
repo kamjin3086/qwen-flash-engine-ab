@@ -1,0 +1,73 @@
+name: halogen-flash-server
+services:
+  halogen:
+    restart: 'no'
+    devices:
+      - source: /dev/kfd
+        target: /dev/kfd
+        permissions: rwm
+      - source: /dev/dri
+        target: /dev/dri
+        permissions: rwm
+      - source: /dev/accel/accel0
+        target: /dev/accel/accel0
+        permissions: rwm
+    environment:
+      HALOGEN_CACHE_DIR: /cache
+      HALOGEN_CACHE_DISK_GIB: "64"
+      HALOGEN_CACHE_PRUNE_OLD: "1"
+      HALOGEN_CHAT_TEMPLATE: /templates/qwen-sharp-v22.5.0.jinja
+      HALOGEN_CTX: "262144"
+      HALOGEN_ENGINE_WATCHDOG_S: "600"
+      HALOGEN_KV_POOL_POSITIONS: "262144"
+      HALOGEN_KV_SLOTS: "4"
+      HALOGEN_MAX_TOK: "16384"
+      HALOGEN_NPU_MODELS: flux2-klein-4b
+      HALOGEN_PROMPT_CACHE: "2"
+      HALOGEN_VISION_TOWER: "1"
+    group_add:
+      - "39"
+      - "105"
+    image: ghcr.io/peonist-ai/halogen-flash-server:0.18.13
+    ipc: host
+    networks:
+      default: null
+    stop_grace_period: 1m0s
+    ulimits:
+      memlock: -1
+    volumes:
+      - type: bind
+        source: ~/apps/halogen-flash-server/models
+        target: /models
+        bind: {}
+      - type: bind
+        source: ~/apps/halogen-flash-server/cache
+        target: /cache
+        bind: {}
+      - type: bind
+        source: ~/apps/halogen-flash-server/templates
+        target: /templates
+        read_only: true
+        bind: {}
+      - type: bind
+        source: /opt/xilinx/xrt
+        target: /opt/xilinx/xrt
+        read_only: true
+        bind: {}
+    healthcheck:
+      test:
+        - CMD
+        - /usr/local/bin/halogen-healthcheck
+        - auto
+      timeout: 35s
+      interval: 10s
+      retries: 3
+      start_period: 20m0s
+    ports:
+      - mode: ingress
+        target: 8731
+        published: "8731"
+        protocol: tcp
+networks:
+  default:
+    name: halogen-flash-server_default

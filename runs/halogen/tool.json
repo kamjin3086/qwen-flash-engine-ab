@@ -1,0 +1,21 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "tool",
+  "called": true,
+  "tool_calls": [
+    {
+      "function": {
+        "name": "read_room_temperature",
+        "arguments": "{\"room\": \"kitchen\"}"
+      },
+      "id": "call_6f85d40f33874ec4aba1b9b1",
+      "type": "function"
+    }
+  ],
+  "first_arguments": "{\"room\": \"kitchen\"}",
+  "text_head": "The user\n\nConsidering the limited time by the user, I have to give the solution based on the thinking directly now.",
+  "wall_s": 1.697,
+  "finish_reason": "tool_calls"
+}

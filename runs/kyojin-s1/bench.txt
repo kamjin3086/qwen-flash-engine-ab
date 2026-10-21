@@ -1,0 +1,94 @@
+warm-up on kyojin-qwen38 at http://127.0.0.1:8732/v1 ...
+prefill 1/3
+prefill 2/3
+prefill 3/3
+decode prose 1/3
+decode chat 1/3
+decode code 1/3
+decode prose 2/3
+decode chat 2/3
+decode code 2/3
+decode prose 3/3
+decode chat 3/3
+decode code 3/3
+### Kyojin benchmark
+
+- Model: `kyojin-qwen38`
+- CPU: AMD RYZEN AI MAX+ 395 w/ Radeon 8060S
+- RAM: 125 GiB
+- GPU: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+- GPU target: gfx1151
+- Kernel: 7.2.9-201.fc44.x86_64
+- ROCm: 7.1.52802-9999
+- Power: unknown
+- Kernel compiler: /opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc (from EXL3_HIPCC): HIP version: 7.13.60980-c76140fa27 AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 7beee31bc454a713137a7194c43f61c4525ebff4+PATCHED:2506c5
+- Server: http://127.0.0.1:8732/v1
+- Date: 2026-10-21
+
+| Measurement | Result |
+|---|---|
+| Prefill, ~3110 tokens (median of 3) | 1251.0 tok/s |
+| Decode, prose, 128 tokens, temperature 0 (median of 3) | 53.4 tok/s |
+| Decode, chat, 128 tokens, temperature 0 (median of 3) | 50.9 tok/s |
+| Decode, code, 128 tokens, temperature 0 (median of 3) | 56.8 tok/s |
+
+Method: prefill = prompt tokens / wall time (1 output token); decode = (tokens - 1) / streaming time. Same prompts as the numbers in the README.
+
+```json
+{
+  "model": "kyojin-qwen38",
+  "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+  "ram": "125 GiB",
+  "gpu": "Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]",
+  "gpu_target": "gfx1151",
+  "kernel": "7.2.9-201.fc44.x86_64",
+  "rocm": "7.1.52802-9999",
+  "power": "unknown",
+  "kernel_compiler": "/opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc (from EXL3_HIPCC): HIP version: 7.13.60980-c76140fa27 AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 7beee31bc454a713137a7194c43f61c4525ebff4+PATCHED:2506c5",
+  "server": "http://127.0.0.1:8732/v1",
+  "date": "2026-10-21",
+  "prefill": {
+    "prompt_tokens": 3110,
+    "max_tokens": 1,
+    "temperature": 0,
+    "tok_s": 1251.0,
+    "runs": [
+      1225.9,
+      1251.0,
+      1309.1
+    ]
+  },
+  "decode": {
+    "prose": {
+      "max_tokens": 128,
+      "temperature": 0,
+      "tok_s": 53.4,
+      "runs": [
+        52.6,
+        54.6,
+        53.4
+      ]
+    },
+    "chat": {
+      "max_tokens": 128,
+      "temperature": 0,
+      "tok_s": 50.9,
+      "runs": [
+        51.9,
+        50.3,
+        50.9
+      ]
+    },
+    "code": {
+      "max_tokens": 128,
+      "temperature": 0,
+      "tok_s": 56.8,
+      "runs": [
+        56.8,
+        53.0,
+        57.8
+      ]
+    }
+  }
+}
+```

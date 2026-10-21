@@ -1,0 +1,21 @@
+{
+  "label": "kyojin-s1",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "tool",
+  "called": true,
+  "tool_calls": [
+    {
+      "function": {
+        "name": "read_room_temperature",
+        "arguments": "{\"room\": \"kitchen\"}"
+      },
+      "id": "call_3741dcf73f684c68bc754b4a",
+      "type": "function"
+    }
+  ],
+  "first_arguments": "{\"room\": \"kitchen\"}",
+  "text_head": "We need answer user asks temperature in kitchen. Need call read_room_temperature with room kitchen. Then final with result.",
+  "wall_s": 2.003,
+  "finish_reason": "tool_calls"
+}

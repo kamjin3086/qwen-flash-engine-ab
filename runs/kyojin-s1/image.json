@@ -1,0 +1,12 @@
+{
+  "label": "kyojin-s1",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "image",
+  "status": "answered",
+  "expected": "red",
+  "answer": "Red",
+  "pass": true,
+  "ttft_s": 0.943,
+  "wall_s": 0.944
+}

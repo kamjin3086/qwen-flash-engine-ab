@@ -1,0 +1,12 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "image",
+  "status": "answered",
+  "expected": "red",
+  "answer": "Red",
+  "pass": true,
+  "ttft_s": 0.419,
+  "wall_s": 0.451
+}

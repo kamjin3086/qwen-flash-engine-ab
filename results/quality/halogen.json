@@ -1,0 +1,157 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "quality",
+  "runs": [
+    {
+      "id": "r-bat-ball",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 0.05, expected 0.05",
+      "output": "$0.05",
+      "finish_reason": "stop",
+      "completion_tokens": 6,
+      "wall_s": 0.56,
+      "error": null
+    },
+    {
+      "id": "r-widgets",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 5, expected 5",
+      "output": "5",
+      "finish_reason": "stop",
+      "completion_tokens": 2,
+      "wall_s": 0.37,
+      "error": null
+    },
+    {
+      "id": "r-trailing-zeros",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 24, expected 24",
+      "output": "24",
+      "finish_reason": "stop",
+      "completion_tokens": 3,
+      "wall_s": 0.34,
+      "error": null
+    },
+    {
+      "id": "r-painted-cube",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 12, expected 12",
+      "output": "12",
+      "finish_reason": "stop",
+      "completion_tokens": 3,
+      "wall_s": 0.28,
+      "error": null
+    },
+    {
+      "id": "r-geometric",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 39366, expected 39366",
+      "output": "39366",
+      "finish_reason": "stop",
+      "completion_tokens": 6,
+      "wall_s": 0.32,
+      "error": null
+    },
+    {
+      "id": "r-arrival-time",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last time 18:35, expected 18:35",
+      "output": "18:35",
+      "finish_reason": "stop",
+      "completion_tokens": 6,
+      "wall_s": 0.32,
+      "error": null
+    },
+    {
+      "id": "r-sum-not-div3",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 3367, expected 3367",
+      "output": "3367",
+      "finish_reason": "stop",
+      "completion_tokens": 5,
+      "wall_s": 0.26,
+      "error": null
+    },
+    {
+      "id": "r-three-items",
+      "kind": "reasoning",
+      "pass": true,
+      "detail": "last number 20, expected 20",
+      "output": "20",
+      "finish_reason": "stop",
+      "completion_tokens": 3,
+      "wall_s": 0.28,
+      "error": null
+    },
+    {
+      "id": "c-iso-duration",
+      "kind": "code",
+      "pass": true,
+      "detail": "all assertions passed",
+      "output": "```python\nimport re\nfrom datetime import timedelta\n\ndef parse_duration(s: str) -> timedelta:\n    pattern = r'^P(?:(\\d+)W)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?$'\n    match = re.match(pattern, s)\n    if not match:\n        raise ValueError(f\"Invalid ISO-8601 duration string: {s}\")\n    \n    weeks, days, hours, minutes, seconds = match.groups()\n    \n    return timedelta(\n        weeks=int(weeks) if weeks else 0,\n        days=int(days) if days else 0,\n        hours=int(hours) if hours else 0,\n        minutes=int(minutes) if minutes else 0,\n        seconds=float(seconds) if seconds else 0\n    )\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 197,
+      "wall_s": 2.32,
+      "error": null
+    },
+    {
+      "id": "c-rle-roundtrip",
+      "kind": "code",
+      "pass": false,
+      "detail": "AssertionError: ('AbC123!', '1A1b1C1112131!', 'AbC!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "output": "```python\ndef rle_encode(s):\n    if not s:\n        return \"\"\n    result = []\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i-1]:\n            count += 1\n        else:\n            result.append(f\"{count}{s[i-1]}\")\n            count = 1\n    result.append(f\"{count}{s[-1]}\")\n    return \"\".join(result)\n\ndef rle_decode(s):\n    if not s:\n        return \"\"\n    result = []\n    i = 0\n    while i < len(s):\n        num_str = \"\"\n        while i < len(s) and s[i].isdigit():\n            num_str += s[i]\n            i += 1\n        if i < len(s):\n            char = s[i]\n            i += 1\n            result.append(char * int(num_str))\n    return \"\".join(result)\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 215,
+      "wall_s": 2.57,
+      "error": null
+    },
+    {
+      "id": "c-csv-line",
+      "kind": "code",
+      "pass": true,
+      "detail": "all assertions passed",
+      "output": "```python\nimport csv\nimport io\n\ndef parse_csv_line(line):\n    reader = csv.reader(io.StringIO(line))\n    return next(reader)\n```",
+      "finish_reason": "stop",
+      "completion_tokens": 35,
+      "wall_s": 0.65,
+      "error": null
+    },
+    {
+      "id": "d-bullets-haiku",
+      "kind": "constraint",
+      "pass": true,
+      "detail": "5 bullets, word caps, no 'and', 3 haiku lines",
+      "output": "- Rain falls softly on the ground\n- Water drips from leaves slowly\n- Puddles form in the street\n- Sky turns gray with heavy clouds\n- Thunder rumbles in the distance\n\nSoft drops hit the earth\nRivers flow through city streets\nNature drinks deeply",
+      "finish_reason": "stop",
+      "completion_tokens": 58,
+      "wall_s": 1.37,
+      "error": null
+    },
+    {
+      "id": "d-json-shape",
+      "kind": "constraint",
+      "pass": false,
+      "detail": "wrong values {'vowels': 16}, expected {'vowels': 17, 'words': 6, 'longest_word': 'afternoons'}",
+      "output": "{\"vowels\": 16, \"words\": 6, \"longest_word\": \"afternoons\"}",
+      "finish_reason": "stop",
+      "completion_tokens": 26,
+      "wall_s": 0.56,
+      "error": null
+    }
+  ],
+  "summary": {
+    "cases": 13,
+    "passed": 11,
+    "failed": 2,
+    "failure_rate": 0.154
+  }
+}

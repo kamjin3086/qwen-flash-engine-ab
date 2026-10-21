@@ -1,0 +1,32 @@
+{
+  "label": "kyojin-s1",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "needle",
+  "positions": [
+    0.4,
+    0.85
+  ],
+  "needles": {
+    "slot": "cabinet-137254",
+    "who": "engineer-824818"
+  },
+  "runs": [
+    {
+      "question": "In which cabinet is the spare pressure valve for loop C stored?",
+      "answer": "cabinet-137254",
+      "found": true,
+      "prompt_tokens": 244066,
+      "ttft_s": 193.434,
+      "wall_s": 193.536
+    },
+    {
+      "question": "Who last certified the spare pressure valve for loop C?",
+      "answer": "engineer-824818",
+      "found": true,
+      "prompt_tokens": 244064,
+      "ttft_s": 0.879,
+      "wall_s": 0.982
+    }
+  ]
+}

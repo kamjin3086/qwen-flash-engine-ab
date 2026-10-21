@@ -1,0 +1,640 @@
+{
+  "count": 127,
+  "files": [
+    {
+      "bytes": 8635,
+      "path": "README.md",
+      "sha256": "391a73935be33bfeb1be191ebbc42b1a31875f64d98b2ab0342fd1b220eeb08e"
+    },
+    {
+      "bytes": 2958,
+      "path": "GLOSSARY.md",
+      "sha256": "18f76d21fc93cfcbb86766a91f109b9a49e2ca89863e21b8a23689ba1d9bbc0c"
+    },
+    {
+      "bytes": 1094,
+      "path": "LICENSE",
+      "sha256": "b216a69bc59811512e1f6cb8d2487f66bcf7a2734dd61e0bad6c4002a71c47cd"
+    },
+    {
+      "bytes": 18657,
+      "path": "LICENSE-CC-BY-4.0",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "bytes": 20691,
+      "path": "bench.sh",
+      "sha256": "51d95c5eb66f0f253651faa16b2837a8924e805ea895e2b4b73c70a5013b1599"
+    },
+    {
+      "bytes": 58267,
+      "path": "docs/index.html",
+      "sha256": "d8ed8df3aeb0722e919197e80bdda66354a68dd337d5b391b32ec0eb34aaba2e"
+    },
+    {
+      "bytes": 2119,
+      "path": "docs/adr/0001-single-arm-halogen-as-yardstick.md",
+      "sha256": "07c1eb05044a30a540eb9ff4f7757eb36ae116aaebebbf47c919b67940c20f09"
+    },
+    {
+      "bytes": 1809,
+      "path": "docs/adr/0002-two-kyojin-runs.md",
+      "sha256": "54189154186ab4f97265812b7fea1a543f9058188c2d96f3910a5ceb171027ad"
+    },
+    {
+      "bytes": 3326,
+      "path": "docs/adr/0003-private-work-public-export.md",
+      "sha256": "0a8f91208bb9a2dce58b3bcff9c131ca28ab091f3e22eb1b39c476b7549c07e4"
+    },
+    {
+      "bytes": 1914,
+      "path": "docs/adr/0004-usability-checks-not-a-quality-score.md",
+      "sha256": "7b0b6f16be3bb5f6cabf8b3d1c1cf9230dfd522cc21356579b9e756feaedf047"
+    },
+    {
+      "bytes": 1865,
+      "path": "docs/artifacts.md",
+      "sha256": "8b2a7fb6471cb71cfec054902cc5421dd160cc7c7c136155798155a2de91433b"
+    },
+    {
+      "bytes": 8426,
+      "path": "docs/artifacts/halogen-hexagon.html",
+      "sha256": "ba64ac847a1c352cec2eaceadc024c1602ddd7124149a272c8b4080ff2535853"
+    },
+    {
+      "bytes": 16917,
+      "path": "docs/artifacts/halogen-pagoda.html",
+      "sha256": "7e2e0cae24db50ab9a0b338f61c24335d5809f407aab323183473235ecef3bc4"
+    },
+    {
+      "bytes": 12079,
+      "path": "docs/artifacts/kyojin-hexagon.html",
+      "sha256": "e5b933595f9fab0c076c027a3cf417a58f76b97e0838dce5555a47e8dc6c21e9"
+    },
+    {
+      "bytes": 11629,
+      "path": "docs/artifacts/kyojin-pagoda.html",
+      "sha256": "f8cfbfff99b220bc2f992a7c8dfb97cfd4ec1885d23881a5279dd25f4975f91f"
+    },
+    {
+      "bytes": 437214,
+      "path": "docs/shots/halogen-hexagon.png",
+      "sha256": "82708cac09d9c2d137dfa8716b504fcb911fd9fd696d030b3c7d544617fcdf9c"
+    },
+    {
+      "bytes": 291925,
+      "path": "docs/shots/kyojin-hexagon.png",
+      "sha256": "f3d362802ad44846e61ff83a98477c20a46d006dd5a63f3deb6aa7c7e67477e2"
+    },
+    {
+      "bytes": 224417,
+      "path": "docs/shots/kyojin-pagoda.png",
+      "sha256": "f3484df7a9515999fcada8483a48bc120ba2ef336f5b4506abfc95104d480960"
+    },
+    {
+      "bytes": 140190,
+      "path": "docs/shots/report-narrow.png",
+      "sha256": "746b6cd23329cba16e42454748e8b6eb145f6157de720aff741a59680a9bc0c0"
+    },
+    {
+      "bytes": 486410,
+      "path": "docs/shots/report-wide.png",
+      "sha256": "517143c19ceeb7fcae89ee2ffb9b5b6c0c1471724ea01d33424ea227f96932f5"
+    },
+    {
+      "bytes": 76,
+      "path": "docs/prompts/hexagon.txt",
+      "sha256": "a6f096ad8ca03a75f634fae2e1cf8eb9e8424e6d4ea70b38a21464f8a491de67"
+    },
+    {
+      "bytes": 313,
+      "path": "docs/prompts/pagoda.txt",
+      "sha256": "fc3b9b3583fe3a0cd466eab25a213ebeea07f44ce6132d854d1b0b03978468ea"
+    },
+    {
+      "bytes": 1411,
+      "path": "report/build.py",
+      "sha256": "35b4c185ce51981a3962912b0e98e656527597c5a80e0945f9e2bc2ebf172f8e"
+    },
+    {
+      "bytes": 6932,
+      "path": "report/charts.py",
+      "sha256": "5a22403553e2e2a4d574b6067b89b9b04e4fe2f779c39dfc3223e001e21c398f"
+    },
+    {
+      "bytes": 6011,
+      "path": "report/export.py",
+      "sha256": "816a410a8855931dbe97ee970ab68fc8e22465cfc6fbaac37692459247999456"
+    },
+    {
+      "bytes": 5445,
+      "path": "report/privacy.py",
+      "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
+    },
+    {
+      "bytes": 32556,
+      "path": "report/render.py",
+      "sha256": "0a79a03cae2d28fd0b99c4a5aa35622ff7be5565c8189f6b2633249f60d0e22c"
+    },
+    {
+      "bytes": 20975,
+      "path": "report/summary.py",
+      "sha256": "bbe3eef9606ea7967779c6b236ad9292857e0d2eecfa77fbb1f900b1defc0cb0"
+    },
+    {
+      "bytes": 7657,
+      "path": "tools/agentrun.py",
+      "sha256": "40f8a65a4bd51124455bda863dcf51737e391c5fd80c24c46663330a25857da3"
+    },
+    {
+      "bytes": 25397,
+      "path": "tools/kbench.py",
+      "sha256": "6c6ee0f3defac82b62836a3eef74930034c114cd0bfee03adba10e7f2d17d6fa"
+    },
+    {
+      "bytes": 15716,
+      "path": "tools/quality.py",
+      "sha256": "6dc87fbd5145d11ee3ee22c5ee45bb30aa607570ee9b680f2f6177cb5211549e"
+    },
+    {
+      "bytes": 53336,
+      "path": "results/summary.json",
+      "sha256": "0d0c2b9dce67f1355818f66ba23f7472e286ee60df0d30e9a882c174a58266b1"
+    },
+    {
+      "bytes": 14866,
+      "path": "results/issue-body.md",
+      "sha256": "b087ec2b6345f984c16a7048b07188c54582da497d9aa5a3e5f662ee5345620b"
+    },
+    {
+      "bytes": 8536,
+      "path": "results/findings.md",
+      "sha256": "ecc5081d1d88e13bfaa4fabd7282633f1c0cdb045bdcfb47a10b7cca62d33818"
+    },
+    {
+      "bytes": 5706,
+      "path": "results/quality/halogen.json",
+      "sha256": "a8835dfcbc6616fa0bc799f4bfef38e86ccc401ae6f0276afcccec74aa57d533"
+    },
+    {
+      "bytes": 6673,
+      "path": "results/quality/kyojin.json",
+      "sha256": "663b499adb0d209da56c884d6c4c20f0b7b21de1667d289adb0c1fe33dec3d0e"
+    },
+    {
+      "bytes": 1719,
+      "path": "runs/halogen/artifact-pagoda.json",
+      "sha256": "fb013f97460095a2ec47e7106ee03da55cc572ecda60cd4e145200b6f311d8f3"
+    },
+    {
+      "bytes": 4480,
+      "path": "runs/halogen/conc1.json",
+      "sha256": "9e2aeed290bbdea328b351e83d82038f0b64c677ed313ec33a50cf524b706fe6"
+    },
+    {
+      "bytes": 14197,
+      "path": "runs/halogen/conc4.json",
+      "sha256": "e29f1493caaed4abc4b1bbae2c2f516be0e0edc720a3970efae0cb4b4c8d3ff3"
+    },
+    {
+      "bytes": 1720,
+      "path": "runs/halogen/ctx-warmup.json",
+      "sha256": "89771d4c8b9f8d3c8332d1964d2fa910309c6abd8e74b347ca368a14b4e45900"
+    },
+    {
+      "bytes": 4901,
+      "path": "runs/halogen/ctx.json",
+      "sha256": "e7db7ac5abf6489405fdffbdae1e47e28d9c6dd7f5c06b31092b531e32e8e729"
+    },
+    {
+      "bytes": 7448,
+      "path": "runs/halogen/health.json",
+      "sha256": "a2bf671d6ab6f573449c927b92d1c0a1af2f68a715a837a7359bdf4bfa7c3695"
+    },
+    {
+      "bytes": 240,
+      "path": "runs/halogen/image.json",
+      "sha256": "317d72cda00aaeddd4f5355a4f956850c9334b42ae0334f366d74157d525038e"
+    },
+    {
+      "bytes": 706,
+      "path": "runs/halogen/models.json",
+      "sha256": "2bc51a253b06e110cfa258e8ecd316bf67e637ae1858ca66571bb4892c4ef59d"
+    },
+    {
+      "bytes": 713,
+      "path": "runs/halogen/needle.json",
+      "sha256": "3591dacde37e08fcb646908d1918b7e4ce3e7cde9de83e079e2edfbacdc2bb71"
+    },
+    {
+      "bytes": 1195,
+      "path": "runs/halogen/thinking.json",
+      "sha256": "af8fe30d6cd975188d6e9f8b322b1033eeaa76b7223d7e62c01d1f72b8ad7638"
+    },
+    {
+      "bytes": 597,
+      "path": "runs/halogen/tool.json",
+      "sha256": "c04cfd5e5bafcbf4f9b04550e108c8dac75a5992ae09beaaacd1235327bee427"
+    },
+    {
+      "bytes": 1032,
+      "path": "runs/halogen-extra/artifact-hexagon.json",
+      "sha256": "4427efe9732b52af5541aa48ce0ee63c2479638e9ee6a6a478beddefafac22a4"
+    },
+    {
+      "bytes": 7990,
+      "path": "runs/halogen-extra/conc2.json",
+      "sha256": "41625ba80546d90d018b399b3426a68b44a70b4d2abe854a0afd1fb04da32e02"
+    },
+    {
+      "bytes": 5676,
+      "path": "runs/halogen-extra/reuse.json",
+      "sha256": "62d6e3d91bbb0e1a23fa46d5643e72f3c580ca1cee746b9a8e0acab64c0f800e"
+    },
+    {
+      "bytes": 2988,
+      "path": "runs/kyojin-extra/conc2.json",
+      "sha256": "3148d7253ebe34f318036c9300bdb094e6e5af73d3e9e02b35e6ba237e5beeb4"
+    },
+    {
+      "bytes": 4521,
+      "path": "runs/kyojin-extra/reuse.json",
+      "sha256": "409d367c610bbf373893b7090702d64e4f194df18f405913cf3a2b2fdc624534"
+    },
+    {
+      "bytes": 995,
+      "path": "runs/kyojin-s1/artifact-hexagon.json",
+      "sha256": "92195a2a914f6a39f022ce4bf87ce374bec34c18e277e18f273e9be6afbc610b"
+    },
+    {
+      "bytes": 1372,
+      "path": "runs/kyojin-s1/artifact-pagoda.json",
+      "sha256": "7e2a02386976596b0f44c81301427e4d30bddb1403c29c9e96ddef51b60126d8"
+    },
+    {
+      "bytes": 1345,
+      "path": "runs/kyojin-s1/ctx-warmup.json",
+      "sha256": "c4ceed1c766b001d017069104d3f555a1bc8a923c3cf0f2b46862f04ff217aad"
+    },
+    {
+      "bytes": 3807,
+      "path": "runs/kyojin-s1/ctx.json",
+      "sha256": "ca4998f48225297b23004403dd4fb382c12b6aeebdbdf2211e8c89f44b437925"
+    },
+    {
+      "bytes": 404,
+      "path": "runs/kyojin-s1/health.json",
+      "sha256": "aa31161d6c5c636e82f89454b15adad304d9b9b2f13fab62e7869d05dff95237"
+    },
+    {
+      "bytes": 229,
+      "path": "runs/kyojin-s1/image.json",
+      "sha256": "603365e5e8c2f9c97a84782f66932521bae729c5ce1bae86a46aa1b4e2b3fd7b"
+    },
+    {
+      "bytes": 129,
+      "path": "runs/kyojin-s1/models.json",
+      "sha256": "2a4a81d1b87b8bfe0bb74c4ad12632200e818433f7500cfe70c4ddf65bafedc6"
+    },
+    {
+      "bytes": 702,
+      "path": "runs/kyojin-s1/needle.json",
+      "sha256": "d0791fdf4ca5214c1acdd66a30f6de120f51f8b513fdbb133a9782606efdbcfd"
+    },
+    {
+      "bytes": 1099,
+      "path": "runs/kyojin-s1/thinking.json",
+      "sha256": "127ee2163cf2b54a8c28f26e1addb76507f7239c310e9b48a45c95f900202966"
+    },
+    {
+      "bytes": 592,
+      "path": "runs/kyojin-s1/tool.json",
+      "sha256": "924a9c2bf84ddb81820c41815949e756b994bf873704eb34f6802c9126bae446"
+    },
+    {
+      "bytes": 647,
+      "path": "runs/kyojin-s1/warmup.json",
+      "sha256": "5f31d64b58258c89e5da9a1766ab815ef6c4edc869d0556d4f712df677b7597a"
+    },
+    {
+      "bytes": 1792,
+      "path": "runs/kyojin-s4/conc1.json",
+      "sha256": "38f4238577866df57242245f6bfb8adbc86f455c571410839cc9af42342e4198"
+    },
+    {
+      "bytes": 5375,
+      "path": "runs/kyojin-s4/conc4.json",
+      "sha256": "4bed82c1af847da2f26b1009b18651baadd84a8cd67cb8129bb4b5940fe88027"
+    },
+    {
+      "bytes": 404,
+      "path": "runs/kyojin-s4/health.json",
+      "sha256": "aa31161d6c5c636e82f89454b15adad304d9b9b2f13fab62e7869d05dff95237"
+    },
+    {
+      "bytes": 7448,
+      "path": "runs/restore/health.json",
+      "sha256": "a2bf671d6ab6f573449c927b92d1c0a1af2f68a715a837a7359bdf4bfa7c3695"
+    },
+    {
+      "bytes": 928,
+      "path": "runs/restore/smoke.json",
+      "sha256": "09103f2f072a4e8ea0c345ea01f49aab48bce15b855001db64e5bcdc626859bd"
+    },
+    {
+      "bytes": 4893,
+      "path": "runs/smoke/conc.json",
+      "sha256": "c4797975ba594b42b0a574058c9c567477c5614a49f891cd4c604f1b0f984710"
+    },
+    {
+      "bytes": 1966,
+      "path": "runs/smoke/ctx.json",
+      "sha256": "69556ef60b55bf4081c38995c703375f58a062e9029ecd93ef4f6c23e3839691"
+    },
+    {
+      "bytes": 411,
+      "path": "runs/smoke/image.json",
+      "sha256": "f37a663be7240cd9492303b41c3358d2d4af50f6e75ded16478999655e4f141e"
+    },
+    {
+      "bytes": 874,
+      "path": "runs/smoke/needle.json",
+      "sha256": "ad399a083f70d25b35229bd6d33a195d776165354bd342fb6ff1668e226ddac8"
+    },
+    {
+      "bytes": 768,
+      "path": "runs/smoke/tool.json",
+      "sha256": "bcc86576bd8b472fa27556480c76e3183e26d532977e53269c4b55df46e5d68a"
+    },
+    {
+      "bytes": 63,
+      "path": "runs/_incident-freeze/drop-before.txt",
+      "sha256": "9ee40f048bf0391e1a5c8edee4f6af61fdda5e2c4e46a844574c29e368902586"
+    },
+    {
+      "bytes": 2224,
+      "path": "runs/halogen/bench.txt",
+      "sha256": "71fe18465e7060acb24600c51e8d4ee25d87df83dfdfb72a3f36eaba2c2a89d9"
+    },
+    {
+      "bytes": 63,
+      "path": "runs/halogen/drop-h1.txt",
+      "sha256": "d383a00dd57eab96e71f37c715abea0e4077a285a61479240506ea26966443dc"
+    },
+    {
+      "bytes": 444,
+      "path": "runs/halogen/env.txt",
+      "sha256": "a4b6d4c98b9ddcb0fa66c167615700592db4e9a8ede162d58cdcce04be112cf3"
+    },
+    {
+      "bytes": 7116,
+      "path": "runs/halogen/metrics.txt",
+      "sha256": "53dfde6153089afd983371e488e036c834c0b60ea92f7bbedbc5f41d26ee0e92"
+    },
+    {
+      "bytes": 27,
+      "path": "runs/halogen/model-id.txt",
+      "sha256": "5d159638ca7716d66f89e86fd067f822cfde9bc5923afdc51f51e4c32ca85f42"
+    },
+    {
+      "bytes": 106,
+      "path": "runs/halogen/startup.txt",
+      "sha256": "7685d1e9b688f73d882700c4c6b813bb03689f2d8f95ba0f6014e1f41efe6ae2"
+    },
+    {
+      "bytes": 82,
+      "path": "runs/halogen/stop-state.txt",
+      "sha256": "c40f66a012c53105f7fc90bd4e89af597947bf6293bcaf1884a2d0a417c83293"
+    },
+    {
+      "bytes": 444,
+      "path": "runs/halogen-extra/env.txt",
+      "sha256": "51a2ad977bc970e4390da4ce0aa8112ab202b268bf2ae10fd1050864f697768b"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/kyojin-extra/env.txt",
+      "sha256": "e2fdb790ac08ddab18922e4c0f2d5c686c306b3bbbcc037b3627dbd26a73423c"
+    },
+    {
+      "bytes": 2619,
+      "path": "runs/kyojin-s1/bench.txt",
+      "sha256": "a2b35f8a2facabb46fb3ecdf601185ff06c1968bbc9bbc7e9e2b45580551ba41"
+    },
+    {
+      "bytes": 28,
+      "path": "runs/kyojin-s1/cache-state.txt",
+      "sha256": "55e0f98587535e79cbe7aae0a1cb6c1907d06fd9ecb2e56775cfbd6920c124ea"
+    },
+    {
+      "bytes": 64,
+      "path": "runs/kyojin-s1/drop-k1.txt",
+      "sha256": "c5f2f222c43a10253741e8f64bf256a64d0964b73129b4bbccc60fd4339fa5bb"
+    },
+    {
+      "bytes": 298,
+      "path": "runs/kyojin-s1/effective-config.txt",
+      "sha256": "a86a31131461cfc445038bfe7b5a308e9a21515751a0a3c07f6bbf1b4305e88e"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/kyojin-s1/env.txt",
+      "sha256": "3382c7faeaf1b4e9078810086c5fc7bdf7591e1f0763e5f7100b513bd73cf084"
+    },
+    {
+      "bytes": 49,
+      "path": "runs/kyojin-s1/metrics.txt",
+      "sha256": "0fb219efe96c7b0a4962325763ebbe3324456de8ca7b7d1e71142d92a6d8eab2"
+    },
+    {
+      "bytes": 14,
+      "path": "runs/kyojin-s1/model-id.txt",
+      "sha256": "9e901615e34b4231f9d270787607ab7ba7a3950bade34313e4b58afdf41f7b31"
+    },
+    {
+      "bytes": 257,
+      "path": "runs/kyojin-s1/probe-missing-env.txt",
+      "sha256": "a39cbd6e23147aa39308554affa80ef8503a9fc57e8015178f06ab416b53b366"
+    },
+    {
+      "bytes": 7,
+      "path": "runs/kyojin-s1/probe-port-in-use.txt",
+      "sha256": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061"
+    },
+    {
+      "bytes": 57,
+      "path": "runs/kyojin-s1/startup.txt",
+      "sha256": "04a2d4d09c5e7ead02aac08edbd29c268100373d47635fce0e8004fecd4bb8e5"
+    },
+    {
+      "bytes": 80,
+      "path": "runs/kyojin-s1/stop-state.txt",
+      "sha256": "6a978cad96b3b23e3a2148629a2777128c6795d214d21cbf2f1c2a9c1701dd51"
+    },
+    {
+      "bytes": 650,
+      "path": "runs/kyojin-s4/effective-config.txt",
+      "sha256": "ebee86a82c077cc28e4b46df67539c8d14b4b260664d3bb5425f9277cf1a4f33"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/kyojin-s4/env.txt",
+      "sha256": "eb3e87774899b6e1db1ceb857cac58a189ca32aac1bcd2d9c4c29821b3ed6639"
+    },
+    {
+      "bytes": 54,
+      "path": "runs/kyojin-s4/startup.txt",
+      "sha256": "0f2739e04a511d27e7bd207a84eb86e85e6a7c20b90393dd3c82443907f3507a"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/preflight/env.txt",
+      "sha256": "066115466e2ac4c6cd504deadb73ec6b20b6298d8f9d92d22570b887f7e16738"
+    },
+    {
+      "bytes": 5,
+      "path": "runs/preflight/gtt-baseline.txt",
+      "sha256": "f5cabebbbf7dfd1ee15e95c64f78b5e1c0044f44f2927923078f95ab7c3aebcd"
+    },
+    {
+      "bytes": 740,
+      "path": "runs/restore/env.txt",
+      "sha256": "2d101b18eb3795e48a8c0148434b38772f7237cccb197fe73f0fed01679535ca"
+    },
+    {
+      "bytes": 31,
+      "path": "runs/restore/stop-state.txt",
+      "sha256": "9db5c9e7b025232b8fbf310044e251e91ded0c7e0d4b0b0ff20297dcf2e7a075"
+    },
+    {
+      "bytes": 5850,
+      "path": "runs/_incident-freeze/docker-startup.log",
+      "sha256": "b2a19ea32f4ad07a7ddbf9f8c94626281d53ce798ec298c6c3b298a004145326"
+    },
+    {
+      "bytes": 45332,
+      "path": "runs/halogen/docker-startup.log",
+      "sha256": "fdefe814d12b13ccda5f516343571f411a5498591b3c350524552e022058e44a"
+    },
+    {
+      "bytes": 72312,
+      "path": "runs/halogen/docker.log",
+      "sha256": "0c85617ab228b7913338e49933780643ce61c2862eb1f52fd34ec1b586de8ad5"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/halogen/start-h1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/halogen/start-h2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 103,
+      "path": "runs/halogen/stop-before.log",
+      "sha256": "04644b9efa71b42d5468d1e25e51e29c3714ac955ecf42d3e244edd803cd272b"
+    },
+    {
+      "bytes": 103,
+      "path": "runs/halogen/stop-h2.log",
+      "sha256": "04644b9efa71b42d5468d1e25e51e29c3714ac955ecf42d3e244edd803cd272b"
+    },
+    {
+      "bytes": 5605,
+      "path": "runs/kyojin-s1/docker-startup.log",
+      "sha256": "f9a7f0faccbaf7af76bd74c43f94f33e26cadd9780a672b675eab2436454fa1e"
+    },
+    {
+      "bytes": 8407,
+      "path": "runs/kyojin-s1/docker.log",
+      "sha256": "7810e02d248f99169fe0f678ca52d4fc742a271a96b801b9a4cf50209aca2d0f"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/kyojin-s1/start.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/kyojin-s1/stop-halogen.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4378,
+      "path": "runs/kyojin-s4/docker.log",
+      "sha256": "7e061004b1b3ca05d77a835adae021eacd91b0087a49bf98d1600bc301d8105f"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/kyojin-s4/start.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/kyojin-s4/stop.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/restore/start.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/restore/stop.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1832,
+      "path": "runs/halogen/compose.resolved.yml",
+      "sha256": "7f61019043aac3f1b7ac6dcc4e239469571d2874eab1b8e3405d675d6c840127"
+    },
+    {
+      "bytes": 1329,
+      "path": "runs/kyojin-s1/compose.resolved.yml",
+      "sha256": "9acbdc6b9fbea9002c7583a93d50a65993eb69479f3e22d22091dc6b182e725c"
+    },
+    {
+      "bytes": 1329,
+      "path": "runs/kyojin-s4/compose.resolved.yml",
+      "sha256": "1624c61f8f8b3ca3d3af25c075ee3ece0043b59f9e98840a7d27ec650fc780eb"
+    },
+    {
+      "bytes": 17264,
+      "path": "runs/halogen/artifact-pagoda.html",
+      "sha256": "c8a421dbb56308a66c2ce0579a0cd36b4a915be1b21b7c0ab654b068b639a5c6"
+    },
+    {
+      "bytes": 8426,
+      "path": "runs/halogen-extra/artifact-hexagon.html",
+      "sha256": "ba64ac847a1c352cec2eaceadc024c1602ddd7124149a272c8b4080ff2535853"
+    },
+    {
+      "bytes": 12079,
+      "path": "runs/kyojin-s1/artifact-hexagon.html",
+      "sha256": "e5b933595f9fab0c076c027a3cf417a58f76b97e0838dce5555a47e8dc6c21e9"
+    },
+    {
+      "bytes": 11958,
+      "path": "runs/kyojin-s1/artifact-pagoda.html",
+      "sha256": "39287b37795b8bd98cf379c7a2ba905670b11375f560b82e451fb2fb38319a46"
+    },
+    {
+      "bytes": 3366,
+      "path": "runs/_incident-freeze/README.md",
+      "sha256": "7ba6c5587af8556070d883c42141f9b0c9e749eb353bea8c6238c27dd8c5c1fa"
+    },
+    {
+      "bytes": 205,
+      "path": "index.html",
+      "sha256": "340abb25e89e1b897005cff54803b7ba996e43381af1c115664da5fb3a8c3097"
+    },
+    {
+      "bytes": 0,
+      "path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

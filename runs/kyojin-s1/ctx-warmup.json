@@ -1,0 +1,50 @@
+{
+  "label": "kyojin-s1",
+  "base": "http://127.0.0.1:8732/v1",
+  "model": "kyojin-qwen38",
+  "kind": "ctx",
+  "runs": [
+    {
+      "ttft_s": 23.247,
+      "wall_s": 23.248,
+      "prompt_tokens": 31209,
+      "completion_tokens": 1,
+      "prefill_tps_client": 1342.5,
+      "decode_tps_client": null,
+      "prefill_tps_server": 1353.980095732264,
+      "decode_tps_server": 12.14342915543563,
+      "prompt_ms_server": 23049.821853637695,
+      "predicted_ms_server": 82.34906196594238,
+      "cache_n": 0,
+      "draft_n": null,
+      "draft_n_accepted": null,
+      "finish_reason": "length",
+      "chunks": 1,
+      "chars": 2,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 31209,
+        "completion_tokens": 1,
+        "total_tokens": 31210,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 31209,
+        "prompt_ms": 23049.821853637695,
+        "predicted_n": 1,
+        "predicted_ms": 82.34906196594238,
+        "prompt_per_second": 1353.980095732264,
+        "predicted_per_second": 12.14342915543563,
+        "speculative": true,
+        "accepted_draft_tokens": 0,
+        "rejected_draft_tokens": 5
+      },
+      "requested_tokens": 32000,
+      "sizing_factor": 0.96,
+      "chars_per_token": 2.612
+    }
+  ]
+}

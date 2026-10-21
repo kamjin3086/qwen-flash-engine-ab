@@ -1,0 +1,1 @@
+Create an animation in JS with 10 balls bouncing inside a spinning hexagon.

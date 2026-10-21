@@ -1,0 +1,16 @@
+{
+  "label": "smoke",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "image",
+  "status": "answered",
+  "expected": "red",
+  "answer": "Red",
+  "pass": true,
+  "ttft_s": 0.284,
+  "wall_s": 0.317,
+  "provenance": {
+    "phase": "smoke",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+  }
+}

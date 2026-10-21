@@ -1,0 +1,70 @@
+{
+  "ttft_s": 0.343,
+  "wall_s": 74.081,
+  "prompt_tokens": 230,
+  "completion_tokens": 4785,
+  "prefill_tps_client": 671.3,
+  "decode_tps_client": 64.88,
+  "prefill_tps_server": 718.301,
+  "decode_tps_server": 64.892,
+  "prompt_ms_server": 320.2,
+  "predicted_ms_server": 73737.5,
+  "cache_n": 0,
+  "draft_n": 4392,
+  "draft_n_accepted": 3574,
+  "finish_reason": "stop",
+  "chunks": 4784,
+  "chars": 17264,
+  "tool_calls": [],
+  "usage": {
+    "prompt_tokens": 230,
+    "completion_tokens": 4785,
+    "total_tokens": 5015,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "timings": {
+    "prompt_n": 230,
+    "predicted_n": 4785,
+    "prompt_ms": 320.2,
+    "predicted_ms": 73737.5,
+    "prompt_per_second": 718.301,
+    "predicted_per_second": 64.892,
+    "cache_n": 0,
+    "disk_restore_n": 0,
+    "disk_restore_ms": 0.0,
+    "prefix_n": 157,
+    "draft_n": 4392,
+    "draft_n_accepted": 3574,
+    "speculation": {
+      "drafter": "mtp",
+      "rounds": 1211,
+      "head": {
+        "rounds": 949,
+        "drafted": 3608,
+        "accepted": 3040
+      },
+      "lookup": {
+        "rounds": 262,
+        "drafted": 784,
+        "accepted": 534
+      },
+      "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+      }
+    }
+  },
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "oneshot",
+  "artifact": "~/projects/halo-benchs/runs/halogen/artifact-pagoda.html",
+  "prompt_file": "~/projects/halo-benchs/docs/prompts/pagoda.txt",
+  "max_tokens": 16384,
+  "truncated": false,
+  "looks_complete_html": true,
+  "artifact_sha256": "c8a421dbb56308a66c2ce0579a0cd36b4a915be1b21b7c0ab654b068b639a5c6"
+}

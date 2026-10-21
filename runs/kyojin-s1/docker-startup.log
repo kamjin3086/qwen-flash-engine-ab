@@ -1,0 +1,61 @@
+[kyojin] kernel cache: /root/.cache
+[kyojin] family=qwen pack=/models context=262144
+[kyojin] python tools/qwen/serve.py --model /models --host 0.0.0.0 --port 8731 -c 262144 --model-id kyojin-qwen38 --default-temperature 1.0 --default-top-p 0.95 --default-top-k 20 --default-min-p 0.0 --no-uncensor --sessions 1 --default-max-tokens 16384 --default-reasoning-effort xhigh 
+[kyojin] HIP kernel compiler: /opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc (from EXL3_HIPCC): HIP version: 7.13.60980-c76140fa27 AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 7beee31bc454a713137a7194c43f61c4525ebff4+PATCHED:2506c5
+qserve: starting, model=/models ctx=262144 sessions=1 draft_policy=mix defaults={'temperature': 1.0, 'top_p': 0.95, 'top_k': 20, 'min_p': 0.0, 'reasoning_effort': 'xhigh'}
+qserve: hc mixer: group scales, codes from /models/hc_gs_sidecar.safetensors
+qserve: draft head: full head (no draft2s.st in the model directory)
+qserve: loading target model ...
+hip_lib: libamdhip64.so not found in /opt/kyojin/.venv/lib/python3.12/site-packages/torch/lib, using the copy torch already loaded: /opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+[ngram] table mode trellis_disk: 320001536 rows, host MemAvailable 104.2 GiB at load (RAM mode needs table + 48 GiB; disk mode = every prefill chunk reads its rows from the file, a busy disk or a cold page cache stalls it)
+qserve: loading target model ... 15 s
+qserve: loading target model ... 30 s
+qserve: loading target model ... 45 s
+[moe_fused] all 48 MoE layers run the fused half-layer
+qserve: loading target model done in 47 s
+qserve: hc mixer sites by code source {'sidecar': 96, 'plain': 1, 'rejected': 0}
+qserve: loading MTP drafter ...
+[moe_fused] all 1 MoE layers run the fused half-layer
+qserve: loading MTP drafter done in 2 s
+qserve: loading vision tower ...
+qserve: loading vision tower done in 11 s
+qserve: effective env {'EXL3_ABLIT_RUNTIME': 'off', 'EXL3_BRANCH_CKPT': '1', 'EXL3_DQ_HIP': '1', 'EXL3_FUSED_SAMPLER': '0', 'EXL3_GDN_FUSE': '1', 'EXL3_GDN_HF': '1', 'EXL3_GEMV_R_CHUNK_FAST': '1', 'EXL3_GEMV_R_DEC1': '1', 'EXL3_GEMV_R_RM6': '1', 'EXL3_GEMV_R_RPB': '4', 'EXL3_GR_GS': '1', 'EXL3_GR_GS_SIDECAR': '/models/hc_gs_sidecar.safetensors', 'EXL3_GR_HIP': '1', 'EXL3_GR_MIX_Q8_MAXR': '8', 'EXL3_HIPCC': '/opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc', 'EXL3_HIP_PREFILL_MIN_ROWS': '2', 'EXL3_HOST_CUTS': '1', 'EXL3_HOST_LEAN': '1', 'EXL3_HSA_LIB': '/opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/libhsa-runtime64.so.1', 'EXL3_MOE_CFG': '2', 'EXL3_MOE_FUSED': '1', 'EXL3_MOE_R8': '1', 'EXL3_MOE_VALU': '1', 'EXL3_MOE_WMMA_MIN_ROWS': '9', 'EXL3_MPW_GLUE': '1', 'EXL3_MTP_FUSE_CATCHUP': '0', 'EXL3_NC2_ABLIT_F16': '1', 'EXL3_NC2_ASYNC_STASH': '1', 'EXL3_NC2_ATTN_F16': '1', 'EXL3_NGRAM_STREAM': '1', 'EXL3_PF_DEFER': '0', 'EXL3_PF_GR_FUSE': '1', 'EXL3_PF_NO_TAIL': '1', 'EXL3_PF_SKIP': '1', 'EXL3_PF_TAIL_MERGE': '1024', 'EXL3_PLE_HIP': '1', 'EXL3_PREFILL_CHUNK': '4096', 'EXL3_QSA_ROWINV': '1', 'EXL3_REPLY_FIRST': '1', 'EXL3_ROCM_SDK': '/opt/kyojin/.venv/lib/python3.12/site-packages/_rocm_sdk_devel', 'EXL3_ROLL_CKPT': '1', 'EXL3_STATE_REBASE': '1', 'EXL3_TAIL_MAXGAP': '8192', 'EXL3_TAIL_REPLY': '1', 'EXL3_TOPK_PAR': '1', 'EXL3_VERIFY_ATTN_LOOP': '1', 'EXL3_VERIFY_GEMV_R': '1', 'EXL3_VERIFY_QSA_ATTN': '0', 'EXL3_VERIFY_QSA_PROJ': '0', 'EXL3_VERIFY_ROW_SPLIT': '2', 'MPW_KERN': '2'}
+qserve: warm-up (first decode steps) ...
+qserve: warm-up (first decode steps) ... 15 s
+qserve: warm-up (first decode steps) ... 30 s
+qserve: warm-up (first decode steps) ... 45 s
+qserve: warm-up (first decode steps) ... 60 s
+qserve: warm-up (first decode steps) ... 75 s
+qserve: warm-up (first decode steps) ... 90 s
+qserve: warm-up (first decode steps) ... 105 s
+qserve: warm-up (first decode steps) ... 120 s
+qserve: warm-up (first decode steps) ... 135 s
+qserve: warm-up (first decode steps) ... 150 s
+qserve: warm-up (first decode steps) ... 165 s
+qserve: warm-up (first decode steps) ... 180 s
+qserve: warm-up (first decode steps) ... 195 s
+qserve: warm-up (first decode steps) ... 210 s
+qserve: warm-up (first decode steps) ... 225 s
+qserve: warm-up (first decode steps) ... 240 s
+qserve: warm-up (first decode steps) ... 255 s
+qserve: warm-up (first decode steps) ... 270 s
+qserve: warm-up (first decode steps) ... 285 s
+qserve: warm-up (first decode steps) ... 300 s
+qserve: warm-up (first decode steps) ... 315 s
+qserve: warm-up (first decode steps) ... 330 s
+qserve: warm-up (first decode steps) ... 345 s
+qserve: warm-up (first decode steps) ... 360 s
+qserve: warm-up (first decode steps) ... 375 s
+qserve: warm-up (first decode steps) ... 390 s
+qserve: warm-up (first decode steps) ... 405 s
+qserve: warm-up (first decode steps) ... 420 s
+qserve: warm-up (first decode steps) ... 435 s
+qserve: warm-up (first decode steps) ... 450 s
+qserve: warm-up (first decode steps) ... 465 s
+qserve: warm-up (first decode steps) ... 480 s
+warm_dense_gemm: 867 calls in 488.2 s, transient peak 526 MiB
+qserve: warm-up (first decode steps) done in 495 s
+qserve: process pages swapped out during the load, read back before READY: {'swap_before_kib': 0, 'swap_after_kib': 0, 'maps': 0, 'runs': 0, 'seconds': 0.087}
+qserve: SSE keep-alive off (set KYOJIN_SSE_PING_S=<seconds> to hold a silent stream open)
+qserve: request log off (set KYOJIN_REQLOG_DIR=<directory> to enable, numbers and event names only)
+qserve: READY on http://0.0.0.0:8731  model=kyojin-qwen38 ctx=262144 sessions=1 speculative=True vision=True (start-up 558 s)

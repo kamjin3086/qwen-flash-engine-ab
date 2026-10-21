@@ -1,0 +1,3 @@
+halogen_cache_after_clear_bytes 0
+gtt_after_stop_mib 549
+avail_after_stop_gib 107

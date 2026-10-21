@@ -1,0 +1,47 @@
+{
+  "label": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "agent",
+  "prompt_file": "docs/prompts/hexagon.txt",
+  "stopped_by": "finish",
+  "turns": 2,
+  "tool_calls": 2,
+  "calls": [
+    "write_file",
+    "finish"
+  ],
+  "wall_s": 40.6,
+  "max_turns": 8,
+  "wall_cap_s": 600,
+  "produced_page": true,
+  "bytes": 8426,
+  "looks_complete_html": true,
+  "external_refs": [],
+  "files_written": [
+    "index.html"
+  ],
+  "artifact_sha256": "ba64ac847a1c352cec2eaceadc024c1602ddd7124149a272c8b4080ff2535853",
+  "transcript": [
+    {
+      "turn": 1,
+      "content": "I'll create a self-contained HTML page with a canvas animation of 10 balls bouncing inside a rotating hexagon, with proper collision physics.",
+      "calls": [
+        {
+          "name": "write_file",
+          "args_bytes": 8820
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "content": "",
+      "calls": [
+        {
+          "name": "finish",
+          "args_bytes": 105
+        }
+      ]
+    }
+  ]
+}

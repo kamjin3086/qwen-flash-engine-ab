@@ -1,0 +1,78 @@
+{
+  "label": "smoke",
+  "base": "http://127.0.0.1:8731/v1",
+  "model": "halogen-qwen3.8-flash-next",
+  "kind": "ctx",
+  "runs": [
+    {
+      "ttft_s": 1.353,
+      "wall_s": 1.354,
+      "prompt_tokens": 2124,
+      "completion_tokens": 1,
+      "prefill_tps_client": 1569.3,
+      "decode_tps_client": null,
+      "prefill_tps_server": 1544.413,
+      "decode_tps_server": 0.0,
+      "prompt_ms_server": 1292.4,
+      "predicted_ms_server": 0.0,
+      "cache_n": 128,
+      "draft_n": 0,
+      "draft_n_accepted": 0,
+      "finish_reason": "length",
+      "chunks": 1,
+      "chars": 2,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 2124,
+        "completion_tokens": 1,
+        "total_tokens": 2125,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "timings": {
+        "prompt_n": 1996,
+        "predicted_n": 1,
+        "prompt_ms": 1292.4,
+        "predicted_ms": 0.0,
+        "prompt_per_second": 1544.413,
+        "predicted_per_second": 0.0,
+        "cache_n": 128,
+        "disk_restore_n": 128,
+        "disk_restore_ms": 54.7,
+        "prefix_n": 159,
+        "draft_n": 0,
+        "draft_n_accepted": 0,
+        "speculation": {
+          "drafter": "mtp",
+          "rounds": 0,
+          "head": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "lookup": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          },
+          "grammar": {
+            "rounds": 0,
+            "drafted": 0,
+            "accepted": 0
+          }
+        }
+      },
+      "requested_tokens": 2000,
+      "sizing_factor": 0.96,
+      "chars_per_token": 2.561
+    }
+  ],
+  "provenance": {
+    "phase": "smoke",
+    "digest": "ghcr.io/peonist-ai/halogen-flash-server@sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc"
+  }
+}
