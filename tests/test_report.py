@@ -74,7 +74,15 @@ class ReportTest(unittest.TestCase):
         self.assertIn('class="prov"', html, "each cell carries a provenance line")
         self.assertIn("prompt ~32K", html)
         md = issue.read_text()
-        self.assertIn("| Prefill | prompt ~32K | 1,851 | _not run_ |", md)
+        self.assertIn("| Prefill (tok/s) | prompt ~32K | 1,851 | _not run_ |", md)
+
+    def test_headline_measurements_name_their_units(self):
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html = (out / "index.html").read_text()
+        for label in ("Prefill (tok/s)", "Decode (tok/s)", "Time to a usable server (s)"):
+            self.assertIn(f'<th scope="row">{label}</th>', html)
+            self.assertIn(label, issue.read_text())
 
     def test_aborted_is_visible_as_aborted(self):
         p, out, issue = self.render()
@@ -250,7 +258,11 @@ class ReportTest(unittest.TestCase):
         html, md = (out / "index.html").read_text(), issue.read_text()
         self.assertIn("<h2>Variance</h2>", html)
         self.assertIn("149.0–149.3", html)
-        self.assertIn("| Decode | decode chat | Halogen | 3 |", md)
+        variance_html = html.split("<h2>Variance</h2>", 1)[1]
+        for label in ("Decode (tok/s)", "Time to first token (s)"):
+            self.assertIn(f'<th scope="row">{label}</th>', variance_html)
+            self.assertIn(label, md.split("## Variance", 1)[1])
+        self.assertIn("| Decode (tok/s) | decode chat | Halogen | 3 |", md)
         fixture["variance_notes"] = ["N=4 repetitions are not like-for-like."]
         self.summary_path.write_text(json.dumps(fixture))
         p, out, issue = self.render()

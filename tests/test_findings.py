@@ -120,6 +120,24 @@ class FindingsDriftTest(unittest.TestCase):
         # 0.92 appeared in the issue body once, from a formatter bug; it must never come back
         self.assertNotIn("0.92", self.prose)
 
+    def test_published_surfaces_disclose_assistance_and_bound_startup_claims(self):
+        for path in ("README.md", "docs/index.html", "results/issue-body.md"):
+            text = (REPO / path).read_text()
+            self.assertIn("AI assistance", text, path)
+            self.assertNotIn("comes back from a reboot in 16 s", text, path)
+            self.assertNotIn("what an existing user meets every reboot", text, path)
+            self.assertNotIn("43 s afterwards", text, path)
+        for path in ("docs/index.html", "results/issue-body.md"):
+            self.assertIn("not host-reboot timings", (REPO / path).read_text(), path)
+
+    def test_concurrency_reference_is_documented_as_sessions_four(self):
+        readme = (REPO / "README.md").read_text()
+        entry = self.rows[("aggregate_decode_tps", "N=1", "kyojin")]
+        self.assertEqual(entry["phase"], "kyojin-s4")
+        self.assertIn(entry["raw_path"], readme)
+        self.assertIn("both come from the", readme)
+        self.assertNotIn("N = 1 on Kyojin requires", readme)
+
     def test_the_claim_sentence_is_present(self):
         self.assertIn("One sentence:", self.prose,
                       "the one-sentence claim the operator asked for must stay at the top")

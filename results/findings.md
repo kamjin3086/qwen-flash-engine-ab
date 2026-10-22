@@ -2,7 +2,7 @@
 
 **One sentence:** on this machine, with these two packs, Kyojin's decode is a tie overall —
 the lead trades per prompt class — but it needs 28–37 % more time to prefill (1.28–1.37× lower
-throughput), it is 2.7× slower to come back after a reboot on a warm start, and it produced
+throughput), its observed warm container restart took 2.7× as long, and it produced
 an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
 
@@ -24,6 +24,14 @@ repeated runs hit the prompt cache on all four requests while the original run h
 they are not like-for-like and are not shown as variance. Startup is still a single
 observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
 worth the machine time.
+
+## AI assistance
+
+This comparison was carried out with AI assistance across test planning, scripting,
+execution troubleshooting, analysis, and writing. AI assistance is not independent
+validation: the published raw records and reproducible report are the basis for checking
+the claims. The author is responsible for what is published; this disclosure does not
+imply that every record has been independently checked by a human.
 
 ## Where the two engines actually differ
 
@@ -50,8 +58,10 @@ opposite directions. The ordering depends on the prompt class more than on the e
 **Time to first token at 262K** follows the prefill gap: 148 s against 204 s.
 
 **Startup is the largest single difference in the whole comparison.** 37 s against 561 s
-on a first start after clearing caches, and 16 s against 43 s on a warm start. The first
-number is what a new user meets; the second is what an existing user meets every reboot.
+on a first start with empty compile caches and a dropped OS page cache, and
+16 s against 43 s on a warm container restart. The warm measurements retained compile caches and did
+not clear the OS page cache; each is one observation. These are not host-reboot timings
+and do not establish how long a new installation or a machine reboot will take.
 
 ## Parallel requests buy latency isolation, not throughput
 
@@ -140,9 +150,10 @@ correlation; it is more informative than a single "quality score".
 
 The parts a user meets before any number matters:
 
-- **Cold then warm start works as documented**: 561 s once, 43 s afterwards, as long as the
-  cache volume survives. The cache is the difference between a usable and an unusable
-  everyday engine.
+- **One cold start and one warm container restart were observed**: Kyojin took 561 s
+  with an empty compile cache and a dropped OS page cache, then 43 s with the compile
+  cache retained and the OS page cache not cleared. Each was measured once; these are
+  not host-reboot timings or a guarantee of later startup times.
 - **A missing `.env` produces a good error**: `required variable RENDER_GID is missing a
   value: Set RENDER_GID in .env`, exit 1. Nothing to improve.
 - **The 32.6 GB n-gram/PLE table is the one real hazard.** Left to its automatic choice, the
@@ -164,7 +175,7 @@ The parts a user meets before any number matters:
 ## Pick this if
 
 - **Long prompts, retrieval, big contexts, restarting often** → Halogen. It is 36 % faster to
-  prefill throughput at 262K, returns the first token 27 % sooner there, and comes back from a reboot in 16 s
+  prefill throughput at 262K, returns the first token 27 % sooner there, and completes the observed warm container restart in 16 s
   instead of 43 s.
 - **Many short turns with a repeated prefix** → either; both make reuse nearly free, and
   Halogen's is faster in absolute terms but neither is the bottleneck.

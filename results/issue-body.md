@@ -12,47 +12,47 @@ No action is requested here: this is a benchmark report, not a support request.
 
 | Measurement | Condition | Halogen | Kyojin | Phase (H / K) |
 |---|---|---|---|---|
-| Prefill | bench.py method | 1,601 | 1,251 | halogen / kyojin-s1 |
-| Prefill | prompt ~32K | 1,851 | 1,350 | halogen / kyojin-s1 |
-| Prefill | prompt ~128K | 1,796 | 1,309 | halogen / kyojin-s1 |
-| Prefill | prompt ~262K | 1,707 | 1,259 | halogen / kyojin-s1 |
-| Prompt tokens | bench.py method | 2,737 | 3,110 | halogen / kyojin-s1 |
-| Prompt tokens | prompt ~32K | 30,790 | 31,209 | halogen / kyojin-s1 |
-| Prompt tokens | prompt ~128K | 122,456 | 124,817 | halogen / kyojin-s1 |
-| Prompt tokens | prompt ~262K | 250,549 | 255,600 | halogen / kyojin-s1 |
-| Decode | decode chat | 53.6 | 50.9 | halogen / kyojin-s1 |
-| Decode | decode code | 60.8 | 56.8 | halogen / kyojin-s1 |
-| Decode | decode prose | 49.5 | 53.4 | halogen / kyojin-s1 |
-| Time to first token | prompt ~32K | 16.7 | 23.3 | halogen / kyojin-s1 |
-| Time to first token | prompt ~128K | 68.5 | 95.8 | halogen / kyojin-s1 |
-| Time to first token | prompt ~262K | 148 | 204 | halogen / kyojin-s1 |
+| Prefill (tok/s) | bench.py method | 1,601 | 1,251 | halogen / kyojin-s1 |
+| Prefill (tok/s) | prompt ~32K | 1,851 | 1,350 | halogen / kyojin-s1 |
+| Prefill (tok/s) | prompt ~128K | 1,796 | 1,309 | halogen / kyojin-s1 |
+| Prefill (tok/s) | prompt ~262K | 1,707 | 1,259 | halogen / kyojin-s1 |
+| Prompt tokens (tokens) | bench.py method | 2,737 | 3,110 | halogen / kyojin-s1 |
+| Prompt tokens (tokens) | prompt ~32K | 30,790 | 31,209 | halogen / kyojin-s1 |
+| Prompt tokens (tokens) | prompt ~128K | 122,456 | 124,817 | halogen / kyojin-s1 |
+| Prompt tokens (tokens) | prompt ~262K | 250,549 | 255,600 | halogen / kyojin-s1 |
+| Decode (tok/s) | decode chat | 53.6 | 50.9 | halogen / kyojin-s1 |
+| Decode (tok/s) | decode code | 60.8 | 56.8 | halogen / kyojin-s1 |
+| Decode (tok/s) | decode prose | 49.5 | 53.4 | halogen / kyojin-s1 |
+| Time to first token (s) | prompt ~32K | 16.7 | 23.3 | halogen / kyojin-s1 |
+| Time to first token (s) | prompt ~128K | 68.5 | 95.8 | halogen / kyojin-s1 |
+| Time to first token (s) | prompt ~262K | 148 | 204 | halogen / kyojin-s1 |
 | Fact retrieved at depth | fact at 40% of 250K | yes | yes | halogen / kyojin-s1 |
 | Fact retrieved at depth | fact at 85% of 250K | yes | yes | halogen / kyojin-s1 |
 | Tool call emitted | single tool call | yes | yes | halogen / kyojin-s1 |
 | Tool call carries arguments | single tool call | yes | yes | halogen / kyojin-s1 |
 | Image input understood | generated PNG | yes | yes | halogen / kyojin-s1 |
-| Thinking tokens at xhigh | effort xhigh | 60 | 170 | halogen / kyojin-s1 |
-| Output throughput, all requests | N=1 | 35.1 | 28.4 | halogen / kyojin-s4 |
-| Output throughput, all requests | N=2 | 38.2 | 31.0 | halogen-extra / kyojin-extra |
-| Output throughput, all requests | N=4 | 42.4 | 31.6 | halogen / kyojin-s4 |
-| Decode per request (median) | N=1 | 60.8 | 53.4 | halogen / kyojin-s4 |
-| Decode per request (median) | N=2 | 31.2 | 31.4 | halogen-extra / kyojin-extra |
-| Decode per request (median) | N=4 | 16.6 | 16.3 | halogen / kyojin-s4 |
-| First token, median across requests | N=1 | 4.27 | 5.76 | halogen / kyojin-s4 |
-| First token, median across requests | N=2 | 6.82 | 11.5 | halogen-extra / kyojin-extra |
-| First token, median across requests | N=4 | 11.6 | 23.0 | halogen / kyojin-s4 |
-| First token, 95th percentile | N=1 | 4.27 | 5.76 | halogen / kyojin-s4 |
-| First token, 95th percentile | N=2 | 9.24 | 11.5 | halogen-extra / kyojin-extra |
-| First token, 95th percentile | N=4 | 19.1 | 23.0 | halogen / kyojin-s4 |
-| Requests actually in flight | N=1 | 1 | _not run_ | halogen / kyojin-s4 |
-| Requests actually in flight | N=2 | 2 | _not run_ | halogen-extra / kyojin-extra |
-| Requests actually in flight | N=4 | 4 | _not run_ | halogen / kyojin-s4 |
-| Prompt tokens served from cache | same prefix again | 95,680 | 94,208 | halogen-extra / kyojin-extra |
-| First token, repeated prefix | same prefix again | 0.58 | 2.96 | halogen-extra / kyojin-extra |
-| First token, cold prefix | cold control | 53.5 | 74.9 | halogen-extra / kyojin-extra |
-| Time to a usable server | first start | 37 | 561 | halogen / kyojin-s1 |
-| Time to a usable server | warm start | 16 | 43 | halogen / kyojin-s4 |
-| Pagoda output tokens | pagoda one-shot | 4,785 | 5,216 | halogen / kyojin-s1 |
+| Thinking tokens at xhigh (tokens) | effort xhigh | 60 | 170 | halogen / kyojin-s1 |
+| Output throughput, all requests (tok/s) | N=1 | 35.1 | 28.4 | halogen / kyojin-s4 |
+| Output throughput, all requests (tok/s) | N=2 | 38.2 | 31.0 | halogen-extra / kyojin-extra |
+| Output throughput, all requests (tok/s) | N=4 | 42.4 | 31.6 | halogen / kyojin-s4 |
+| Decode per request (median) (tok/s) | N=1 | 60.8 | 53.4 | halogen / kyojin-s4 |
+| Decode per request (median) (tok/s) | N=2 | 31.2 | 31.4 | halogen-extra / kyojin-extra |
+| Decode per request (median) (tok/s) | N=4 | 16.6 | 16.3 | halogen / kyojin-s4 |
+| First token, median across requests (s) | N=1 | 4.27 | 5.76 | halogen / kyojin-s4 |
+| First token, median across requests (s) | N=2 | 6.82 | 11.5 | halogen-extra / kyojin-extra |
+| First token, median across requests (s) | N=4 | 11.6 | 23.0 | halogen / kyojin-s4 |
+| First token, 95th percentile (s) | N=1 | 4.27 | 5.76 | halogen / kyojin-s4 |
+| First token, 95th percentile (s) | N=2 | 9.24 | 11.5 | halogen-extra / kyojin-extra |
+| First token, 95th percentile (s) | N=4 | 19.1 | 23.0 | halogen / kyojin-s4 |
+| Requests actually in flight (requests) | N=1 | 1 | _not run_ | halogen / kyojin-s4 |
+| Requests actually in flight (requests) | N=2 | 2 | _not run_ | halogen-extra / kyojin-extra |
+| Requests actually in flight (requests) | N=4 | 4 | _not run_ | halogen / kyojin-s4 |
+| Prompt tokens served from cache (tokens) | same prefix again | 95,680 | 94,208 | halogen-extra / kyojin-extra |
+| First token, repeated prefix (s) | same prefix again | 0.58 | 2.96 | halogen-extra / kyojin-extra |
+| First token, cold prefix (s) | cold control | 53.5 | 74.9 | halogen-extra / kyojin-extra |
+| Time to a usable server (s) | first start | 37 | 561 | halogen / kyojin-s1 |
+| Time to a usable server (s) | warm start | 16 | 43 | halogen / kyojin-s4 |
+| Pagoda output tokens (tokens) | pagoda one-shot | 4,785 | 5,216 | halogen / kyojin-s1 |
 | Pagoda output truncated | pagoda one-shot | no | no | halogen / kyojin-s1 |
 | Pagoda output is complete HTML | pagoda one-shot | yes | no | halogen / kyojin-s1 |
 | Script-checkable case | c-csv-line | yes | yes | halogen-quality / kyojin-quality |
@@ -68,7 +68,7 @@ No action is requested here: this is a benchmark report, not a support request.
 | Script-checkable case | r-three-items | yes | yes | halogen-quality / kyojin-quality |
 | Script-checkable case | r-trailing-zeros | yes | yes | halogen-quality / kyojin-quality |
 | Script-checkable case | r-widgets | yes | yes | halogen-quality / kyojin-quality |
-| Script-checkable cases passed | all 13 cases | 85% | 62% | halogen-quality / kyojin-quality |
+| Script-checkable cases passed (ratio) | all 13 cases | 85% | 62% | halogen-quality / kyojin-quality |
 
 _Kyojin's /health answers, but publishes no in-flight or queued counters, so request occupancy cannot be observed on that engine._
 
@@ -76,14 +76,14 @@ _Kyojin's /health answers, but publishes no in-flight or queued counters, so req
 
 | Measurement | Condition | Engine | n | Median | Range |
 |---|---|---|---:|---:|---:|
-| Prefill | bench.py method | Halogen | 3 | 1,601 | 1,563–1,663 |
-| Prefill | bench.py method | Kyojin | 3 | 1,251 | 1,226–1,309 |
-| Decode | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
-| Decode | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
-| Decode | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
-| Decode | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
-| Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
-| Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
+| Prefill (tok/s) | bench.py method | Halogen | 3 | 1,601 | 1,563–1,663 |
+| Prefill (tok/s) | bench.py method | Kyojin | 3 | 1,251 | 1,226–1,309 |
+| Decode (tok/s) | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
+| Decode (tok/s) | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
+| Decode (tok/s) | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
+| Decode (tok/s) | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
+| Decode (tok/s) | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
+| Decode (tok/s) | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
 
 ## Variance
 
@@ -91,24 +91,24 @@ The context rows are three runs in one start per engine; the decode rows are the
 
 | Measurement | Condition | Engine | n | Median | Range |
 |---|---|---|---:|---:|---:|
-| Prefill | prompt ~32K | Halogen | 3 | 1,850 | 1,840–1,878 |
-| Time to first token | prompt ~32K | Halogen | 3 | 16.6 | 16.4–16.7 |
-| Prefill | prompt ~128K | Halogen | 3 | 1,796 | 1,790–1,807 |
-| Time to first token | prompt ~128K | Halogen | 3 | 68.7 | 68.0–69.0 |
-| Prefill | prompt ~262K | Halogen | 3 | 1,693 | 1,693–1,696 |
-| Time to first token | prompt ~262K | Halogen | 3 | 149 | 149.0–149.3 |
-| Decode | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
-| Decode | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
-| Decode | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
-| Prefill | prompt ~32K | Kyojin | 3 | 1,337 | 1,329–1,346 |
-| Time to first token | prompt ~32K | Kyojin | 3 | 23.5 | 23.4–23.7 |
-| Prefill | prompt ~128K | Kyojin | 3 | 1,290 | 1,285–1,300 |
-| Time to first token | prompt ~128K | Kyojin | 3 | 97.1 | 96.4–97.5 |
-| Prefill | prompt ~262K | Kyojin | 3 | 1,244 | 1,244–1,248 |
-| Time to first token | prompt ~262K | Kyojin | 3 | 206 | 206–207 |
-| Decode | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
-| Decode | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
-| Decode | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
+| Prefill (tok/s) | prompt ~32K | Halogen | 3 | 1,850 | 1,840–1,878 |
+| Time to first token (s) | prompt ~32K | Halogen | 3 | 16.6 | 16.4–16.7 |
+| Prefill (tok/s) | prompt ~128K | Halogen | 3 | 1,796 | 1,790–1,807 |
+| Time to first token (s) | prompt ~128K | Halogen | 3 | 68.7 | 68.0–69.0 |
+| Prefill (tok/s) | prompt ~262K | Halogen | 3 | 1,693 | 1,693–1,696 |
+| Time to first token (s) | prompt ~262K | Halogen | 3 | 149 | 149.0–149.3 |
+| Decode (tok/s) | decode prose | Halogen | 3 | 49.5 | 47.4–49.6 |
+| Decode (tok/s) | decode chat | Halogen | 3 | 53.6 | 51.1–54.7 |
+| Decode (tok/s) | decode code | Halogen | 3 | 60.8 | 60.5–61.6 |
+| Prefill (tok/s) | prompt ~32K | Kyojin | 3 | 1,337 | 1,329–1,346 |
+| Time to first token (s) | prompt ~32K | Kyojin | 3 | 23.5 | 23.4–23.7 |
+| Prefill (tok/s) | prompt ~128K | Kyojin | 3 | 1,290 | 1,285–1,300 |
+| Time to first token (s) | prompt ~128K | Kyojin | 3 | 97.1 | 96.4–97.5 |
+| Prefill (tok/s) | prompt ~262K | Kyojin | 3 | 1,244 | 1,244–1,248 |
+| Time to first token (s) | prompt ~262K | Kyojin | 3 | 206 | 206–207 |
+| Decode (tok/s) | decode prose | Kyojin | 3 | 53.4 | 52.6–54.6 |
+| Decode (tok/s) | decode chat | Kyojin | 3 | 50.9 | 50.3–51.9 |
+| Decode (tok/s) | decode code | Kyojin | 3 | 56.8 | 53–57.8 |
 
 > N=4 repetitions are not shown for either engine: all four requests in each of Halogen's repeated runs hit the prompt cache, while the original run had no hits. Without a matched pair the comparison is not like-for-like.
 
@@ -121,7 +121,7 @@ The context rows are three runs in one start per engine; the decode rows are the
 
 **One sentence:** on this machine, with these two packs, Kyojin's decode is a tie overall —
 the lead trades per prompt class — but it needs 28–37 % more time to prefill (1.28–1.37× lower
-throughput), it is 2.7× slower to come back after a reboot on a warm start, and it produced
+throughput), its observed warm container restart took 2.7× as long, and it produced
 an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
 
@@ -143,6 +143,14 @@ repeated runs hit the prompt cache on all four requests while the original run h
 they are not like-for-like and are not shown as variance. Startup is still a single
 observation per engine: a cold Kyojin start is about nine minutes, and repeating it was not
 worth the machine time.
+
+## AI assistance
+
+This comparison was carried out with AI assistance across test planning, scripting,
+execution troubleshooting, analysis, and writing. AI assistance is not independent
+validation: the published raw records and reproducible report are the basis for checking
+the claims. The author is responsible for what is published; this disclosure does not
+imply that every record has been independently checked by a human.
 
 ## Where the two engines actually differ
 
@@ -169,8 +177,10 @@ opposite directions. The ordering depends on the prompt class more than on the e
 **Time to first token at 262K** follows the prefill gap: 148 s against 204 s.
 
 **Startup is the largest single difference in the whole comparison.** 37 s against 561 s
-on a first start after clearing caches, and 16 s against 43 s on a warm start. The first
-number is what a new user meets; the second is what an existing user meets every reboot.
+on a first start with empty compile caches and a dropped OS page cache, and
+16 s against 43 s on a warm container restart. The warm measurements retained compile caches and did
+not clear the OS page cache; each is one observation. These are not host-reboot timings
+and do not establish how long a new installation or a machine reboot will take.
 
 ## Parallel requests buy latency isolation, not throughput
 
@@ -259,9 +269,10 @@ correlation; it is more informative than a single "quality score".
 
 The parts a user meets before any number matters:
 
-- **Cold then warm start works as documented**: 561 s once, 43 s afterwards, as long as the
-  cache volume survives. The cache is the difference between a usable and an unusable
-  everyday engine.
+- **One cold start and one warm container restart were observed**: Kyojin took 561 s
+  with an empty compile cache and a dropped OS page cache, then 43 s with the compile
+  cache retained and the OS page cache not cleared. Each was measured once; these are
+  not host-reboot timings or a guarantee of later startup times.
 - **A missing `.env` produces a good error**: `required variable RENDER_GID is missing a
   value: Set RENDER_GID in .env`, exit 1. Nothing to improve.
 - **The 32.6 GB n-gram/PLE table is the one real hazard.** Left to its automatic choice, the
@@ -283,7 +294,7 @@ The parts a user meets before any number matters:
 ## Pick this if
 
 - **Long prompts, retrieval, big contexts, restarting often** → Halogen. It is 36 % faster to
-  prefill throughput at 262K, returns the first token 27 % sooner there, and comes back from a reboot in 16 s
+  prefill throughput at 262K, returns the first token 27 % sooner there, and completes the observed warm container restart in 16 s
   instead of 43 s.
 - **Many short turns with a repeated prefix** → either; both make reuse nearly free, and
   Halogen's is faster in absolute terms but neither is the bottleneck.

@@ -189,6 +189,10 @@ class TableRow:
         return (entry.get("phase") if entry else None) or "-"
 
 
+def measurement_label(metric: str, unit: str) -> str:
+    return LABEL.get(metric, metric) + (f" ({unit})" if unit != "bool" else "")
+
+
 def table_rows(measurements: list[dict]) -> list[TableRow]:
     rows: list[TableRow] = []
     for metric, items in rows_by_metric(measurements).items():
@@ -196,7 +200,7 @@ def table_rows(measurements: list[dict]) -> list[TableRow]:
             rows.append(TableRow(
                 metric=metric,
                 condition=cond,
-                label=LABEL.get(metric, metric),
+                label=measurement_label(metric, items[0]["unit"]),
                 cells={i["engine"]: i for i in items if i["condition"] == cond},
             ))
     return rows
@@ -305,7 +309,7 @@ def variance_table(summary: dict) -> str:
     body = []
     for v in rows:
         body.append(
-            f'<tr><th scope="row">{escape(LABEL.get(v["metric"], v["metric"]))}</th>'
+            f'<tr><th scope="row">{escape(measurement_label(v["metric"], v["unit"]))}</th>'
             f'<td class="cond">{escape(v["condition"])}</td>'
             f'<td>{escape(ENGINE_LABEL.get(v["engine"], v["engine"].title()))}</td>'
             f'<td class="num">{v["n"]}</td>'
@@ -337,7 +341,7 @@ def variance_markdown(summary: dict) -> list[str]:
            "| Measurement | Condition | Engine | n | Median | Range |",
            "|---|---|---|---:|---:|---:|"]
     for v in rows:
-        out.append(f'| {LABEL.get(v["metric"], v["metric"])} | {v["condition"]} | '
+        out.append(f'| {measurement_label(v["metric"], v["unit"])} | {v["condition"]} | '
                    f'{ENGINE_LABEL.get(v["engine"], v["engine"].title())} | {v["n"]} | '
                    f'{fmt(v["metric"], v["median"], "measured")} | '
                    f'{fmt_range(v["metric"], v["min"], v["max"])} |')

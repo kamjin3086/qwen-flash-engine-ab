@@ -59,6 +59,16 @@ class ExportedTreeTest(unittest.TestCase):
     def tearDownClass(cls):
         shutil.rmtree(cls.tmp, ignore_errors=True)
 
+    def test_benchmark_script_stays_executable_after_export(self):
+        self.assertTrue(os.access(self.pub / "bench.sh", os.X_OK))
+        syntax = subprocess.run(["bash", "-n", str(self.pub / "bench.sh")],
+                                capture_output=True, text=True)
+        self.assertEqual(syntax.returncode, 0, syntax.stderr)
+        second = self.tmp / "executable-again"
+        p = export(self.pub, second)
+        self.assertEqual(p.returncode, 0, p.stderr)
+        self.assertTrue(os.access(second / "bench.sh", os.X_OK))
+
     def test_the_published_tree_can_export_itself(self):
         second = self.tmp / "second"
         p = export(self.pub, second)

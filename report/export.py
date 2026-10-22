@@ -144,6 +144,7 @@ def main() -> None:
             text = privacy.scrub(src.read_text(errors="replace"), home)
             problems.extend(privacy.scan(str(rel), text, allow=privacy.PUBLIC_URLS))
             target.write_text(text)
+            shutil.copymode(src, target)
             digest = hashlib.sha256(text.encode()).hexdigest()
         else:
             shutil.copy2(src, target)

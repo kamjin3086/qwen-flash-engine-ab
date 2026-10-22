@@ -97,9 +97,10 @@ no "fair" second arm.
 | 9 | Bounded agent run: the gallery's hexagon prompt, 8 turns / 600 s cap, `tools/agentrun.py` | `bench.sh` + manual | yes |
 | 10 | Container experience: cache survives restart, missing `.env` error text, port already in use | manual | Kyojin only |
 
-Caveat on 6: N = 1 on Kyojin requires `--sessions 1`, a start flag, so the
-concurrency phase needs its own Kyojin run (`--sessions 4`) and its N = 1 reference
-comes from the deterministic phase. Halogen needs no such split.
+For measurement 6, N is the number of simultaneous client requests, not the server's
+session capacity. Kyojin's N = 1 and N = 4 concurrency measurements both come from the
+`--sessions 4` phase (`runs/kyojin-s4/conc1.json` and `conc4.json`). The deterministic
+measurements use a separate `--sessions 1` phase. Halogen needs no such split.
 
 ## Run order
 
@@ -107,7 +108,9 @@ To do this on another machine, start with [`docs/replicate.md`](docs/replicate.m
 
 1. `./bench.sh preflight` — record environment, digests, GTT, availability.
 2. `./bench.sh smoke` — tooling check at tiny sizes against the engine that is up.
-3. `./bench.sh halogen` — phase A, the reference engine while it is warm.
+3. `./bench.sh halogen --clear-cache "$HALOGEN_DIR/cache"` — phase A, explicitly
+   authorize clearing the reference engine's compile-cache contents for first-start timing;
+   see the cache safety requirements in [`docs/replicate.md`](docs/replicate.md).
 4. `./bench.sh kyojin-s1` — phase B: stop Halogen, Kyojin cold start, deterministic
    matrix, artifacts 8 and 9.
 5. `./bench.sh kyojin-s4` — phase C: warm restart with `--sessions 4`, measurement 6.
@@ -149,9 +152,13 @@ are recorded here because the next person measuring this image will hit them too
 - **A4** Any OOM kill that reaches a service outside the two engines: abort and
   restore Halogen immediately.
 
-Never, at any point: `docker compose down -v`, deleting `models/` or `cache/`, or
-editing an existing compose file. Kyojin argument overrides go in a separate
-override file.
+Never: `docker compose down -v`, deleting models, deleting cache directories, or editing
+an existing compose file. The only cache-content deletion permitted by the runner is an
+explicitly authorized Halogen first-start measurement using `--clear-cache` with the exact
+absolute project/cache path. The runner checks both the resolved Compose mount and the
+existing container's actual mount, requires the container to be stopped before deletion,
+and aborts on cleanup failure. Without that option it refuses before touching the service.
+OS page-cache dropping is a separate step. Kyojin overrides go in a separate override file.
 
 ## Publication
 
@@ -167,6 +174,14 @@ override file.
 
 The task prompts for measurement 8 and 9 are the ones published in the author's
 gallery, quoted verbatim in `docs/artifacts.md`.
+
+## AI assistance
+
+This comparison was carried out with AI assistance across test planning, scripting,
+execution troubleshooting, analysis, and writing. AI assistance is not independent
+validation: the published raw records and reproducible report are the basis for checking
+the claims. The author is responsible for what is published; this disclosure does not
+imply that every record has been independently checked by a human.
 
 ## License
 

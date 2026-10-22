@@ -6,7 +6,7 @@
 #   ./bench.sh setup        # vendor the upstream bench tool at a pinned commit
 #   ./bench.sh preflight    # environment, digests, GTT, availability
 #   ./bench.sh smoke        # tooling check at tiny sizes against the engine already up
-#   ./bench.sh halogen      # H1 first start (caches cleared, page cache dropped) + matrix
+#   ./bench.sh halogen --clear-cache "$HALOGEN_DIR/cache" # explicitly authorize H1 cache clearing
 #                           #   + artifacts + concurrency, then H2 warm start timing
 #   ./bench.sh kyojin-s1    # K1 first start (sessions=1) + deterministic matrix + artifacts
 #   ./bench.sh kyojin-s4    # K2 warm start (sessions=4) + concurrency arm
@@ -227,12 +227,19 @@ run_concurrency() { # label, url, dir
 }
 
 cmd_halogen() {
+  [ "$#" -eq 2 ] && [ "$1" = "--clear-cache" ] && [ -n "$2" ] \
+    || die 'first-start measurement requires --clear-cache /absolute/project/cache (deletes its contents)'
+  local cache_target="$2"
+  "$PY" "$ROOT/tools/cache_guard.py" --project "$HALOGEN_DIR" --container "$HALOGEN_NAME" \
+    --target "$cache_target" --check || die 'cache authorization or mount verification failed'
   resolve_digests
   local d; d=$(phase_dir halogen); record_env "$d"
-  log "H1 — Halogen first start: caches cleared, page cache dropped"
-  ( cd "$HALOGEN_DIR" && docker compose stop ) > "$d/stop-before.log" 2>&1 || true
+  log "H1 — Halogen first start: authorized compile-cache clearing at $cache_target"
+  ( cd "$HALOGEN_DIR" && docker compose stop ) > "$d/stop-before.log" 2>&1 \
+    || die 'cannot stop Halogen; cache has not been cleared'
   sleep 5
-  sudo -n rm -rf "${HALOGEN_DIR:?}/cache"/* 2>/dev/null || true
+  "$PY" "$ROOT/tools/cache_guard.py" --project "$HALOGEN_DIR" --container "$HALOGEN_NAME" \
+    --target "$cache_target" --clear || die 'cache clearing failed; no first-start timing'
   { echo "halogen_cache_after_clear_bytes $(sudo -n du -sb "$HALOGEN_DIR/cache" 2>/dev/null | cut -f1)"
     echo "gtt_after_stop_mib $(gtt_mib)"; echo "avail_after_stop_gib $(avail_gib)"; } > "$d/stop-state.txt"
   (( $(gtt_mib) > $(gtt_floor_mib) )) && die "A2: $(gtt_mib)MiB GTT still held after stopping Halogen (floor $(gtt_floor_mib)MiB)"
@@ -307,9 +314,14 @@ cmd_kyojin_s1() {
 
   log "container-experience probes"
   { set +e
-    mkdir -p <temp> && cp "$KYOJIN_DIR/compose.yaml" <temp>/ 2>/dev/null
-    ( cd <temp> && docker compose config ) > "$d/probe-missing-env.txt" 2>&1
+    local probe_dir
+    probe_dir=$(mktemp -d) || die 'cannot create missing-env probe directory'
+    cp "$KYOJIN_DIR/compose.yaml" "$probe_dir/" 2>/dev/null \
+      || die 'cannot copy Compose file for missing-env probe'
+    ( cd "$probe_dir" && docker compose config ) > "$d/probe-missing-env.txt" 2>&1
     echo "exit=$?" >> "$d/probe-missing-env.txt"
+    rm -f "$probe_dir/compose.yaml"
+    rmdir "$probe_dir"
     set -e; } || true
   { set +e
     "$PY" - <<'PYBIND' &
@@ -447,7 +459,7 @@ case "${1:-}" in
   setup)      cmd_setup ;;
   preflight)  cmd_preflight ;;
   smoke)      cmd_smoke ;;
-  halogen)    cmd_halogen ;;
+  halogen)    cmd_halogen "${@:2}" ;;
   kyojin-s1)  cmd_kyojin_s1 ;;
   kyojin-s4)  cmd_kyojin_s4 ;;
   status)     cmd_status ;;

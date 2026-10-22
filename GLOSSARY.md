@@ -53,8 +53,8 @@ compilation and table tuning.
 
 ## Warm start
 
-Start of an engine whose cache survives from a previous run. What a daily user
-actually experiences every boot.
+Start of an engine whose compile/tuning cache survives from a previous run. This does
+not specify OS page-cache state and is not synonymous with a host reboot.
 
 ## Provenance
 

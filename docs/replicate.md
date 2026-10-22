@@ -18,13 +18,30 @@ written for someone who has never opened this repository.
   failed attempts, plus a reboot if the lookup table is allowed into system RAM. Budget
   three hours and do not plan to use the machine meanwhile.
 
+## Cache safety before first-start timing
+
+Set `HALOGEN_DIR` to the absolute Compose project directory. The Halogen first-start
+command below **deletes all contents, including dotfiles, of its compile cache**; it is
+not a routine restart. Back up anything you need before authorizing it. The directory must
+be exactly `$HALOGEN_DIR/cache`, with no symlink, and the resolved Compose configuration
+must explicitly set `HALOGEN_CACHE_DIR=/cache`. An existing container is required so the
+runner can verify that its actual bind mount agrees with Compose. Unsupported or
+ambiguous layouts are refused, not guessed.
+
+Without `--clear-cache` the runner refuses before stopping any service. With authorization
+it displays the target, verifies mounts, stops the container, verifies again, and clears
+only that directory's contents. Any stop or cleanup failure aborts before timing. Do not
+change mounts or start the container concurrently. Dropping the OS page cache is a separate
+operation requiring non-interactive sudo; it does not clear the compile cache. The warm
+restart later retains both compile caches and the OS page cache; it does not reboot the host.
+
 ## Steps
 
 ```sh
 ./bench.sh setup        # vendor the upstream bench tool at the pinned commit
 ./bench.sh preflight    # digests, GTT baseline, availability; writes runs/preflight/
 ./bench.sh smoke        # tiny sizes against whichever engine is up
-./bench.sh halogen      # phase A: cold start, matrix, artifacts, concurrency, warm start
+./bench.sh halogen --clear-cache "$HALOGEN_DIR/cache" # phase A: authorize cache-content deletion
 ./bench.sh kyojin-s1    # phase B: stop Halogen, cold start Kyojin at --sessions 1
 ./bench.sh kyojin-s4    # phase C: warm restart at --sessions 4, concurrency arm
 ./bench.sh variance <label>  # optional: repeat the verdict's numbers, engine up
@@ -63,7 +80,7 @@ swap between engines and after a failed start.
 
 What should be comparable is the *shape*: prefill is a constant factor rather than a
 long-context effect, decode is a tie within the noise, and the cost of going parallel shows up
-as latency on the fourth request rather than as throughput. If your run disagrees with that
+in median and p95 first-token latency, not just aggregate throughput. If your run disagrees with that
 shape, that is the interesting result.
 
 ## What is not automated
