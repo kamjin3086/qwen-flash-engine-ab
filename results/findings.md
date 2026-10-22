@@ -67,8 +67,8 @@ decode only, measured from the first token. They are not expected to match.
 | Kyojin, 1 request | 12.3 s | 28.4 tok/s | 53.4 tok/s | 5.8 s |
 | Kyojin, 4 requests | 45.6 s | 31.6 tok/s | 16.3 tok/s | 23.0 s |
 
-Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 % on
-Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
+Quadrupling the requests buys 21 % more output throughput on Halogen and 11 % on Kyojin,
+while per-request decode speed falls by about 70 %. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long a request waits for its first token**: a median of 11.6 s against
 23.0 s, and the 95th percentile — the maximum at four requests — 19.1 s against 23.0 s. Those rows are one observation:

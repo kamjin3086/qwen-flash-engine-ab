@@ -10,7 +10,7 @@ Everything below exists to answer that, and only that.
 ## Status
 
 Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted. These are the numbers of
-tag [`snapshot-2026-10-21-v7`](https://github.com/kamjin3086/qwen-flash-engine-ab/releases/tag/snapshot-2026-10-21-v7);
+tag [`snapshot-2026-10-21-v8`](https://github.com/kamjin3086/qwen-flash-engine-ab/releases/tag/snapshot-2026-10-21-v8);
 later commits are documentation only.
 
 - The report: [`docs/index.html`](docs/index.html) — one self-contained file, open it from

@@ -312,13 +312,11 @@ def variance_table(summary: dict) -> str:
             f'<td class="num">{fmt(v["metric"], v["median"], "measured")}</td>'
             f'<td class="num">{escape(fmt_range(v["metric"], v["min"], v["max"]))}</td></tr>')
     return ('<h2>Variance</h2>'
-            '<p class="sub">The same configuration measured three times in one start, for '
-            'the numbers the verdict leans on. The headline table above is the original run; '
-            "this is how far a repetition of it travels. The context rows were measured in a "
-            "separate start, so their medians sit a little away from the headline column; the "
-            "table is the spread within a start, not absolute agreement between sessions. Decode rows are the original "
-            "run's three repetitions per prompt class, the same data as Repetitions above; "
-            "the context rows were re-measured.</p>"
+            '<p class="sub">The context rows are three runs in one start per engine, '
+            're-measuring the numbers the verdict leans on; their medians sit a little away '
+            'from the headline column, so this is the spread within a start, not absolute '
+            "agreement between sessions. Decode rows are the original run's three "
+            'repetitions per prompt class, the same data as Repetitions above.</p>'
             f'{notes}'
             '<div class="tablewrap" role="region" aria-label="Variance" tabindex="0">'
             '<table class="spread"><thead><tr><th>Measurement</th><th>Condition</th>'
@@ -333,8 +331,9 @@ def variance_markdown(summary: dict) -> list[str]:
     if not rows:
         return []
     out = ["## Variance", "",
-           "Decode rows are the original run's three repetitions per prompt class (the same "
-           "data as the Repetitions table); the context and N=4 rows were re-measured.", "",
+           "The context rows are three runs in one start per engine; the decode rows are the "
+           "original run's three repetitions per prompt class, the same data as the Repetitions "
+           "table. Medians differ slightly between starts; this is within-start spread.", "",
            "| Measurement | Condition | Engine | n | Median | Range |",
            "|---|---|---|---:|---:|---:|"]
     for v in rows:
