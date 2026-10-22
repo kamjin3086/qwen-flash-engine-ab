@@ -1,7 +1,7 @@
 # What the numbers say
 
-**One sentence:** on this machine, with these two packs, Kyojin is not slower at decoding
-than the engine I already run — but it needs 28–37 % more time to prefill (1.28–1.37× lower
+**One sentence:** on this machine, with these two packs, Kyojin's decode is a tie overall —
+the lead trades per prompt class — but it needs 28–37 % more time to prefill (1.28–1.37× lower
 throughput), it is 2.7× slower to come back after a reboot on a warm start, and it produced
 an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
@@ -31,7 +31,7 @@ worth the machine time.
 I measured, and the ratio barely moves (1.28× at the author's size, 1.36–1.37× from 32K to
 262K; 1.36–1.39× across those points and their repetitions). The author's-size ratio compares
 2,737 tokens against 3,110, because the two tokenizers disagree on the same text. Both
-engines lose about the same share of their speed as the prompt grows (−7.7 % and −6.8 %
+engines lose about the same share of their speed as the prompt grows (−7.8 % and −6.7 %
 from 32K to 262K), so this is not a long-context effect: it is a constant factor on
 forward pass throughput.
 
@@ -53,9 +53,10 @@ number is what a new user meets; the second is what an existing user meets every
 
 ## Parallel requests buy latency isolation, not throughput
 
-Four 8K-prompt, 512-token requests released at once. *Aggregate* is all output tokens over
-the whole wall time, prompt processing included; *per request* is decode only, measured from
-the first token. They are not expected to match.
+Four 8K-prompt requests released at once with `max_tokens=512`; the replies came back at
+about 350 tokens each, which is what the wall and aggregate columns reconcile to. *Aggregate*
+is all output tokens over the whole wall time, prompt processing included; *per request* is
+decode only, measured from the first token. They are not expected to match.
 
 | | wall | aggregate | per request | first token (median) |
 |---|---:|---:|---:|---:|
@@ -67,9 +68,10 @@ the first token. They are not expected to match.
 Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 % on
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
-throughput but **how long the fourth request waits for its first token**: 11.6 s against
-23.0 s. That row is a single observation: when it was repeated, every request in the repeat
-hit the prompt cache, so the repeat measures a different thing and is not quoted as a range.
+throughput but **how long a request waits for its first token**: a median of 11.6 s against
+23.0 s, and the slowest of the four 19.1 s against 23.0 s. Those rows are one observation:
+when the run was repeated, every request in the repeat hit the prompt cache, so the repeat
+measures a different thing and is not quoted as a range.
 
 Kyojin's own startup log names the reason its parallel mode is not free: at four sessions
 its decode attention kernel splits differently and its output is no longer guaranteed to
@@ -154,13 +156,13 @@ The parts a user meets before any number matters:
   signal is one line in the log. Everything in this run goes through `CONTEXT` and
   `KYOJIN_EXTRA_ARGS` for that reason.
 - Not tested: what happens when the published port is already taken. The probe could not be
-  built without disturbing the running engine, so it is recorded as not run rather than
-  guessed at.
+  built without disturbing the running engine, so it is left untested rather than guessed
+  at; it is not one of the three `not run` rows, which are Kyojin's in-flight counters.
 
 ## Pick this if
 
 - **Long prompts, retrieval, big contexts, restarting often** → Halogen. It is 36 % faster to
-  prefill at 256K, 27 % quicker to first token there, and comes back from a reboot in 16 s
+  prefill throughput at 262K, returns the first token 27 % sooner there, and comes back from a reboot in 16 s
   instead of 43 s.
 - **Many short turns with a repeated prefix** → either; both make reuse nearly free, and
   Halogen's is faster in absolute terms but neither is the bottleneck.

@@ -773,20 +773,23 @@ How often each value was measured is in Repetitions.</p>
 {md_to_html(strip_title(findings)) if findings.strip() else '<p class="muted">Not written yet.</p>'}
 
 <h2>Artifacts</h2>
-<p class="sub">Each engine's single-shot answer to the same prompt, one HTML file, no tools, no retry.
-The maintainer's gallery rows were produced by an agent harness this run does not have, so these pages are not
-comparable to the gallery's timings; they are here so you can click them.</p>
+<p class="sub">Two tasks, the same prompts on both engines. The pagoda is one request, one HTML
+file, no tools, no retry; the hexagon is a bounded agent run (8 turns / 600 s cap, tools
+allowed). Each card says which, and how many tool calls it took. The maintainer's gallery
+rows came from a different harness, so the timings are not comparable; the pages are here so
+you can click them.</p>
 {artifact_section(artifacts)}
 
 <h2>Raw data</h2>
-<p class="sub">Every number above traces to one of these files. The report page is derived; the raw records are
-the artifact of record.</p>
+<p class="sub">Every number in the tables and the artifact cards traces to one of these files.
+The report page is derived; the raw records are the artifact of record.</p>
 <ul>{csv_link}{"".join(f'<li><a href="{escape(rel(p))}">{escape(p)}</a></li>'
              for p in sorted({e["raw_path"] for e in m if e["raw_path"]}
-                             | {v.get("raw_path") for v in summary.get("variance") or [] if v.get("raw_path")})
+                             | {v.get("raw_path") for v in summary.get("variance") or [] if v.get("raw_path")}
+                             | {str(x.relative_to(LINK_ROOT)) for x in LINK_ROOT.glob("runs/*/artifact-*.json")})
              if p and (LINK_ROOT / p).is_file())}</ul>
 
-<p class="sub">Method, abort rules and the two ADRs that explain why there is one arm:
+<p class="sub">Method, abort rules and the ADRs that explain why there is one arm:
 <a href="../README.md">README</a> &middot; <a href="../docs/adr/0001-single-arm-halogen-as-yardstick.md">ADR-0001</a>,
 <a href="../docs/adr/0002-two-kyojin-runs.md">ADR-0002</a>,
 <a href="../docs/adr/0003-private-work-public-export.md">ADR-0003</a>,
