@@ -1,0 +1,12 @@
+data: {"id": "chatcmpl-12ae6484b1d341e19de478ce", "created": 1792653309, "model": "halogen-qwen3.8-flash-next", "object": "chat.completion.chunk", "choices": [{"index": 0, "finish_reason": null, "delta": {"role": "assistant", "content": ""}}], "usage": null}
+
+data: {"id": "chatcmpl-12ae6484b1d341e19de478ce", "created": 1792653309, "model": "halogen-qwen3.8-flash-next", "object": "chat.completion.chunk", "choices": [{"index": 0, "finish_reason": null, "delta": {"tool_calls": [{"index": 0, "id": "call_8a2a58a7c7434d9a8d3bf84f", "type": "function", "function": {"name": "inspect_page", "arguments": ""}}]}}], "usage": null}
+
+data: {"id": "chatcmpl-12ae6484b1d341e19de478ce", "created": 1792653309, "model": "halogen-qwen3.8-flash-next", "object": "chat.completion.chunk", "choices": [{"index": 0, "finish_reason": null, "delta": {"tool_calls": [{"index": 0, "function": {"arguments": "{}"}}]}}], "usage": null}
+
+data: {"id": "chatcmpl-12ae6484b1d341e19de478ce", "created": 1792653309, "model": "halogen-qwen3.8-flash-next", "object": "chat.completion.chunk", "choices": [{"index": 0, "finish_reason": "tool_calls", "delta": {}}], "usage": null, "timings": {"prompt_n": 10850, "predicted_n": 15, "prompt_ms": 5972.3, "predicted_ms": 156.7, "prompt_per_second": 1816.721, "predicted_per_second": 95.724, "cache_n": 1099, "disk_restore_n": 0, "disk_restore_ms": 0.0, "prefix_n": 11919, "draft_n": 13, "draft_n_accepted": 13, "speculation": {"drafter": "mtp", "rounds": 2, "head": {"rounds": 2, "drafted": 13, "accepted": 13}, "lookup": {"rounds": 0, "drafted": 0, "accepted": 0}, "grammar": {"rounds": 0, "drafted": 0, "accepted": 0}}}}
+
+data: {"id": "chatcmpl-12ae6484b1d341e19de478ce", "created": 1792653309, "model": "halogen-qwen3.8-flash-next", "object": "chat.completion.chunk", "choices": [], "usage": {"prompt_tokens": 11949, "completion_tokens": 15, "total_tokens": 11964, "prompt_tokens_details": {"cached_tokens": 1099}, "completion_tokens_details": {"reasoning_tokens": 0}}, "timings": {"prompt_n": 10850, "predicted_n": 15, "prompt_ms": 5972.3, "predicted_ms": 156.7, "prompt_per_second": 1816.721, "predicted_per_second": 95.724, "cache_n": 1099, "disk_restore_n": 0, "disk_restore_ms": 0.0, "prefix_n": 11919, "draft_n": 13, "draft_n_accepted": 13, "speculation": {"drafter": "mtp", "rounds": 2, "head": {"rounds": 2, "drafted": 13, "accepted": 13}, "lookup": {"rounds": 0, "drafted": 0, "accepted": 0}, "grammar": {"rounds": 0, "drafted": 0, "accepted": 0}}}}
+
+data: [DONE]
+

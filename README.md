@@ -9,9 +9,13 @@ Everything below exists to answer that, and only that.
 
 ## Status
 
-Run complete, 2026-10-21. 111 measurements, 3 not run, 0 aborted. These are the numbers of
-tag [`snapshot-2026-10-21-v8`](https://github.com/kamjin3086/qwen-flash-engine-ab/releases/tag/snapshot-2026-10-21-v8);
-later commits are documentation only.
+Original matrix complete, 2026-10-21: 111 measurements, 3 not run, 0 aborted, preserved at
+tag [`snapshot-2026-10-21-v8`](https://github.com/kamjin3086/qwen-flash-engine-ab/tree/snapshot-2026-10-21-v8).
+A separate **2026-10-22 pagoda follow-up** adds 12 bare outputs and one clean Pi SDK case
+per engine, preserved at tag
+[`snapshot-2026-10-22`](https://github.com/kamjin3086/qwen-flash-engine-ab/tree/snapshot-2026-10-22).
+It does not replace or change those matrix rows. The comparison remains open-ended;
+these observations are not a final migration decision.
 
 - The report: [`docs/index.html`](docs/index.html) — one self-contained file, open it from
   disk, or read it live at <https://kamjin3086.github.io/qwen-flash-engine-ab/>.
@@ -19,13 +23,27 @@ later commits are documentation only.
   what they do not.
 - The summary everything else reads: [`results/summary.json`](results/summary.json), and the
   same rows flattened as [`results/measurements.csv`](results/measurements.csv).
-- The Markdown body for the maintainer's issue: [`results/issue-body.md`](results/issue-body.md).
+- The generated Markdown report summary: [`results/issue-body.md`](results/issue-body.md).
+- The pagoda follow-up: [`docs/pagoda-followup.html`](docs/pagoda-followup.html) — all bare
+  samples, failures and agent finals, with static screenshots rather than live frames;
+  [`results/pagoda-followup/protocol.md`](results/pagoda-followup/protocol.md) explains the
+  method and exclusions, and its manifest verifies the curated requests, SSE and transcripts.
 
 Reproduce the report from the raw records with `python3 report/build.py`. If it leaves the
 tree unchanged — `git diff --exit-code` is empty — then every published surface still agrees
 with the records it was built from. The tests that guard the generator ship with it:
 `python3 -m unittest discover -s tests`. Three of them assert on the working repository's
 private constants and are skipped here by design; the rest run against this tree.
+
+## What the pagoda follow-up changes
+
+The old incomplete Kyojin answer reproduced byte-for-byte with answer-phase loop-guard
+metadata. It remains a real observation, not a general quality verdict. Both complete
+setups produced viewable pages in a separate Pi SDK workflow. Bare output, repaired agent
+output and agent termination are distinct outcomes; all samples are shown rather than a
+best-of pair. Different packs/templates remain a limitation. Earlier follow-up timings
+were affected by animated browser CPU load; only the labelled clean agent cases passed
+per-request CPU gates, and their one-case costs are not an engine-speed ranking.
 
 ## What this is not
 

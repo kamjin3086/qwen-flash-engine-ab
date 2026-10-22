@@ -1,0 +1,51 @@
+{
+  "wall_s": 312.0797702639975,
+  "ttft_s": 0.5416262159997132,
+  "done": true,
+  "finish_reasons": [
+    "stop"
+  ],
+  "usage": {
+    "prompt_tokens": 76,
+    "completion_tokens": 15101,
+    "total_tokens": 15177,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 76,
+    "prompt_ms": 398.5633850097656,
+    "predicted_n": 15101,
+    "predicted_ms": 311598.1116294861,
+    "prompt_per_second": 190.68485179123476,
+    "predicted_per_second": 48.46306648339461,
+    "speculative": true,
+    "accepted_draft_tokens": 11260,
+    "rejected_draft_tokens": 1444
+  },
+  "errors": [],
+  "answer_sha256": "c157f078ac157598e06faa230579c770b9cb08329aaafc82a324f6b38160a8b2",
+  "html_sha256": "b1a89dd5882df4be0ad3a51657ccfca2ac47c37fcb4bf3bcdddbdff36b63fa87",
+  "fenced": true,
+  "prose_before": true,
+  "static": {
+    "closing_html": true,
+    "closing_script": true,
+    "scripts": [
+      {
+        "index": 0,
+        "type": "importmap",
+        "ok": true
+      },
+      {
+        "index": 1,
+        "type": "javascript",
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "browser_verification": "pending"
+  }
+}

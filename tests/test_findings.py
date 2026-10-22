@@ -138,6 +138,13 @@ class FindingsDriftTest(unittest.TestCase):
         self.assertIn("both come from the", readme)
         self.assertNotIn("N = 1 on Kyojin requires", readme)
 
+    def test_report_keeps_engine_choice_open(self):
+        for path in ("README.md", "results/findings.md", "docs/index.html", "results/issue-body.md"):
+            text = (REPO / path).read_text()
+            self.assertIn("not a final migration decision", text, path)
+            self.assertNotIn("I would keep my current setup", text, path)
+            self.assertNotIn("I'll stay on Halogen", text, path)
+
     def test_the_claim_sentence_is_present(self):
         self.assertIn("One sentence:", self.prose,
                       "the one-sentence claim the operator asked for must stay at the top")

@@ -20,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import privacy  # noqa: E402  the one check, shared with the report
+import followup  # noqa: E402  only a verified curated tree may cross this boundary
 
 # Everything a reader needs. A file that is not matched here is not published.
 ALLOW = [
@@ -29,6 +30,7 @@ ALLOW = [
     "LICENSE-CC-BY-4.0",
     "bench.sh",
     "docs/index.html",
+    "docs/pagoda-followup.html",
     "docs/adr/*.md",
     "docs/artifacts.md",
     "docs/commands.md",
@@ -45,6 +47,7 @@ ALLOW = [
     "results/issue-body.md",
     "results/findings.md",
     "results/quality/*.json",
+    "results/pagoda-followup/**/*",
     "runs/*/*.json",
     "runs/*/*.txt",
     "runs/*/*.log",
@@ -69,7 +72,7 @@ DENY = [
     "runs/*/stats-*.txt",
 ]
 
-TEXT_SUFFIXES = {".md", ".json", ".txt", ".log", ".yml", ".py", ".sh", ".html"}
+TEXT_SUFFIXES = {".md", ".json", ".jsonl", ".sse", ".txt", ".log", ".yml", ".py", ".sh", ".html"}
 
 # Files the tree needs to be served that are not copied from the working repository: a
 # project site is served from /<repo>/, the report lives at docs/index.html and its links
@@ -122,6 +125,10 @@ def main() -> None:
     dest = Path(a.dest)
     home = str(Path.home())
 
+    try:
+        followup.load_evidence(repo)
+    except (ValueError, KeyError, OSError) as exc:
+        sys.exit(f'refusing pagoda follow-up: {exc}')
     files = gather(repo)
     if not files:
         sys.exit("nothing matched the allowlist")

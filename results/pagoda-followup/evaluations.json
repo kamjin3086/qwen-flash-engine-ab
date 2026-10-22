@@ -1,0 +1,25 @@
+{
+  "scope": "Descriptive observations from saved browser screenshots and route-scoped errors; no aesthetic ranking and no population success-rate estimate.",
+  "bare": {
+    "halogen": {
+      "original-01": {"status": "runtime_error", "note": "No scene: ReferenceError rw is not defined in buildPagoda."},
+      "sample-01": {"status": "scene_visible", "note": "Pagoda and blossom garden visibly rendered."},
+      "sample-02": {"status": "no_html_delivered", "note": "Response contains unsupported tool-call text; bare request offered no tools."},
+      "sample-03": {"status": "no_html_delivered", "note": "Response contains unsupported tool-call text; bare request offered no tools."},
+      "sample-04": {"status": "scene_visible", "note": "Pagoda and blossom garden visibly rendered."},
+      "sample-05": {"status": "scene_visible", "note": "Pagoda and blossom garden visibly rendered."}
+    },
+    "kyojin": {
+      "original-01": {"status": "incomplete_guard_termination", "note": "Answer bytes exactly match the old failing sample. Loop guard metadata present; incomplete script; loading overlay remains."},
+      "sample-01": {"status": "partial_scene_visible", "note": "Terrain, petals and a small/partly obscured tower render; the requested full scene is not clearly presented. Not a runtime-error verdict."},
+      "sample-02": {"status": "runtime_error", "note": "Loading overlay remains; TypeError v.color.getHex is not a function."},
+      "sample-03": {"status": "scene_not_clearly_presented", "note": "UI and isolated blocks visible, but the pagoda/garden are not recognizable in the captured default view; no attributable runtime error recorded."},
+      "sample-04": {"status": "browser_timeout_unverified", "note": "Complete HTML and syntactically valid scripts. Two browser-open attempts timed out, recovery target reads also failed. No verified screenshot; root cause not established."},
+      "sample-05": {"status": "scene_visible", "note": "Pagoda, garden and blossoms visibly rendered; no current-route runtime error recorded."}
+    }
+  },
+  "clean_agent": {
+    "halogen": {"status": "scene_visible", "note": "Final independent screenshot displays pagoda/garden/blossom trees without a route-scoped runtime error. Model continued edits and hit the 12-response cap; no successful final assistant declaration. Final evaluation is after the cap, without more inference."},
+    "kyojin": {"status": "scene_visible", "note": "Last inspected file equals final workspace file. Pagoda/garden/blossom trees visible without a route-scoped runtime error; model ended normally."}
+  }
+}

@@ -1,0 +1,59 @@
+// Bounded real Pi SDK session with confined tools and parent-serviced native browser.
+import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createAgentSession, createExtensionRuntime, ModelRuntime, SessionManager, SettingsManager } from '~/.npm-global/lib/node_modules/@agegr/pi-web/node_modules/@earendil-works/pi-coding-agent/dist/index.js';
+import { Type } from '~/.npm-global/lib/node_modules/@agegr/pi-web/node_modules/typebox/build/index.mjs';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const [engine,base,modelId]=process.argv.slice(2);
+if(!['halogen','kyojin'].includes(engine)||!base.startsWith('http://127.0.0.1:'))throw Error('local benchmark engines only');
+const out=path.join(root,`${engine}-agent-clean`);
+fs.mkdirSync(out); fs.mkdirSync(path.join(out,'workspace')); fs.mkdirSync(path.join(out,'versions'));
+const workspace=path.join(out,'workspace');
+const system='You are a coding agent creating one self-contained HTML page named index.html in an initially empty workspace. Available tools: read_file, write_file, edit_file, inspect_page. No other tools exist. Use write_file with the entire page. Use inspect_page to see its actual browser screenshot and errors, then fix problems if needed. At most three page inspections are available. Use edit_file for small fixes instead of rewriting the entire file. Completion means the pagoda, garden and blossom trees are visibly presented without a blocking runtime error; once achieved, stop with a concise summary. Do not keep redesigning just to improve taste. Do not claim testing without inspect_page. Only your own directory is accessible. You have 12 assistant responses, 20 minutes, 65536 generated tokens total and at most 16384 per request. Finish with a concise factual summary. No further user input is available.';
+fs.writeFileSync(path.join(out,'system.txt'),system);
+fs.writeFileSync(path.join(out,'protocol.json'),JSON.stringify({engine,base,modelId,maxAssistantTurns:12,wallCapS:1200,totalOutputCap:65536,maxTokensPerRequest:16384,sampling:{temperature:.7,top_p:.8,top_k:20,min_p:0,seed:5101,enable_thinking:false},sdk:'real Pi AgentSession, custom confined tools, no discovered extensions'},null,2));
+let requestN=0,turns=0,toolCalls=0,outputTokens=0,inspections=0,writes=0,edits=0,modelWallMs=0,inspectionWaitMs=0,stop='completed',session;
+const t0=Date.now(),pending=[];
+const originalFetch=globalThis.fetch;
+globalThis.fetch=async function(input,init){
+ const url=typeof input==='string'?input:input.url;
+ if(url?.startsWith(base)&&url.endsWith('/chat/completions')){
+  if(requestN>=12||outputTokens>=65536)throw Error('generation budget exhausted');
+  const cpu=JSON.parse(execFileSync('python3',[path.join(root,'cpu_gate.py'),'--out',path.join(out,'cpu-gates.jsonl')],{encoding:'utf8'}));
+  if(!cpu.passed)throw Error('CPU gate failed before model request');
+  requestN++; const prefix=path.join(out,`request-${String(requestN).padStart(2,'0')}`);
+  const body=JSON.parse(init.body);
+  const declared=(body.tools||[]).map(t=>t.function?.name).sort();
+  if(JSON.stringify(declared)!==JSON.stringify(['edit_file','inspect_page','read_file','write_file']))throw Error('harness invalid: expected all four confined tools before sending');
+  body.max_tokens=Math.min(16384,65536-outputTokens); delete body.max_completion_tokens;
+  Object.assign(body,{temperature:.7,top_p:.8,top_k:20,min_p:0,seed:5101,enable_thinking:false});
+  fs.writeFileSync(prefix+'.json',JSON.stringify(body,null,2));
+  const requestStart=Date.now();
+  const response=await originalFetch(input,{...init,body:JSON.stringify(body)});
+  pending.push(response.clone().text().then(text=>{fs.writeFileSync(prefix+'.sse',text);const elapsed=Date.now()-requestStart;modelWallMs+=elapsed;fs.writeFileSync(prefix+'.timing.json',JSON.stringify({wall_ms:elapsed,start_ms:requestStart,end_ms:Date.now()},null,2));}).catch(e=>fs.writeFileSync(prefix+'.transport-error.txt',String(e))));
+  return response;
+ }
+ throw Error(`unexpected fetch blocked: ${url}`);
+};
+const textResult=text=>({content:[{type:'text',text}],details:{}});
+function file(name){if(!/^[a-zA-Z0-9_.-]+$/.test(name)||name.startsWith('.'))throw Error('simple filename only');return path.join(workspace,name);}
+const customTools=[
+ {name:'read_file',label:'Read file',description:'Read a file in your isolated workspace. Initially empty; missing files return an error.',parameters:Type.Object({path:Type.String()}),execute:async(_id,args)=>{toolCalls++;return textResult(fs.existsSync(file(args.path))?fs.readFileSync(file(args.path),'utf8'):'File does not exist; the workspace is initially empty.');}},
+ {name:'write_file',label:'Write file',description:'Write an entire file in your isolated workspace. Write your single-page result to index.html.',parameters:Type.Object({path:Type.String(),content:Type.String()}),execute:async(_id,args)=>{toolCalls++;const target=file(args.path);if(args.content.length>500000)throw Error('file too large');fs.writeFileSync(target,args.content);writes++;fs.writeFileSync(path.join(out,'versions',`${String(writes).padStart(2,'0')}-${args.path}`),args.content);return textResult(`Wrote ${args.content.length} characters to ${args.path}.`);}},
+ {name:'edit_file',label:'Edit file',description:'Replace exactly one unique oldText occurrence in a workspace file. Use this for focused repairs rather than rewriting the entire page.',parameters:Type.Object({path:Type.String(),oldText:Type.String(),newText:Type.String()}),execute:async(_id,args)=>{toolCalls++;const target=file(args.path);const text=fs.readFileSync(target,'utf8');if(!args.oldText||text.split(args.oldText).length!==2)return textResult('Edit refused: oldText must match exactly once. Read the file and retry a unique match.');const next=text.replace(args.oldText,()=>args.newText);if(next.length>500000)throw Error('file too large');fs.writeFileSync(target,next);writes++;edits++;fs.writeFileSync(path.join(out,'versions',`${String(writes).padStart(2,'0')}-${args.path}`),next);return textResult(`Edited ${args.path}: one replacement. The changed page needs inspection before a final verified claim.`);}},
+ {name:'inspect_page',label:'Inspect page',description:'Open your index.html in a real browser at 1280x900, observe after 10 seconds, and return screenshot plus runtime errors. Use this before claiming completion.',parameters:Type.Object({}),execute:async(_id,args,signal)=>{toolCalls++;if(inspections>=3)return textResult('Inspection budget exhausted (3). Finish using the evidence already obtained; do not claim an uninspected change is verified.');if(!fs.existsSync(file('index.html')))return textResult('No index.html exists yet.');inspections++;const ticket=path.join(out,`inspect-${String(inspections).padStart(2,'0')}`);fs.mkdirSync(ticket);fs.copyFileSync(file('index.html'),path.join(ticket,'page.html'));fs.writeFileSync(path.join(ticket,'request.json'),JSON.stringify({requested_at_ms:Date.now(),engine,index:inspections,url:`http://127.0.0.1:8876/${engine}-agent-clean/inspect-${String(inspections).padStart(2,'0')}/page.html`}));const inspectStart=Date.now();console.log('BROWSER_PENDING',ticket);while(!fs.existsSync(path.join(ticket,'feedback.json'))){if(signal?.aborted||Date.now()-t0>1200000)throw Error('inspection aborted by wall cap');await new Promise(r=>setTimeout(r,300));}inspectionWaitMs+=Date.now()-inspectStart;const feedback=JSON.parse(fs.readFileSync(path.join(ticket,'feedback.json'),'utf8'));const content=[{type:'text',text:feedback.text}];if(feedback.screenshot&&fs.existsSync(feedback.screenshot))content.push({type:'image',mimeType:'image/png',data:fs.readFileSync(feedback.screenshot).toString('base64')});return {content,details:{inspection:inspections}};}}
+];
+const modelsPath=path.join(out,'models.json');
+fs.writeFileSync(modelsPath,JSON.stringify({providers:{benchmark:{baseUrl:base,api:'openai-completions',apiKey:'local-no-auth',models:[{id:modelId,name:'Benchmark model',reasoning:false,input:['text','image'],cost:{input:0,output:0,cacheRead:0,cacheWrite:0},contextWindow:262144,maxTokens:16384,compat:{supportsStore:false,supportsDeveloperRole:false,supportsReasoningEffort:false,maxTokensField:'max_tokens'}}]}}}));
+const runtime=await ModelRuntime.create({authPath:path.join(out,'auth.json'),modelsPath});
+const resourceLoader={getExtensions:()=>({extensions:[],errors:[],runtime:createExtensionRuntime()}),getSkills:()=>({skills:[],diagnostics:[]}),getPrompts:()=>({prompts:[],diagnostics:[]}),getThemes:()=>({themes:[],diagnostics:[]}),getAgentsFiles:()=>({agentsFiles:[]}),getSystemPrompt:()=>system,getSystemPromptSource:()=>undefined,getAppendSystemPrompt:()=>[],getAppendSystemPromptSources:()=>[],extendResources:()=>{},reload:async()=>{}};
+const made=await createAgentSession({cwd:workspace,agentDir:path.join(out,'agent-config'),modelRuntime:runtime,model:runtime.getModel('benchmark',modelId),thinkingLevel:'off',resourceLoader,tools:customTools.map(t=>t.name),customTools,sessionManager:SessionManager.inMemory(workspace),settingsManager:SettingsManager.inMemory({compaction:{enabled:false},retry:{enabled:false}})});
+session=made.session;
+session.setActiveToolsByName(customTools.map(t=>t.name));
+fs.writeFileSync(path.join(out,'active-tools.json'),JSON.stringify(session.getActiveToolNames()));
+if(session.getActiveToolNames().length!==4)throw Error('custom tool activation failed before prompting');
+session.subscribe(event=>{if(event.type==='message_end'){fs.appendFileSync(path.join(out,'messages.jsonl'),JSON.stringify(event.message)+'\n');if(event.message.role==='assistant'){turns++;outputTokens+=event.message.usage?.output||0;console.log('ASSISTANT_END',turns,'output',outputTokens,'stop',event.message.stopReason);if(turns>=12||outputTokens>=65536){stop='budget';void session.abort();}}}});
+const timer=setTimeout(()=>{stop='wall cap';void session.abort();},1200000);
+try{await session.prompt(fs.readFileSync(path.join(root,'../../docs/prompts/pagoda.txt'),'utf8').trim());}catch(e){stop='error';fs.writeFileSync(path.join(out,'error.txt'),String(e.stack||e));}finally{clearTimeout(timer);await Promise.allSettled(pending);fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({engine,wall_s:(Date.now()-t0)/1000,turns,httpRequests:requestN,toolCalls,outputTokens,inspections,writes,edits,model_wall_s:modelWallMs/1000,inspection_wait_s:inspectionWaitMs/1000,stop,lastAssistant:session.getLastAssistantText(),producedPage:fs.existsSync(file('index.html'))},null,2));session.dispose();globalThis.fetch=originalFetch;console.log('FINISHED',stop);}

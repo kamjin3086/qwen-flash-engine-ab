@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Bounded follow-up capture. Private experiment, not the benchmark summary pipeline."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'report'))
+from render import extract_html
+
+
+def static_check(html, dest):
+    scripts = []
+    for i, match in enumerate(re.finditer(r'<script\b([^>]*)>', html, re.I)):
+        attrs = match[1]
+        if re.search(r'\bsrc\s*=', attrs, re.I):
+            continue
+        code = html[match.end():].split('</script>', 1)[0]
+        if not code.strip():
+            continue
+        if 'importmap' in attrs:
+            try:
+                json.loads(code)
+                scripts.append({'index': i, 'type': 'importmap', 'ok': True})
+            except ValueError as exc:
+                scripts.append({'index': i, 'type': 'importmap', 'ok': False, 'error': str(exc)})
+            continue
+        file = dest / f'inline-{i}.mjs'
+        file.write_text(code)
+        p = subprocess.run(['node', '--check', str(file)], capture_output=True, text=True)
+        scripts.append({'index': i, 'type': 'javascript', 'ok': p.returncode == 0,
+                        'error': p.stderr.replace(str(dest), '<trial>')})
+    return {'closing_html': '</html>' in html.lower(),
+            'closing_script': html.lower().count('<script') == html.lower().count('</script>'),
+            'scripts': scripts, 'browser_verification': 'pending'}
+
+
+def capture(base, body, dest):
+    dest.mkdir(parents=True, exist_ok=False)
+    (dest / 'request.json').write_text(json.dumps(body, indent=2))
+    answer, reasoning, usage, timings, finishes, errors = [], [], {}, {}, [], []
+    done, first = False, None
+    t0 = time.monotonic()
+    req = urllib.request.Request(base + '/chat/completions', data=json.dumps(body).encode(),
+                                 headers={'Content-Type': 'application/json'})
+    try:
+        with urllib.request.urlopen(req, timeout=1200) as resp, (dest / 'response.sse').open('wb') as wire:
+            for line in resp:
+                wire.write(line)
+                wire.flush()
+                if not line.startswith(b'data:'):
+                    continue
+                raw = line[5:].strip()
+                if raw == b'[DONE]':
+                    done = True
+                    continue
+                try:
+                    event = json.loads(raw)
+                except ValueError as exc:
+                    errors.append(str(exc))
+                    continue
+                if event.get('error'):
+                    errors.append(str(event['error']))
+                usage.update(event.get('usage') or {})
+                timings.update(event.get('timings') or {})
+                for choice in event.get('choices') or []:
+                    if choice.get('finish_reason'):
+                        finishes.append(choice['finish_reason'])
+                    delta = choice.get('delta') or {}
+                    for key, channel in [('content', answer), ('reasoning_content', reasoning)]:
+                        if delta.get(key):
+                            if first is None:
+                                first = time.monotonic() - t0
+                            channel.append(delta[key])
+    except Exception as exc:
+        errors.append(f'{type(exc).__name__}: {exc}')
+    text = ''.join(answer)
+    (dest / 'answer.txt').write_text(text)
+    (dest / 'reasoning.txt').write_text(''.join(reasoning))
+    html, fenced, prose = extract_html(text)
+    (dest / 'page.html').write_text(html)
+    result = {'wall_s': time.monotonic() - t0, 'ttft_s': first, 'done': done,
+              'finish_reasons': finishes, 'usage': usage, 'timings': timings, 'errors': errors,
+              'answer_sha256': hashlib.sha256(text.encode()).hexdigest(),
+              'html_sha256': hashlib.sha256(html.encode()).hexdigest(),
+              'fenced': fenced, 'prose_before': prose, 'static': static_check(html, dest)}
+    (dest / 'result.json').write_text(json.dumps(result, indent=2))
+    print(dest.name, json.dumps({k: result[k] for k in ('wall_s','done','finish_reasons','errors')}),
+          'guard=', timings.get('loop_guard'), 'closing_html=', result['static']['closing_html'], flush=True)
+    if errors or not done:
+        raise RuntimeError('transport/protocol failure; remaining requests stopped, no retry')
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--base', required=True)
+    p.add_argument('--engine', choices=['halogen','kyojin'], required=True)
+    p.add_argument('--model', required=True)
+    args = p.parse_args()
+    prompt = (ROOT / 'docs/prompts/pagoda.txt').read_text().strip()
+    dest = Path(__file__).parent / args.engine
+    matrix = [('original-01', {'temperature': 0})] + [
+        (f'sample-{i:02}', {'temperature': .7, 'top_p': .8, 'top_k': 20,
+                          'min_p': 0.0, 'seed': 4100+i}) for i in range(1,6)]
+    for name, sampling in matrix:
+        body = {'model': args.model, 'messages': [{'role':'user','content': prompt}],
+                'max_tokens': 16384, 'enable_thinking': False, 'stream': True,
+                'stream_options': {'include_usage': True}, **sampling}
+        capture(args.base, body, dest / name)
+
+
+if __name__ == '__main__':
+    main()

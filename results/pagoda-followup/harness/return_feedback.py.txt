@@ -1,0 +1,56 @@
+"""Return verified, route-scoped native browser evidence to a waiting Pi trial."""
+import argparse
+import json
+from pathlib import Path
+import time
+import subprocess
+
+
+def collect(x, route, errors, console):
+    if isinstance(x, dict):
+        for e in x.get('errors', []):
+            text = e.get('text', '') if isinstance(e, dict) else str(e)
+            if (route in text or ('http://' not in text and 'https://' not in text)) and text not in errors:
+                errors.append(text)
+        for e in x.get('messages', []):
+            if isinstance(e, dict) and e.get('type') == 'error' and e.get('text') not in console:
+                console.append(e.get('text'))
+        for v in x.values():
+            collect(v, route, errors, console)
+    elif isinstance(x, list):
+        for v in x:
+            collect(v, route, errors, console)
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('ticket');a=p.parse_args()
+    ticket=Path(a.ticket)
+    native=json.loads((ticket/'native-browser.json').read_text())
+    request=json.loads((ticket/'request.json').read_text())
+    evidence=native['native']
+    if '-agent-clean' in str(ticket):
+        assert native.get('browser_closed') is True, 'owned browser must be closed before resuming inference'
+        cpu = json.loads(subprocess.check_output(['python3', str(Path(__file__).with_name('cpu_gate.py'))], text=True))
+        (ticket/'cpu-after-close.json').write_text(json.dumps(cpu, indent=2))
+        assert cpu['passed'], 'CPU not idle after browser close'
+    assert evidence['success'] and evidence['artifactVerification']['verified']
+    assert not any(evidence['artifactVerification'][k] for k in ('missingCount','pendingCount','unverifiedCount'))
+    errors,console=[],[]
+    collect(evidence, request['url'], errors, console)
+    screenshot=ticket/'browser.png'
+    assert screenshot.is_file()
+    now=time.time()*1000
+    timing={'requested_at_ms':request['requested_at_ms'],
+            'service_started_at_ms':native['service_started_at_ms'],
+            'service_finished_at_ms':native['service_finished_at_ms'],
+            'feedback_at_ms':now}
+    (ticket/'inspection-timing.json').write_text(json.dumps(timing,indent=2))
+    (ticket/'feedback.json').write_text(json.dumps({'text':
+        'Browser observation at 1280x900, after a 10-second observation window. Screenshot attached. '
+        'The wait duration alone does not establish rendering success. Current-route runtime errors: '
+        +json.dumps(errors)+'; console error messages (may include resource/network failures): '+json.dumps(console),
+        'screenshot':str(screenshot.resolve())},indent=2))
+    print('Browser evidence returned. Runtime errors:',errors,'Console errors:',console)
+
+
+if __name__=='__main__':main()

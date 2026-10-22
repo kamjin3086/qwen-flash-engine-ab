@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pagoda follow-up — all samples, Halogen and Kyojin</title><style>
+:root{--bg:#101419;--fg:#e7edf5;--mut:#8b9bb0;--line:#26313d;--card:#161d25;--h:#4f9dff;--k:#f0a03c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:28px 18px 80px}
+h1{font-size:1.6rem;margin:0 0 6px}h2{font-size:1.15rem;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:1rem;margin:20px 0 6px}
+a{color:var(--h)}code{background:#1d252f;padding:1px 5px;border-radius:4px;font-size:.86em}
+.sub{color:var(--mut);font-size:.9rem;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+table.md{font-size:.88rem;margin:12px 0 18px}
+table.spread{font-size:.85rem}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{color:var(--mut);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.cond{color:var(--mut)}
+.prov{display:block;font-size:.75rem;color:var(--mut)}
+.raw{font-size:.7rem;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:0 3px}
+.miss{color:var(--mut);font-style:italic}
+.scope{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px}
+.scope li{margin:4px 0}
+.chart{width:100%;height:auto;margin:10px 0 22px;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.chart .grid{stroke:#22303d;stroke-width:1}
+.chart .ax{fill:var(--mut);font-size:11px}
+.chart .ct{fill:var(--fg);font-size:12px;font-weight:600}
+.chart .val{fill:var(--fg);font-size:10px}
+.chart .miss{fill:var(--mut);font-size:9px;font-style:italic}
+.art{margin:0 0 22px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.art figcaption{padding:10px 14px;font-size:.85rem;color:var(--mut)}
+.art .shot{display:block;width:100%;height:auto;border-top:1px solid var(--line)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap:focus-visible{outline:2px solid var(--h);outline-offset:2px}
+.headline th[scope=row],.headline thead th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+.tscroll{display:none;color:var(--mut);font-size:.8rem;margin:0 0 8px}
+.flag{color:var(--k)}
+@media(max-width:640px){td.num,th{white-space:normal}th,td{padding:4px 5px}.prov{font-size:.75rem}thead th{font-size:.72rem;letter-spacing:0}}
+@media(max-width:420px){.tscroll{display:block}}
+
+.followup-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.followup-pair figure{min-width:0}
+.bare-sample{margin:0 0 22px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.bare-sample figcaption{padding:10px 14px;font-size:.85rem;color:var(--mut)}
+.bare-sample img{display:block;width:100%;height:auto}
+.followup-pair h3{margin:0 0 6px}
+@media(max-width:700px){.followup-pair{display:block}}
+</style></head>
+<body><main><p><a href="index.html#pagoda-follow-up">Back to the comparison report</a></p>
+<h1>Pagoda follow-up — all samples</h1>
+<p>No live frames: opening this page does not run model-generated animations. Click-through
+pages use external CDNs, may fail, and can consume substantial CPU; close them when done.</p>
+<p>All planned samples are shown, not a best-of selection. Complete HTML does not guarantee
+a working scene. Outcomes are observations, not aesthetic scores or a stable success-rate estimate.</p>
+<h2>Protocol and scope</h2><p>One original greedy repeat and five stochastic no-tools samples per engine; temperature 0.7, top_p 0.8, top_k 20, min_p 0, seeds 4101-4105, thinking off, max_tokens 16384.</p>
+<p>One real Pi SDK trial per engine, read/write/unique-edit/inspect tools, seed 5101, same stochastic sampling, 65536 output tokens total, 16384 per request, 1200 seconds, 12 assistant responses, 3 inspections.</p><p>1280x900, observe after a 10-second window, save screenshot and current-route errors. No human repair hints. Close each owned browser before inference; sample CPU before every model request.</p>
+<p>Same pinned images/packs as the original run, 262144 context capacity, vision enabled;
+Kyojin sessions=1 with disk streaming. <a href="../results/pagoda-followup/protocol.md">Protocol, exclusions and replay limitations</a> ·
+<a href="../results/pagoda-followup/manifest.json">All evidence hashes</a> · <a href="../results/pagoda-followup/harness/pi-agent-clean.mjs.txt">Archived SDK harness source</a></p>
+<h2>Clean Pi SDK final pages</h2><div class="followup-pair"><figure class="art">
+<figcaption><h3>Halogen: clean Pi SDK trial</h3>
+13,225 output tokens · 12 model requests · 7 local edits<br>
+<strong>Agent stop:</strong> 12-response cap (not a token/time limit)<br>
+<strong>Final browser observation:</strong> scene visible; no current-route runtime error.<br>
+<a href="../results/pagoda-followup/agent/halogen/final.html" target="_blank" rel="noopener">Open final animated page</a> ·
+<a href="../results/pagoda-followup/agent/halogen/result.json">Run record</a></figcaption>
+<img class="shot" loading="lazy" src="../results/pagoda-followup/agent/halogen/final.png" alt="Halogen final pagoda and garden in the clean Pi SDK trial">
+</figure><figure class="art">
+<figcaption><h3>Kyojin: clean Pi SDK trial</h3>
+7,022 output tokens · 6 model requests · 1 local edits<br>
+<strong>Agent stop:</strong> normal completion<br>
+<strong>Final browser observation:</strong> scene visible; no current-route runtime error.<br>
+<a href="../results/pagoda-followup/agent/kyojin/final.html" target="_blank" rel="noopener">Open final animated page</a> ·
+<a href="../results/pagoda-followup/agent/kyojin/result.json">Run record</a></figcaption>
+<img class="shot" loading="lazy" src="../results/pagoda-followup/agent/kyojin/final.png" alt="Kyojin final pagoda and garden in the clean Pi SDK trial">
+</figure></div>
+<p>Halogen stopped at its 12-response cap; its final post-run check is independent of the
+agent's two inspections. Kyojin ended normally; its final file matches its last inspection.
+These are one case each, not an engine-quality verdict. Interactions were not exhaustively tested.</p>
+<h2>Original-condition repeat: greedy, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: Runtime error</h3>
+<p>No scene: ReferenceError rw is not defined in buildPagoda.</p>
+5,001 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/halogen/original-01/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/original-01/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/original-01/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/original-01/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/original-01/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/original-01/browser.png" alt="Halogen original-01: Runtime error"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Incomplete answer: server loop guard</h3>
+<p>Answer bytes exactly match the old failing sample. Loop guard metadata present; incomplete script; loading overlay remains.</p>
+5,216 output tokens · complete HTML: false<br>
+<a href="../results/pagoda-followup/bare/kyojin/original-01/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/original-01/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/original-01/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/original-01/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/original-01/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/kyojin/original-01/browser.png" alt="Kyojin original-01: Incomplete answer: server loop guard"></figure></div><h2>Fixed seed 4101: stochastic, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: Scene visible</h3>
+<p>Pagoda and blossom garden visibly rendered.</p>
+4,476 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/halogen/sample-01/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-01/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-01/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-01/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-01/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/sample-01/browser.png" alt="Halogen sample-01: Scene visible"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Partial scene visible</h3>
+<p>Terrain, petals and a small/partly obscured tower render; the requested full scene is not clearly presented. Not a runtime-error verdict.</p>
+12,615 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/kyojin/sample-01/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-01/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-01/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-01/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-01/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/kyojin/sample-01/browser.png" alt="Kyojin sample-01: Partial scene visible"></figure></div><h2>Fixed seed 4102: stochastic, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: No HTML delivered</h3>
+<p>Response contains unsupported tool-call text; bare request offered no tools.</p>
+203 output tokens · complete HTML: false<br>
+<a href="../results/pagoda-followup/bare/halogen/sample-02/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-02/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-02/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-02/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-02/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/sample-02/browser.png" alt="Halogen sample-02: No HTML delivered"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Runtime error</h3>
+<p>Loading overlay remains; TypeError v.color.getHex is not a function.</p>
+13,467 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/kyojin/sample-02/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-02/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-02/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-02/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-02/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/kyojin/sample-02/browser.png" alt="Kyojin sample-02: Runtime error"></figure></div><h2>Fixed seed 4103: stochastic, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: No HTML delivered</h3>
+<p>Response contains unsupported tool-call text; bare request offered no tools.</p>
+153 output tokens · complete HTML: false<br>
+<a href="../results/pagoda-followup/bare/halogen/sample-03/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-03/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-03/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-03/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-03/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/sample-03/browser.png" alt="Halogen sample-03: No HTML delivered"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Main scene not clearly presented</h3>
+<p>UI and isolated blocks visible, but the pagoda/garden are not recognizable in the captured default view; no attributable runtime error recorded.</p>
+15,101 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/kyojin/sample-03/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-03/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-03/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-03/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-03/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/kyojin/sample-03/browser.png" alt="Kyojin sample-03: Main scene not clearly presented"></figure></div><h2>Fixed seed 4104: stochastic, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: Scene visible</h3>
+<p>Pagoda and blossom garden visibly rendered.</p>
+5,794 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/halogen/sample-04/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-04/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-04/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-04/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-04/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/sample-04/browser.png" alt="Halogen sample-04: Scene visible"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Unverified: browser timeout</h3>
+<p>Complete HTML and syntactically valid scripts. Two browser-open attempts timed out, recovery target reads also failed. No verified screenshot; root cause not established.</p>
+13,249 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/kyojin/sample-04/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-04/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-04/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-04/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-04/result.json">Capture record</a></figcaption><p>No verified screenshot. Browser navigation timed out; cause not established.</p></figure></div><h2>Fixed seed 4105: stochastic, no tools</h2><div class="followup-pair"><figure class="bare-sample"><figcaption><h3>Halogen: Scene visible</h3>
+<p>Pagoda and blossom garden visibly rendered.</p>
+4,672 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/halogen/sample-05/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-05/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-05/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-05/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/halogen/sample-05/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/halogen/sample-05/browser.png" alt="Halogen sample-05: Scene visible"></figure><figure class="bare-sample"><figcaption><h3>Kyojin: Scene visible</h3>
+<p>Pagoda, garden and blossoms visibly rendered; no current-route runtime error recorded.</p>
+14,874 output tokens · complete HTML: true<br>
+<a href="../results/pagoda-followup/bare/kyojin/sample-05/page.html" target="_blank" rel="noopener">Open generated page (may fail)</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-05/answer.txt">Raw answer</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-05/request.json">Request</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-05/response.sse">Captured SSE</a> ·
+<a href="../results/pagoda-followup/bare/kyojin/sample-05/result.json">Capture record</a></figcaption><img loading="lazy" src="../results/pagoda-followup/bare/kyojin/sample-05/browser.png" alt="Kyojin sample-05: Scene visible"></figure></div>
+<h2>How to read these results</h2>
+<p>Halogen delivered complete HTML in 3/5 stochastic samples; Kyojin in 5/5. This is not a
+3/5 versus 5/5 working-page comparison: runtime errors, partial scenes and the unverified
+browser timeout remain visible above. Bare/pilot timings were contaminated by animated
+browser CPU load and are not used to compare speed. A same-seed technical recapture after
+a collection cutoff is disclosed in the protocol, not counted as an engine failure.</p>
+<p>AI assisted the test planning, scripts, troubleshooting, analysis and write-up. That is
+not independent validation; the captured records and images are provided for inspection.</p>
+</main></body></html>

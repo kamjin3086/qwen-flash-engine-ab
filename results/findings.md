@@ -1,17 +1,17 @@
 # What the numbers say
 
-**One sentence:** on this machine, with these two packs, Kyojin's decode is a tie overall —
-the lead trades per prompt class — but it needs 28–37 % more time to prefill (1.28–1.37× lower
-throughput), its observed warm container restart took 2.7× as long, and it produced
-an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
-is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
+**One sentence:** on this machine, with these two packs, Halogen's measured prefill
+throughput was 1.28–1.37× Kyojin's while decode traded the lead by prompt class; the pagoda
+follow-up produced viewable pages with both setups in a bounded Pi SDK workflow, so the
+original one-shot failure is not a general quality verdict. I remain open to either engine;
+these are observations about the tested configurations, not a final migration decision.
 
 Everything below is a value from the tables, the artifact cards, or the raw files they
 link. Nothing here is a judgement of the model, only of what came out of each engine.
 
 **How many times each number was measured.** Prefill and decode at the author's sizes are
 the median of three runs. Everything else is one observation: both retrieval depths, the tool call, the concurrency
-rows, the two prefix requests, the two starts, and the artifacts were each measured once. The
+rows, the two prefix requests, the two starts, and the original artifacts were each measured once. The
 32K / 128K / 262K prefill and first-token points were repeated after the run; they are in the
 Variance table, not in this sentence. One observation
 on one machine is enough to say *this is how it behaved here*; it is not a distribution. The
@@ -111,23 +111,52 @@ image. On these three probes there is no capability gap in the paths an agent us
 At `xhigh` thinking effort on the same prompt, Halogen spent 60 reasoning tokens and
 Kyojin 170. That is a difference in how much the template asks for, not a quality measure.
 
-## The artifact the comparison started from
+## Pagoda: original observation and follow-up
 
-One request, no tools, no retry, the maintainer's own prompt, 16,384 output tokens allowed:
+The original 2026-10-21 attempt remains available: one request, no tools or retry, the
+maintainer's prompt, 16,384 output tokens allowed. Halogen wrote a complete document
+(4,785 tokens); Kyojin wrote 5,216 tokens and stopped inside a JavaScript function.
+Both reported `finish_reason: stop`. The old Kyojin loading-screen screenshot is not
+silently replaced.
 
-- **Halogen** wrote a complete document (4,785 tokens, `finish_reason: stop`), after a short
-  prose preamble and inside a Markdown code fence. It loads three.js from two CDNs.
-- **Kyojin** wrote 5,216 tokens, reported `finish_reason: stop`, and **stopped in the middle
-  of a JavaScript function** with no closing tags. The page renders as a loading screen
-  that never finishes. Its screenshot in `docs/shots/` is that loading screen.
+The missing qualification was already in the Kyojin record: `timings.loop_guard` reports an
+answer-phase text guard. A later original-condition request reproduced the answer bytes
+exactly with the same guard metadata. The archived answer and report extraction agree;
+there is no evidence that extraction lost its tail. Original network SSE was not retained,
+so that agreement cannot prove the old client preserved every wire event. A guard stop is
+not natural completion, even when `finish_reason` is `stop`; the old token-limit-only
+"not truncated" caption was inadequate. This does not prove the guard was a false positive.
 
-An engine that reports a clean stop while the document is incomplete is worth reporting
-regardless of whose engine it is: a caller cannot tell the difference between "done" and
-"cut off" from the response alone.
+On 2026-10-22, each engine received five fixed stochastic no-tools requests, in addition
+to the original-condition repeat. Halogen delivered complete HTML in 3/5 samples and
+Kyojin in 5/5, but complete HTML did not guarantee a working scene. Halogen's other two
+answers contained tool-like text despite no tools being offered. Kyojin's samples included
+a runtime error, partial/unclear presentation and an unverified browser timeout. All 12
+bare samples are retained; there is no best-of selection or aesthetic score.
 
-On the bounded agent task (same harness, 8 turns / 600 s cap, the gallery's hexagon
-prompt) both engines finished in 2 tool calls and both produced self-contained pages with
-no external references — 41 s and 8.4 KB for Halogen, 70 s and 12.1 KB for Kyojin.
+A separate clean Pi SDK case used identical read/write/local-edit/browser-inspection tools
+and limits for both setups: 64K cumulative output tokens, 16K per request, 20 minutes,
+12 assistant responses and three inspections. Both final pages displayed the requested
+pagoda/garden scene without a current-route runtime error. Halogen used 13,225 output
+tokens and reached the response cap while continuing edits; Kyojin used 7,022 and ended
+normally. Page usability and agent termination are reported separately. These are one
+case each, with different packs/templates, not a population success rate or quality ranking.
+
+Earlier follow-up timings were affected by animated test-browser CPU contention and
+unequal browser feedback delays; they are not used as clean performance measurements.
+The corrective agent cases closed each browser before further inference and passed every
+per-request CPU gate. Their wall times still include separately recorded tool/parent delay,
+and different output lengths and actions prevent treating them as an engine-speed ranking.
+
+The report's Pagoda follow-up section links the static all-sample gallery, protocol,
+curated requests/SSE, transcripts, file versions and evidence hashes. It is a separate
+addition; the original 111-row performance matrix and raw records are unchanged. No cloud
+model was measured, and this is not a reproduction of the gallery author's Hermes setup.
+
+The original hexagon task used the same **two-tool scripted runner** on both engines,
+not the later Pi SDK harness: 8 turns / 600 s cap, 2 tool calls each, no external references —
+41 s and 8.4 KB for Halogen, 70 s and 12.1 KB for Kyojin. Those historical cases remain
+separate from the pagoda follow-up.
 
 ## Output checks
 
@@ -172,7 +201,7 @@ The parts a user meets before any number matters:
   built without disturbing the running engine, so it is left untested rather than guessed
   at; it is not one of the three `not run` rows, which are Kyojin's in-flight counters.
 
-## Pick this if
+## Where the measured configurations differ
 
 - **Long prompts, retrieval, big contexts, restarting often** → Halogen. It is 36 % faster to
   prefill throughput at 262K, returns the first token 27 % sooner there, and completes the observed warm container restart in 16 s

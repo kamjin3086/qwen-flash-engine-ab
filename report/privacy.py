@@ -19,7 +19,7 @@ import re
 from pathlib import Path
 
 # data files may not name any concrete host path at all
-DATA_SUFFIXES = {".md", ".json", ".txt", ".log", ".yml", ".html"}
+DATA_SUFFIXES = {".md", ".json", ".jsonl", ".sse", ".txt", ".log", ".yml", ".html"}
 DATA_FORBIDDEN = [("/home/", "absolute home path"), ("/tmp/", "absolute temp path")]
 
 PRIVATE_SLUG = "<private-repo>"

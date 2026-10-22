@@ -1,0 +1,46 @@
+{
+  "wall_s": 256.9042819410024,
+  "ttft_s": 0.4712706360005541,
+  "done": true,
+  "finish_reasons": [
+    "stop"
+  ],
+  "usage": {
+    "prompt_tokens": 76,
+    "completion_tokens": 12615,
+    "total_tokens": 12691,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 76,
+    "prompt_ms": 330.00946044921875,
+    "predicted_n": 12615,
+    "predicted_ms": 256533.51974487305,
+    "prompt_per_second": 230.29642815859438,
+    "predicted_per_second": 49.174860316678426,
+    "speculative": true,
+    "accepted_draft_tokens": 9547,
+    "rejected_draft_tokens": 1163
+  },
+  "errors": [],
+  "answer_sha256": "fc159ce00d42996c7f8ae7145d3c877bd05dd905910c466694e627730822d441",
+  "html_sha256": "4831093e8c9119db44504d57d8f37e07475dc40344817337ddc730f93dc62552",
+  "fenced": true,
+  "prose_before": true,
+  "static": {
+    "closing_html": true,
+    "closing_script": true,
+    "scripts": [
+      {
+        "index": 0,
+        "type": "javascript",
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "browser_verification": "pending"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "wall_s": 67.51745829999709,
+  "ttft_s": 0.009137761997408234,
+  "done": true,
+  "finish_reasons": [
+    "stop"
+  ],
+  "usage": {
+    "prompt_tokens": 230,
+    "completion_tokens": 5794,
+    "total_tokens": 6024,
+    "prompt_tokens_details": {
+      "cached_tokens": 230
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "timings": {
+    "prompt_n": 0,
+    "predicted_n": 5794,
+    "prompt_ms": 0.2,
+    "predicted_ms": 67506.8,
+    "prompt_per_second": 0.0,
+    "predicted_per_second": 85.828,
+    "cache_n": 230,
+    "disk_restore_n": 0,
+    "disk_restore_ms": 0.0,
+    "prefix_n": 230,
+    "draft_n": 5248,
+    "draft_n_accepted": 4589,
+    "speculation": {
+      "drafter": "mtp",
+      "rounds": 1204,
+      "head": {
+        "rounds": 1204,
+        "drafted": 5248,
+        "accepted": 4589
+      },
+      "lookup": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+      },
+      "grammar": {
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0
+      }
+    }
+  },
+  "errors": [],
+  "answer_sha256": "938275e59c3676570228ad4392449b62d833da11ba50c891b4624d1a2b7dadae",
+  "html_sha256": "7896e433d42905d6cc9403ddb714970e6fe8ad3ffd8d719526a3288ae443fb25",
+  "fenced": true,
+  "prose_before": true,
+  "static": {
+    "closing_html": true,
+    "closing_script": true,
+    "scripts": [
+      {
+        "index": 2,
+        "type": "javascript",
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "browser_verification": "pending"
+  }
+}

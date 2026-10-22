@@ -1,0 +1,15 @@
+{
+  "engine": "halogen",
+  "wall_s": 330.071,
+  "turns": 13,
+  "httpRequests": 12,
+  "toolCalls": 11,
+  "outputTokens": 13225,
+  "inspections": 2,
+  "writes": 8,
+  "edits": 7,
+  "model_wall_s": 193.993,
+  "inspection_wait_s": 111.176,
+  "stop": "budget",
+  "producedPage": true
+}

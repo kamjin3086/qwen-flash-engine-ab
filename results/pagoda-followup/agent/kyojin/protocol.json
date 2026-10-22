@@ -1,0 +1,18 @@
+{
+  "engine": "kyojin",
+  "base": "http://127.0.0.1:8732/v1",
+  "modelId": "kyojin-qwen38",
+  "maxAssistantTurns": 12,
+  "wallCapS": 1200,
+  "totalOutputCap": 65536,
+  "maxTokensPerRequest": 16384,
+  "sampling": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0,
+    "seed": 5101,
+    "enable_thinking": false
+  },
+  "sdk": "real Pi AgentSession, custom confined tools, no discovered extensions"
+}

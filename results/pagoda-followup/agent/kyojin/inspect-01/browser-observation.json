@@ -1,0 +1,10 @@
+{
+  "viewport": [
+    1280,
+    900
+  ],
+  "observation_window_s": 10,
+  "browser_closed_after_capture": true,
+  "text": "Browser observation at 1280x900, after a 10-second observation window. Screenshot attached. The wait duration alone does not establish rendering success. Current-route runtime errors: []; console error messages (may include resource/network failures): []",
+  "screenshot": "browser.png"
+}

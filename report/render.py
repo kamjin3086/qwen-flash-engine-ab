@@ -26,6 +26,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import privacy  # noqa: E402  the one check, shared with the export
+import followup  # noqa: E402  curated evidence is separate from the original matrix
 from charts import ENGINE_LABEL, bar_chart, line_chart  # noqa: E402
 from summary import ENGINES, METRICS  # noqa: E402  one registry, one engine list
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -51,7 +52,7 @@ LABEL = {
     "prefix_cold_ttft_s": "First token, cold prefix",
     "startup_s": "Time to a usable server",
     "artifact_tokens": "Pagoda output tokens",
-    "artifact_truncated": "Pagoda output truncated",
+    "artifact_truncated": "Pagoda hit output-token limit",
     "artifact_complete_html": "Pagoda output is complete HTML",
     "quality_case_pass": "Script-checkable case",
     "quality_pass_rate": "Script-checkable cases passed",
@@ -536,7 +537,8 @@ def copy_artifacts(repo: Path, out: Path) -> list[dict]:
                           "meta": {k: meta_doc.get(k) for k in
                                    ("completion_tokens", "finish_reason", "truncated",
                                     "looks_complete_html", "wall_s", "tool_calls",
-                                    "turns") if k in meta_doc}})
+                                    "turns") if k in meta_doc}
+                          | {"loop_guard": meta_doc.get("timings", {}).get("loop_guard")}})
     return found
 
 
@@ -555,8 +557,11 @@ def artifact_section(artifacts: list[dict]) -> str:
             bits.append(f'{meta["tool_calls"]} tool calls')
         if meta.get("finish_reason"):
             bits.append(f'finish: {meta["finish_reason"]}')
-        if meta.get("truncated") is not None:
-            bits.append("truncated" if meta["truncated"] else "not truncated")
+        guard = meta.get("loop_guard")
+        if guard:
+            bits.append(f'server loop guard: {guard.get("phase", "unknown")}/{guard.get("kind", "unknown")} (not natural completion)')
+        elif meta.get("truncated") is not None:
+            bits.append("token limit reached" if meta["truncated"] else "no token-limit stop reported; document completeness is separate")
         if a.get("wrapped_in_fence"):
             bits.append("answered inside a Markdown fence" + (", after a prose preamble"
                         if a.get("prose_before_html") else ""))
@@ -565,15 +570,14 @@ def artifact_section(artifacts: list[dict]) -> str:
                     else f'depends on {len(refs)} external host(s): {", ".join(refs[:3])}')
         shot = Path("docs") / "shots" / f'{a["engine"]}-{a["task"]}.png'
         shot_html = ""
-        if shot.is_file():
+        if (LINK_ROOT / shot).is_file():
             shot_html = (f'<a href="shots/{escape(a["engine"])}-{escape(a["task"])}.png">'
                          f'<img class="shot" src="shots/{escape(a["engine"])}-{escape(a["task"])}.png" '
                          f'alt="{escape(a["engine"] + " " + a["task"])}"></a>')
         cards.append(f'''<figure class="art">
   <figcaption><strong>{escape(a["engine"].title())}</strong>, {escape(a["task"])} &middot; {" &middot; ".join(escape(b) for b in bits)}
-  <br><a href="{escape(a["path"])}">open full page</a> &middot; <code>sha256:{a["sha256"][:12]}</code></figcaption>
+  <br><a href="{escape(a["path"])}" target="_blank" rel="noopener">open full page (may animate or fail)</a> &middot; <code>sha256:{a["sha256"][:12]}</code></figcaption>
   {shot_html}
-  <iframe src="{escape(a["path"])}" loading="lazy" title="{escape(a["engine"] + " " + a["task"])}"></iframe>
 </figure>''')
     return "\n".join(cards)
 
@@ -704,7 +708,7 @@ th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertic
 thead th{color:var(--mut);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td.cond{color:var(--mut)}
-.prov{display:block;font-size:.72rem;color:var(--mut)}
+.prov{display:block;font-size:.75rem;color:var(--mut)}
 .raw{font-size:.7rem;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:0 3px}
 .miss{color:var(--mut);font-style:italic}
 .scope{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px}
@@ -717,14 +721,13 @@ td.cond{color:var(--mut)}
 .chart .miss{fill:var(--mut);font-size:9px;font-style:italic}
 .art{margin:0 0 22px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .art figcaption{padding:10px 14px;font-size:.85rem;color:var(--mut)}
-.art iframe{width:100%;height:420px;border:0;border-top:1px solid var(--line);background:#fff}
 .art .shot{display:block;width:100%;height:auto;border-top:1px solid var(--line)}
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tablewrap:focus-visible{outline:2px solid var(--h);outline-offset:2px}
 .headline th[scope=row],.headline thead th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
 .tscroll{display:none;color:var(--mut);font-size:.8rem;margin:0 0 8px}
 .flag{color:var(--k)}
-@media(max-width:640px){td.num,th{white-space:normal}th,td{padding:4px 5px}.prov{font-size:.64rem}thead th{font-size:.72rem;letter-spacing:0}.art iframe{height:300px}}
+@media(max-width:640px){td.num,th{white-space:normal}th,td{padding:4px 5px}.prov{font-size:.75rem}thead th{font-size:.72rem;letter-spacing:0}}
 @media(max-width:420px){.tscroll{display:block}}
 """
 
@@ -739,7 +742,7 @@ def run_stamp(repo: Path) -> str:
     return max(stamps)[:10] if stamps else "unknown"
 
 
-def render_html(summary: dict, artifacts: list[dict], findings: str, stamp: str) -> str:
+def render_html(summary: dict, artifacts: list[dict], findings: str, stamp: str, followup_doc=None) -> str:
     m = summary["measurements"]
     digest = {e["engine"]: e["digest"] for e in m if e.get("digest")}
     counts = summary["counts"]
@@ -753,13 +756,14 @@ def render_html(summary: dict, artifacts: list[dict], findings: str, stamp: str)
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Halogen vs Kyojin — Qwen3.8-Flash-Next on one Strix Halo</title>
-<style>{CSS}</style></head>
+<style>{CSS}{followup.EXTRA_CSS}</style></head>
 <body><main>
 <h1>Halogen vs Kyojin, same model, one machine</h1>
 <p class="sub">{escape(machine)} &middot; measured one engine at a time &middot; {stamp}<br>
 Halogen <code>{escape(digest_short(digest.get("halogen")))}</code> &middot;
 Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 {counts["measured"]} measured, {counts["not_run"]} not run, {counts["aborted"]} aborted</p>
+{('<p><a href="#pagoda-follow-up">Pagoda follow-up: ' + escape(followup_doc['date']) + ' — bare and Pi SDK results</a></p>') if followup_doc else ''}
 
 {abort_band(m)}
 {cell_table(m)}
@@ -780,13 +784,16 @@ tokens, because the two engines tokenize the same text differently.</p>
 <h2>{escape(FINDINGS_HEADING)}</h2>
 {md_to_html(strip_title(findings)) if findings.strip() else '<p class="muted">Not written yet.</p>'}
 
-<h2>Artifacts</h2>
-<p class="sub">Two tasks, the same prompts on both engines. The pagoda is one request, one HTML
-file, no tools, no retry; the hexagon is a bounded agent run (8 turns / 600 s cap, tools
-allowed). Each card says which, and how many tool calls it took. The maintainer's gallery
-rows came from a different harness, so the timings are not comparable; the pages are here so
-you can click them.</p>
+{followup.overview(followup_doc) if followup_doc else ''}
+
+<h2>Original artifacts — {escape(stamp)}</h2>
+<p class="sub">Historical observations, not replaced by the follow-up. Pagoda: one request,
+no tools or retry; hexagon: the original two-tool runner (8 turns / 600 s), not the later
+Pi SDK pagoda trial. The maintainer's gallery used a different harness. Screenshots are
+static: opening this report no longer runs generated pages in the background.</p>
+<details><summary>Inspect the original one-shot and hexagon samples</summary>
 {artifact_section(artifacts)}
+</details>
 
 <h2>Raw data</h2>
 <p class="sub">Every number in the tables and the artifact cards traces to one of these files.
@@ -806,7 +813,7 @@ The report page is derived; the raw records are the artifact of record.</p>
 """
 
 
-def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: str) -> str:
+def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: str, followup_doc=None) -> str:
     m = summary["measurements"]
     digest = {e["engine"]: e["digest"] for e in m if e.get("digest")}
     note = not_run_note(m)
@@ -835,7 +842,11 @@ def render_issue(summary: dict, artifacts: list[dict], findings: str, repo_url: 
     lines += variance_markdown(summary)
     for a in artifacts:
         lines.append(f'- {a["engine"].title()}, {a["task"]}: {repo_url}/blob/main/docs/{a["path"]} '
-                     f'(`sha256:{a["sha256"][:12]}`)')
+                     f'(`sha256:{a["sha256"][:12]}`)'
+                     + (' — server loop guard stopped the answer; stop is not natural completion.'
+                        if a.get("meta", {}).get("loop_guard") else ''))
+    if followup_doc:
+        lines += ["", followup.markdown(followup_doc, repo_url), ""]
     lines += ["", f"## {FINDINGS_HEADING}", "", strip_title(findings).strip() or "_not written yet_", "",
               "## Everything else", "",
               f"Method, raw JSON, logs, the exact compose files and the artifact pages: {repo_url}",
@@ -967,10 +978,18 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
 
     artifacts = copy_artifacts(repo, out)
-    html = render_html(summary, artifacts, findings, run_stamp(repo))
-    issue = render_issue(summary, artifacts, findings, a.repo_url)
-    assert_clean(html, "docs/index.html", allow=(a.repo_url,))
-    assert_clean(issue, a.issue, allow=(a.repo_url,))
+    try:
+        followup_doc = followup.load_evidence(repo)
+    except (ValueError, KeyError, OSError) as exc:
+        raise SystemExit(f'refusing pagoda follow-up: {exc}') from exc
+    html = render_html(summary, artifacts, findings, run_stamp(repo), followup_doc)
+    issue = render_issue(summary, artifacts, findings, a.repo_url, followup_doc)
+    if followup_doc:
+        gallery = followup.gallery(followup_doc, CSS)
+        assert_clean(gallery, 'docs/pagoda-followup.html', allow=privacy.PUBLIC_URLS + (a.repo_url,))
+        (out / 'pagoda-followup.html').write_text(gallery)
+    assert_clean(html, "docs/index.html", allow=privacy.PUBLIC_URLS + (a.repo_url,))
+    assert_clean(issue, a.issue, allow=privacy.PUBLIC_URLS + (a.repo_url,))
 
     (out / "index.html").write_text(html)
     Path(a.issue).parent.mkdir(parents=True, exist_ok=True)

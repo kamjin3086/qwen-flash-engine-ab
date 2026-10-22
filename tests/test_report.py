@@ -64,6 +64,47 @@ class ReportTest(unittest.TestCase):
         p = subprocess.run(args, cwd=REPO, capture_output=True, text=True)
         return p, out, issue
 
+    def test_followup_keeps_all_samples_and_distinguishes_agent_stop_from_rendering(self):
+        shutil.copytree(REPO / "results" / "pagoda-followup",
+                        self.tmp / "results" / "pagoda-followup")
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html, md = (out / "index.html").read_text(), issue.read_text()
+        for text in (html, md):
+            self.assertIn("Pagoda follow-up", text)
+            self.assertIn("13,225", text)
+            self.assertIn("7,022", text)
+            self.assertIn("12-response cap", text)
+            self.assertIn("normal completion", text)
+        gallery = (out / "pagoda-followup.html").read_text()
+        self.assertEqual(gallery.count('class="bare-sample"'), 12)
+        self.assertIn("browser timeout", gallery)
+        self.assertNotIn("<iframe", html + gallery)
+
+    def test_followup_refuses_a_modified_final_page(self):
+        evidence = self.tmp / "results" / "pagoda-followup"
+        shutil.copytree(REPO / "results" / "pagoda-followup", evidence)
+        page = evidence / "agent" / "kyojin" / "final.html"
+        page.write_text(page.read_text() + "\n<!-- unrecorded change -->")
+        p, out, issue = self.render()
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn("follow-up evidence hash mismatch", p.stderr)
+
+    def test_original_guard_stop_is_not_presented_as_natural_completion(self):
+        phase = self.tmp / "runs" / "kyojin-s1"
+        phase.mkdir(parents=True)
+        (phase / "artifact-pagoda.html").write_text("<!doctype html><html><script>function build(){")
+        (phase / "artifact-pagoda.json").write_text(json.dumps({
+            "completion_tokens": 5216, "finish_reason": "stop", "truncated": False,
+            "timings": {"loop_guard": {"phase": "answer", "kind": "text"}}}))
+        p, out, issue = self.render()
+        self.assertEqual(p.returncode, 0, p.stderr)
+        html = (out / "index.html").read_text()
+        self.assertIn("server loop guard", html)
+        self.assertNotIn("not truncated", html)
+        self.assertNotIn("<iframe", html, "opening the report must not run generated animations")
+        self.assertIn("server loop guard", issue.read_text())
+
     def test_values_and_provenance_appear(self):
         p, out, issue = self.render()
         self.assertEqual(p.returncode, 0, p.stderr)

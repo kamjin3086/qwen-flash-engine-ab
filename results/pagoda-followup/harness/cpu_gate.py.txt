@@ -1,0 +1,51 @@
+"""Measure current test-Chrome and system CPU; fail before inference if busy.
+
+Only process observation. Never kills browsers or touches unrelated Chrome.
+CPU percentages for process rows are one logical core = 100%; system is all cores = 100%.
+"""
+import argparse
+import json
+import os
+from pathlib import Path
+import time
+
+
+def snapshot():
+    procs = {}
+    for p in Path('/proc').glob('[0-9]*'):
+        try:
+            cmd = (p / 'cmdline').read_bytes().replace(b'\0', b' ').decode(errors='replace')
+            if '/chrome' not in cmd or '/.agent-browser/' not in cmd:
+                continue
+            fields = (p / 'stat').read_text().rsplit(')', 1)[1].split()
+            procs[int(p.name)] = int(fields[11]) + int(fields[12])
+        except (OSError, ValueError):
+            pass
+    fields = [int(x) for x in Path('/proc/stat').read_text().splitlines()[0].split()[1:9]]
+    return procs, sum(fields), fields[3] + fields[4]
+
+
+def measure(seconds=2):
+    before, total0, idle0 = snapshot()
+    t0 = time.monotonic()
+    time.sleep(seconds)
+    after, total1, idle1 = snapshot()
+    elapsed = time.monotonic() - t0
+    ticks = os.sysconf('SC_CLK_TCK')
+    # Exited processes only make this estimate smaller; callers close owned browsers first.
+    cpu = sum(max(0, n - before.get(pid, n)) for pid, n in after.items()) / ticks / elapsed * 100
+    busy = (1 - (idle1 - idle0) / max(1, total1 - total0)) * 100
+    return {'time_ms': int(time.time()*1000), 'interval_s': elapsed,
+            'logical_cpus': os.cpu_count(), 'test_chrome_one_core_percent': round(cpu, 2),
+            'system_busy_percent': round(busy, 2), 'test_chrome_pids': sorted(after),
+            'passed': cpu < 10 and busy < 50}
+
+
+if __name__ == '__main__':
+    p = argparse.ArgumentParser(); p.add_argument('--out'); args = p.parse_args()
+    result = measure()
+    if args.out:
+        with Path(args.out).open('a') as f:
+            f.write(json.dumps(result) + '\n')
+    print(json.dumps(result))
+    raise SystemExit(0 if result['passed'] else 1)

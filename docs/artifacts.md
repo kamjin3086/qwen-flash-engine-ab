@@ -23,8 +23,9 @@ Design and create a very creative, elaborate, and detailed voxel art scene of a 
 
 ## Measurement 9 — bounded agent run, hexagon
 
-Same harness on both engines (pi), 10 minute wall-clock cap, same prompt, tools
-enabled. Reported as: did the page get produced inside the cap, how many tool calls,
+The same two-tool scripted runner (`tools/agentrun.py`) on both engines, 10 minute
+wall-clock cap, same prompt, tools enabled. This original hexagon run was not the Pi SDK
+harness used in the later pagoda follow-up. Reported as: did the page get produced inside the cap, how many tool calls,
 how long to the finished page. Not a quality judgement.
 
 The author's own harness (Hermes) is not published, so this cannot be compared to
@@ -33,6 +34,26 @@ the gallery's 2.7 min / 9 tool calls for the same prompt.
 ```
 Create an animation in JS with 10 balls bouncing inside a spinning hexagon.
 ```
+
+## Pagoda follow-up — 2026-10-22
+
+The original one-shot outputs are retained, including Kyojin's incomplete, loop-guard-stopped
+answer. The [all-sample follow-up](pagoda-followup.html) shows an original-condition repeat
+and five fixed stochastic bare samples per engine, plus a separate clean Pi SDK case each.
+That SDK loop provides read/write/local-edit/browser-inspection tools; it is not the original
+two-tool runner or the gallery author's Hermes setup.
+
+Both final agent pages visibly present the requested scene, but the model stop differs:
+Halogen reached a 12-response cap while continuing edits; Kyojin ended normally. A complete
+HTML document, a rendered scene and normal agent completion are separate observations.
+No aesthetic score or population success rate is claimed. The
+[protocol and evidence](../results/pagoda-followup/protocol.md) disclose fixed budgets,
+browser CPU contention in excluded timing runs, corrective clean runs and the technical
+recapture of one interrupted bare collection.
+
+Opening the report/gallery no longer runs generated animations in iframes. Static
+screenshots are the default; opening individual pages may use external CDNs, fail or
+consume substantial CPU. Close those pages when finished.
 
 ## Reporting rule
 

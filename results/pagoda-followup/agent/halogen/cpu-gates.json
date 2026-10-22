@@ -1,0 +1,98 @@
+[
+  {
+    "time_ms": 1792653153360,
+    "interval_s": 2.008124201995088,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.28,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653156818,
+    "interval_s": 2.009261888000765,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.3,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653309243,
+    "interval_s": 2.007664772987482,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.37,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653380641,
+    "interval_s": 2.009344689999125,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.45,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653387210,
+    "interval_s": 2.009125992000918,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.88,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653392326,
+    "interval_s": 2.007919610987301,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.5,
+    "system_busy_percent": 1.33,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653399764,
+    "interval_s": 2.007300289013074,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.49,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653406568,
+    "interval_s": 2.007712154998444,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.33,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653415761,
+    "interval_s": 2.0073551459936425,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.33,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653423437,
+    "interval_s": 2.0077268440072658,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.08,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653474405,
+    "interval_s": 2.009539260994643,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.5,
+    "system_busy_percent": 1.64,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653479704,
+    "interval_s": 2.007295971008716,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.97,
+    "passed": true
+  }
+]

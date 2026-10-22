@@ -1,0 +1,108 @@
+{
+  "model": "halogen-qwen3.8-flash-next",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a coding agent creating one self-contained HTML page named index.html in an initially empty workspace. Available tools: read_file, write_file, edit_file, inspect_page. No other tools exist. Use write_file with the entire page. Use inspect_page to see its actual browser screenshot and errors, then fix problems if needed. At most three page inspections are available. Use edit_file for small fixes instead of rewriting the entire file. Completion means the pagoda, garden and blossom trees are visibly presented without a blocking runtime error; once achieved, stop with a concise summary. Do not keep redesigning just to improve taste. Do not claim testing without inspect_page. Only your own directory is accessible. You have 12 assistant responses, 20 minutes, 65536 generated tokens total and at most 16384 per request. Finish with a concise factual summary. No further user input is available.\n\n<cwd>\n<workspace>\n</cwd>"
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Design and create a very creative, elaborate, and detailed voxel art scene of a pagoda in a beautiful garden with trees, including some cherry blossoms. Make the scene impressive and varied and use colorful voxels. Use whatever libraries to get this done but make sure I can paste it all into a single HTML file."
+        }
+      ]
+    }
+  ],
+  "stream": true,
+  "stream_options": {
+    "include_usage": true
+  },
+  "max_tokens": 16384,
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "read_file",
+        "description": "Read a file in your isolated workspace. Initially empty; missing files return an error.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "write_file",
+        "description": "Write an entire file in your isolated workspace. Write your single-page result to index.html.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "path",
+            "content"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "edit_file",
+        "description": "Replace exactly one unique oldText occurrence in a workspace file. Use this for focused repairs rather than rewriting the entire page.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "path",
+            "oldText",
+            "newText"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "oldText": {
+              "type": "string"
+            },
+            "newText": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "inspect_page",
+        "description": "Open your index.html in a real browser at 1280x900, observe after 10 seconds, and return screenshot plus runtime errors. Use this before claiming completion.",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    }
+  ],
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "top_k": 20,
+  "min_p": 0,
+  "seed": 5101,
+  "enable_thinking": false
+}

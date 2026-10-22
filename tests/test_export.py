@@ -19,6 +19,7 @@ catching host paths would pass a "second export works" test for the wrong reason
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import shutil
 import subprocess
@@ -69,6 +70,14 @@ class ExportedTreeTest(unittest.TestCase):
         self.assertEqual(p.returncode, 0, p.stderr)
         self.assertTrue(os.access(second / "bench.sh", os.X_OK))
 
+    def test_followup_evidence_and_gallery_ship_but_private_trials_do_not(self):
+        self.assertTrue((self.pub / "docs" / "pagoda-followup.html").is_file())
+        self.assertTrue((self.pub / "results" / "pagoda-followup" / "manifest.json").is_file())
+        self.assertTrue((self.pub / "results" / "pagoda-followup" / "bare" / "kyojin" / "sample-04" / "response.sse").is_file())
+        self.assertFalse((self.pub / "experiments").exists())
+        self.assertFalse((self.pub / "docs" / "publication").exists())
+        self.assertFalse((self.pub / "docs" / "PAGODA-FOLLOWUP.md").exists())
+
     def test_the_published_tree_can_export_itself(self):
         second = self.tmp / "second"
         p = export(self.pub, second)
@@ -87,6 +96,26 @@ class ExportedTreeTest(unittest.TestCase):
                     if x.is_file() and "__pycache__" not in x.parts and "build" not in x.parts}
         first, again = tree(self.pub), tree(second)
         self.assertEqual(first, again)
+
+    def test_wire_records_are_privacy_scanned_even_with_updated_manifest_hashes(self):
+        for suffix, relative in (("sse", "bare/kyojin/sample-04/response.sse"),
+                                 ("jsonl", "agent/halogen/messages.jsonl")):
+            with self.subTest(suffix=suffix):
+                copy = self.tmp / ("wire-leak-" + suffix)
+                shutil.copytree(self.pub, copy)
+                evidence = copy / "results" / "pagoda-followup"
+                record = evidence / relative
+                record.write_text(record.read_text() + '\n{"trace": "/home/someone/private"}\n')
+                manifest_path = evidence / "manifest.json"
+                manifest = json.loads(manifest_path.read_text())
+                for row in manifest["files"]:
+                    if row["path"] == relative:
+                        row["bytes"] = record.stat().st_size
+                        row["sha256"] = hashlib.sha256(record.read_bytes()).hexdigest()
+                manifest_path.write_text(json.dumps(manifest))
+                p = export(copy, self.tmp / ("refused-" + suffix))
+                self.assertNotEqual(p.returncode, 0, "wire record bypassed the privacy guard")
+                self.assertIn("absolute home path", p.stderr)
 
     def test_the_published_tree_still_catches_a_host_path(self):
         # the published copy cannot check for the two strings it no longer contains; what

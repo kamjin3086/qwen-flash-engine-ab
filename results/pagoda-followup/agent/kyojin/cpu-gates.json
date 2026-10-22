@@ -1,0 +1,50 @@
+[
+  {
+    "time_ms": 1792653622974,
+    "interval_s": 2.0099705850007012,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.34,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653733156,
+    "interval_s": 2.0088566330086906,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.64,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653801042,
+    "interval_s": 2.0095578969921917,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.43,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653807235,
+    "interval_s": 2.009326814004453,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.5,
+    "system_busy_percent": 1.33,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653869647,
+    "interval_s": 2.009741446003318,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.74,
+    "passed": true
+  },
+  {
+    "time_ms": 1792653880435,
+    "interval_s": 2.009077044989681,
+    "logical_cpus": 32,
+    "test_chrome_one_core_percent": 0.0,
+    "system_busy_percent": 1.51,
+    "passed": true
+  }
+]

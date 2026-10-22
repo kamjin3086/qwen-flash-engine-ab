@@ -1,0 +1,307 @@
+{
+  "schema": 1,
+  "publication": "curated follow-up; separate from the original performance matrix",
+  "timing_limitations": "Bare/pilot/v2 timings are not clean comparative measurements. Clean agent has one case each, includes separately reported parent delays, and is not a throughput benchmark.",
+  "bare": {
+    "halogen": [
+      {
+        "name": "original-01",
+        "sampling": {
+          "temperature": 0
+        },
+        "completion_tokens": 5001,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "8912b311f142967c4918e5d3e4664398b7fc91ce50bb3bd88469abdfff3063a4",
+        "status": "runtime_error",
+        "note": "No scene: ReferenceError rw is not defined in buildPagoda."
+      },
+      {
+        "name": "sample-01",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4101
+        },
+        "completion_tokens": 4476,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "16df255d64fd3da7d5a7678d3b370cb1dfcee15dc1d5385e0fcc2d984738dacb",
+        "status": "scene_visible",
+        "note": "Pagoda and blossom garden visibly rendered."
+      },
+      {
+        "name": "sample-02",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4102
+        },
+        "completion_tokens": 203,
+        "closing_html": false,
+        "script_syntax_ok": null,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "d20cb57cf525d500ead57ae43f11c60292fe47f64fec6613b625dcb2e11045f6",
+        "status": "no_html_delivered",
+        "note": "Response contains unsupported tool-call text; bare request offered no tools."
+      },
+      {
+        "name": "sample-03",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4103
+        },
+        "completion_tokens": 153,
+        "closing_html": false,
+        "script_syntax_ok": null,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "774d217b4176af469e21b71eb2f5bbd32d406c7bd3d9f0ae1ca644270a0a0dc5",
+        "status": "no_html_delivered",
+        "note": "Response contains unsupported tool-call text; bare request offered no tools."
+      },
+      {
+        "name": "sample-04",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4104
+        },
+        "completion_tokens": 5794,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "938275e59c3676570228ad4392449b62d833da11ba50c891b4624d1a2b7dadae",
+        "status": "scene_visible",
+        "note": "Pagoda and blossom garden visibly rendered."
+      },
+      {
+        "name": "sample-05",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4105
+        },
+        "completion_tokens": 4672,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "355f8835c5f3b644b148f3127e4d899c0c78d2fa7cc235e87628f83870458980",
+        "status": "scene_visible",
+        "note": "Pagoda and blossom garden visibly rendered."
+      }
+    ],
+    "kyojin": [
+      {
+        "name": "original-01",
+        "sampling": {
+          "temperature": 0
+        },
+        "completion_tokens": 5216,
+        "closing_html": false,
+        "script_syntax_ok": false,
+        "loop_guard": {
+          "phase": "answer",
+          "kind": "text",
+          "cut": 4576,
+          "at": 5216,
+          "period": 0,
+          "tokens_streamed": 5216
+        },
+        "done": true,
+        "answer_sha256": "39287b37795b8bd98cf379c7a2ba905670b11375f560b82e451fb2fb38319a46",
+        "status": "incomplete_guard_termination",
+        "note": "Answer bytes exactly match the old failing sample. Loop guard metadata present; incomplete script; loading overlay remains."
+      },
+      {
+        "name": "sample-01",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4101
+        },
+        "completion_tokens": 12615,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "fc159ce00d42996c7f8ae7145d3c877bd05dd905910c466694e627730822d441",
+        "status": "partial_scene_visible",
+        "note": "Terrain, petals and a small/partly obscured tower render; the requested full scene is not clearly presented. Not a runtime-error verdict."
+      },
+      {
+        "name": "sample-02",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4102
+        },
+        "completion_tokens": 13467,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "cbb53e5fdc4569e58a82033b92fc2797b603fe13b466c29fab2f9a86effb1bf8",
+        "status": "runtime_error",
+        "note": "Loading overlay remains; TypeError v.color.getHex is not a function."
+      },
+      {
+        "name": "sample-03",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4103
+        },
+        "completion_tokens": 15101,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "c157f078ac157598e06faa230579c770b9cb08329aaafc82a324f6b38160a8b2",
+        "status": "scene_not_clearly_presented",
+        "note": "UI and isolated blocks visible, but the pagoda/garden are not recognizable in the captured default view; no attributable runtime error recorded."
+      },
+      {
+        "name": "sample-04",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4104
+        },
+        "completion_tokens": 13249,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "ca86add3881abf39c42316d511de2405dae07402f40da7eb94d465e2a28ea20d",
+        "status": "browser_timeout_unverified",
+        "note": "Complete HTML and syntactically valid scripts. Two browser-open attempts timed out, recovery target reads also failed. No verified screenshot; root cause not established."
+      },
+      {
+        "name": "sample-05",
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "seed": 4105
+        },
+        "completion_tokens": 14874,
+        "closing_html": true,
+        "script_syntax_ok": true,
+        "loop_guard": null,
+        "done": true,
+        "answer_sha256": "0fb8a8b38befa48ac941116164ae191f1721e937842336af6ae5dcfaf079c7cf",
+        "status": "scene_visible",
+        "note": "Pagoda, garden and blossoms visibly rendered; no current-route runtime error recorded."
+      }
+    ]
+  },
+  "clean_agent": {
+    "halogen": {
+      "engine": "halogen",
+      "wall_s": 330.071,
+      "turns": 13,
+      "httpRequests": 12,
+      "toolCalls": 11,
+      "outputTokens": 13225,
+      "inspections": 2,
+      "writes": 8,
+      "edits": 7,
+      "model_wall_s": 193.993,
+      "inspection_wait_s": 111.176,
+      "stop": "budget",
+      "producedPage": true,
+      "status": "scene_visible",
+      "note": "Final independent screenshot displays pagoda/garden/blossom trees without a route-scoped runtime error. Model continued edits and hit the 12-response cap; no successful final assistant declaration. Final evaluation is after the cap, without more inference.",
+      "stop_detail": "assistant_response_cap_12",
+      "cpu_gate_count": 12,
+      "all_cpu_gates_passed": true,
+      "max_test_chrome_one_core_cpu_percent": 0.5,
+      "max_system_busy_percent": 1.97,
+      "browser_execution_s": 33.998,
+      "inspection_queue_delivery_s": 77.0565771484375,
+      "final_html_sha256": "39ed0b3c15c4221edba6f880e4ab4f25a1075f744542612720a71ba5debfdc4b"
+    },
+    "kyojin": {
+      "engine": "kyojin",
+      "wall_s": 270.209,
+      "turns": 6,
+      "httpRequests": 6,
+      "toolCalls": 5,
+      "outputTokens": 7022,
+      "inspections": 2,
+      "writes": 2,
+      "edits": 1,
+      "model_wall_s": 132.609,
+      "inspection_wait_s": 125.006,
+      "stop": "completed",
+      "producedPage": true,
+      "status": "scene_visible",
+      "note": "Last inspected file equals final workspace file. Pagoda/garden/blossom trees visible without a route-scoped runtime error; model ended normally.",
+      "stop_detail": "completed",
+      "cpu_gate_count": 6,
+      "all_cpu_gates_passed": true,
+      "max_test_chrome_one_core_cpu_percent": 0.5,
+      "max_system_busy_percent": 1.74,
+      "browser_execution_s": 40.158,
+      "inspection_queue_delivery_s": 84.41605419921875,
+      "final_html_sha256": "a3e9934e7227360ff536dbb290948f2cf483482368fc6c935b2f4ccc90abc80d"
+    }
+  },
+  "host_restored": true,
+  "original_kyojin_repeat_exact_match": true,
+  "date": "2026-10-22",
+  "engines": {
+    "halogen": {
+      "image_digest": "sha256:2e98dc53ed4a43b5600b11a80852eedfa573f4ffc3f10c64da01245f2a3217fc",
+      "slots": 4
+    },
+    "kyojin": {
+      "image_digest": "sha256:a0c48fea49a605da3e5eaeee4fcd82aa5a8591063976bbbbbca7c2c4f9c20b51",
+      "sessions": 1,
+      "EXL3_NGRAM_STREAM": "1"
+    }
+  },
+  "excluded_attempts": [
+    "SDK tool-activation preflight errors: not engine failures.",
+    "32K/10-minute pilot: no local editing, unequal browser delays.",
+    "64K Halogen v2: animated test browser CPU contention; no matched Kyojin request.",
+    "Bare Kyojin seed 4104: first collection interrupted by the parent command limit; one same-seed technical recapture, not a quality retry.",
+    "Preliminary 1280x633 screenshots excluded; comparison frames are 1280x900."
+  ],
+  "method": {
+    "prompt": "Design and create a very creative, elaborate, and detailed voxel art scene of a pagoda in a beautiful garden with trees, including some cherry blossoms. Make the scene impressive and varied and use colorful voxels. Use whatever libraries to get this done but make sure I can paste it all into a single HTML file.",
+    "bare": "One original greedy repeat and five stochastic no-tools samples per engine; temperature 0.7, top_p 0.8, top_k 20, min_p 0, seeds 4101-4105, thinking off, max_tokens 16384.",
+    "agent": "One real Pi SDK trial per engine, read/write/unique-edit/inspect tools, seed 5101, same stochastic sampling, 65536 output tokens total, 16384 per request, 1200 seconds, 12 assistant responses, 3 inspections.",
+    "browser": "1280x900, observe after a 10-second window, save screenshot and current-route errors. No human repair hints. Close each owned browser before inference; sample CPU before every model request.",
+    "limits": "Different packs/templates remain. No aesthetic score or population success-rate estimate. Interactions not exhaustively tested. Blank/loading/error/timeout outcomes are distinct.",
+    "privacy": "Text records have host paths and operator identifiers scrubbed; request workspace paths become <workspace>. PNG bytes are unchanged. Manifest hashes describe these published bytes, not unsanitized private records."
+  }
+}

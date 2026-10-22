@@ -1,10 +1,10 @@
 {
-  "count": 145,
+  "count": 335,
   "files": [
     {
-      "bytes": 11092,
+      "bytes": 12411,
       "path": "README.md",
-      "sha256": "2dfc3aaf7648473df47ba8bd4c732cb0cba7cada2303ece54c4d6fe61120bb27"
+      "sha256": "9f78ebac6178c93de3fbb52af0492f58bdefdf8a4e9f9c06858c26a231b3a457"
     },
     {
       "bytes": 3006,
@@ -27,9 +27,14 @@
       "sha256": "a3b5ff48a4fac2056e12583a4135874c80819a5945b335826961af9f2bb2d4c9"
     },
     {
-      "bytes": 70617,
+      "bytes": 75839,
       "path": "docs/index.html",
-      "sha256": "47a6f02bbe672827254e0e086dd9a6d0b6ccd021cf3e177a6b352716de765b5b"
+      "sha256": "ca9fd8f166b0cec3dea3a56c6def3ba3f9416b23cb5acda478f46e8f9767e644"
+    },
+    {
+      "bytes": 18098,
+      "path": "docs/pagoda-followup.html",
+      "sha256": "beec66e69eb7d07f3924174c09307b3d9d638330a8e225bac5fb69b88124183b"
     },
     {
       "bytes": 2119,
@@ -52,9 +57,9 @@
       "sha256": "7b0b6f16be3bb5f6cabf8b3d1c1cf9230dfd522cc21356579b9e756feaedf047"
     },
     {
-      "bytes": 1865,
+      "bytes": 3232,
       "path": "docs/artifacts.md",
-      "sha256": "8b2a7fb6471cb71cfec054902cc5421dd160cc7c7c136155798155a2de91433b"
+      "sha256": "5758728a36c5ea047e65e07c3bffcd239170a47d072b448353c67658ce65d778"
     },
     {
       "bytes": 4363,
@@ -142,19 +147,24 @@
       "sha256": "5a22403553e2e2a4d574b6067b89b9b04e4fe2f779c39dfc3223e001e21c398f"
     },
     {
-      "bytes": 6174,
+      "bytes": 6496,
       "path": "report/export.py",
-      "sha256": "7211fe72d965a83d8f57e57808be775c9afa0621204611861f2eedfa408d8f47"
+      "sha256": "6901c4734b07c8ab50568e52ca75c8a5a6bb42cef92ed7d6225dff134c41ac2f"
     },
     {
-      "bytes": 5445,
+      "bytes": 11097,
+      "path": "report/followup.py",
+      "sha256": "16d04abdc39928b1e147fd258e8794c5743f44d9315dad61c60891d934064522"
+    },
+    {
+      "bytes": 5463,
       "path": "report/privacy.py",
-      "sha256": "bac94e9740c9ecd78b629d6ca364ab7c65806fbaec2d25886945335174450430"
+      "sha256": "564b5a3dd0f9954e54a9ad7a320869c744b043ba9a8e15e6ca86303fa41bf189"
     },
     {
-      "bytes": 45899,
+      "bytes": 47273,
       "path": "report/render.py",
-      "sha256": "8ce55cbbe9e6a7da9144409ebc65f2c86ee590e5cd3ed585409e9dee1f2936a5"
+      "sha256": "177713e9daec02e2a9be9f54dd8e8be75628de38225f542fd9a9a4a83895682f"
     },
     {
       "bytes": 26416,
@@ -170,6 +180,11 @@
       "bytes": 3775,
       "path": "tools/cache_guard.py",
       "sha256": "dad1115a697b8c7c19d508f07f379acb25844735858c5378d2809a0a71535e82"
+    },
+    {
+      "bytes": 8357,
+      "path": "tools/curate_pagoda.py",
+      "sha256": "ba765633fff830b635c0d447aa0eb19cdc352c12f06be18163383f1254c9b738"
     },
     {
       "bytes": 25397,
@@ -192,14 +207,14 @@
       "sha256": "9a9407d517fc11ac2244a75bc5a46e6bd580d5517540361a068d22d195290489"
     },
     {
-      "bytes": 8187,
+      "bytes": 10057,
       "path": "tests/test_export.py",
-      "sha256": "867b08d2f0c6cedb52d4e5e6840008cd303bedc0893d58dfb5ec6ca745a09edc"
+      "sha256": "d758f06a6eb24e180794693da0f49a24107b6d0fdd9af93455cba57bc4650c14"
     },
     {
-      "bytes": 6878,
+      "bytes": 7289,
       "path": "tests/test_findings.py",
-      "sha256": "f1030ca7e93c52b8dc3b4797bd1802f84794cce29018f9580bfba00e6fbd3fb8"
+      "sha256": "186e7c5305cb862c0c1df88ddf0c44841362559a76e634b72718c187c873b0a7"
     },
     {
       "bytes": 19317,
@@ -212,9 +227,9 @@
       "sha256": "d1af77b71b8fe0d6f23670136dd1ab391dfcc84779f182ea9c2c93cf702ee12a"
     },
     {
-      "bytes": 19527,
+      "bytes": 21773,
       "path": "tests/test_report.py",
-      "sha256": "aeb8f2e9136baa4e103f99975860e8a5aafe6486c12d2cfea58113c0cf4004a5"
+      "sha256": "cefeda3800f08ea1b09b49df90b4622a697f4c06dd5676af36a957e09824861b"
     },
     {
       "bytes": 4199,
@@ -232,14 +247,14 @@
       "sha256": "6e14c35b302165836984c1790d98debbb9b674608e088be744403162c547cb13"
     },
     {
-      "bytes": 21337,
+      "bytes": 24691,
       "path": "results/issue-body.md",
-      "sha256": "bdec62ac90df4a689b47bf8e14bdb2df6055492fa23832bcf4008adf4681900a"
+      "sha256": "3f5bd3e63829a68d6c816e3f9c7ef824db6bf6ef57b741c7a02cc374e7dc6351"
     },
     {
-      "bytes": 12107,
+      "bytes": 14312,
       "path": "results/findings.md",
-      "sha256": "34a74996c711e72ebdf4d98d048966aaa8e13c518a6938a1a8c2ca93978a7c3e"
+      "sha256": "33235af4a7f6c630a4bd1c669d577d954fe7010d34015e01c4083d022c371b8e"
     },
     {
       "bytes": 5706,
@@ -250,6 +265,941 @@
       "bytes": 6673,
       "path": "results/quality/kyojin.json",
       "sha256": "663b499adb0d209da56c884d6c4c20f0b7b21de1667d289adb0c1fe33dec3d0e"
+    },
+    {
+      "bytes": 53,
+      "path": "results/pagoda-followup/agent/halogen/active-tools.json",
+      "sha256": "eb56c9e43208997c4c4cb243595cdd08d6e9af9e81c6eb3d085aac25bf6c7de9"
+    },
+    {
+      "bytes": 2320,
+      "path": "results/pagoda-followup/agent/halogen/cpu-gates.json",
+      "sha256": "4140e59f3dfae48889a11f8c9a6caac1b691ebc9387bd1fc9b88c193af4c60c6"
+    },
+    {
+      "bytes": 25776,
+      "path": "results/pagoda-followup/agent/halogen/final.html",
+      "sha256": "39ed0b3c15c4221edba6f880e4ab4f25a1075f744542612720a71ba5debfdc4b"
+    },
+    {
+      "bytes": 379077,
+      "path": "results/pagoda-followup/agent/halogen/final.png",
+      "sha256": "515d94f4adeed705e4b6f4054466a831c484e54f4e6e8d75ed209cfbfd4f4f63"
+    },
+    {
+      "bytes": 411,
+      "path": "results/pagoda-followup/agent/halogen/inspect-01/browser-observation.json",
+      "sha256": "66823035ca656f222dd630caa2866d6fbc3b80bef076febeaa76d19f6c31285e"
+    },
+    {
+      "bytes": 472400,
+      "path": "results/pagoda-followup/agent/halogen/inspect-01/browser.png",
+      "sha256": "b5697182fe158ceb24441a959fb83f3ab2578e6de674082c04a3f7509de563bf"
+    },
+    {
+      "bytes": 162,
+      "path": "results/pagoda-followup/agent/halogen/inspect-01/inspection-timing.json",
+      "sha256": "414d597d1de2e42247f29f5ffe1c7675e65d83d035251209ce6714dbbbb5a190"
+    },
+    {
+      "bytes": 25550,
+      "path": "results/pagoda-followup/agent/halogen/inspect-01/page.html",
+      "sha256": "3f2f2591fff3d842ec4496bcb06486e159454496f86d3cfef7e0053e9fa3e3c8"
+    },
+    {
+      "bytes": 411,
+      "path": "results/pagoda-followup/agent/halogen/inspect-02/browser-observation.json",
+      "sha256": "66823035ca656f222dd630caa2866d6fbc3b80bef076febeaa76d19f6c31285e"
+    },
+    {
+      "bytes": 205674,
+      "path": "results/pagoda-followup/agent/halogen/inspect-02/browser.png",
+      "sha256": "ed9bb615ccab28d0a01c40549ff9e67a89f1c456d341ad4429cab40ba75dd276"
+    },
+    {
+      "bytes": 162,
+      "path": "results/pagoda-followup/agent/halogen/inspect-02/inspection-timing.json",
+      "sha256": "1a24216e6bd177d71a23f7e10889f3b8641f569e8dd619df86b5b47ad0850a16"
+    },
+    {
+      "bytes": 25777,
+      "path": "results/pagoda-followup/agent/halogen/inspect-02/page.html",
+      "sha256": "e0fcdb381fe30158b702227974b93feb3bda7610125fbdd6a47f043013642c62"
+    },
+    {
+      "bytes": 948783,
+      "path": "results/pagoda-followup/agent/halogen/messages.jsonl",
+      "sha256": "3802e7c339aded40b203427862bcad7f032faaefdb16041021d119c6f488de4d"
+    },
+    {
+      "bytes": 437,
+      "path": "results/pagoda-followup/agent/halogen/protocol.json",
+      "sha256": "cda3e8a56f9ef699480210ca3ffbe319f66e147c5505bd21809801780019018e"
+    },
+    {
+      "bytes": 3726,
+      "path": "results/pagoda-followup/agent/halogen/request-01.json",
+      "sha256": "6798f3207b9bf9ebcab219d78584888433db7822faf5047e7a331864d11fc4ca"
+    },
+    {
+      "bytes": 7477,
+      "path": "results/pagoda-followup/agent/halogen/request-01.sse",
+      "sha256": "1250c4c13659512e43f644e3b508c0ed57b0931ced06512b3c0d58b2cba35043"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-01.timing.json",
+      "sha256": "d5354714cf2db6a11036834678f42404d788ad95b4d31a21b90daa0e865790ab"
+    },
+    {
+      "bytes": 4271,
+      "path": "results/pagoda-followup/agent/halogen/request-02.json",
+      "sha256": "b47eb6278c174cb0da7c76c76be905f8348dc63057a4fdcc709cbffe99b2a637"
+    },
+    {
+      "bytes": 2808487,
+      "path": "results/pagoda-followup/agent/halogen/request-02.sse",
+      "sha256": "073ee5c5227f461f5c338e30034dc9dc9ebcc87e231a396f2cac2ba08d001ee7"
+    },
+    {
+      "bytes": 79,
+      "path": "results/pagoda-followup/agent/halogen/request-02.timing.json",
+      "sha256": "c2bc5a5510fb4b89665c4dc1ff753221868d3713da2d968dbeaaeb6e4e1c5454"
+    },
+    {
+      "bytes": 31736,
+      "path": "results/pagoda-followup/agent/halogen/request-03.json",
+      "sha256": "5038c6ffb3317f84298555a7d896f0245acbc8a2936ee926b325cf2968a610ad"
+    },
+    {
+      "bytes": 2491,
+      "path": "results/pagoda-followup/agent/halogen/request-03.sse",
+      "sha256": "60eba5bddfa7df99c2f7a1f4322707c359f8be3bc5620232a554da10dccbfb50"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-03.timing.json",
+      "sha256": "5246a6e2d7473326eca1bc17a6416e2d5d294ab9441f61770e340b001248b89a"
+    },
+    {
+      "bytes": 662559,
+      "path": "results/pagoda-followup/agent/halogen/request-04.json",
+      "sha256": "2c8d1932df263b24eec5ebe299f84817b91515082da09c52a88d356c20c420e7"
+    },
+    {
+      "bytes": 41148,
+      "path": "results/pagoda-followup/agent/halogen/request-04.sse",
+      "sha256": "1f01ed3eda54a8b2d2a3c82c41ec8c13fb55dfe33e46b903547ab51151e78b40"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-04.timing.json",
+      "sha256": "bbd85f8441e78bd267d2d3e67d79d0f54bfc3b9a1cfa4c2217bf8b1b04cb8a85"
+    },
+    {
+      "bytes": 663547,
+      "path": "results/pagoda-followup/agent/halogen/request-05.json",
+      "sha256": "23451503b7dfa21d217b0cb659c0be8ffd23acbe4321a82b9e555e60d5b8d084"
+    },
+    {
+      "bytes": 51102,
+      "path": "results/pagoda-followup/agent/halogen/request-05.sse",
+      "sha256": "d0797bd8fa2a4a51b7d6ae10ed00721cec78fb1ca1797c2c97fd8da31ba79138"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-05.timing.json",
+      "sha256": "fd9316e2cf7e5f8f4c79ef4452bfcf17816b9cc754b5d59a6e3c473f1616cd18"
+    },
+    {
+      "bytes": 664518,
+      "path": "results/pagoda-followup/agent/halogen/request-06.json",
+      "sha256": "0bcdea535bccfe06c677a699dec010cabda8769b014af05726313bc94c04cd96"
+    },
+    {
+      "bytes": 90341,
+      "path": "results/pagoda-followup/agent/halogen/request-06.sse",
+      "sha256": "186230c2ff607b9db0ad53a8ca733da73c6b24f3722349f32a1e01f64ed2fe98"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-06.timing.json",
+      "sha256": "c46c83be9b39fa7a73364efa9642f2865f1270d43df51d3439a29bcbb61f0684"
+    },
+    {
+      "bytes": 665941,
+      "path": "results/pagoda-followup/agent/halogen/request-07.json",
+      "sha256": "c70f794c20c194b2c03c473f280a052747e60eb4b42924b6aa04d6663acf4642"
+    },
+    {
+      "bytes": 83183,
+      "path": "results/pagoda-followup/agent/halogen/request-07.sse",
+      "sha256": "2f6f81a249d66ce745aefe581e2c8c6291482ca5ec37a35e226ef3578c692325"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-07.timing.json",
+      "sha256": "e6fe37797560648f49dc1260d3b39e1f28aeb318086120acc6cf6254d360be77"
+    },
+    {
+      "bytes": 667075,
+      "path": "results/pagoda-followup/agent/halogen/request-08.json",
+      "sha256": "997a8c010e1c824ae1cbea856eb725f24006bd0ae737737d61c0bec7beb37d31"
+    },
+    {
+      "bytes": 133600,
+      "path": "results/pagoda-followup/agent/halogen/request-08.sse",
+      "sha256": "082eed45f1e414ad9206df73ac59c2cb66c27d84d4abebf5f6c2129822766962"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-08.timing.json",
+      "sha256": "e37bc9d40b94d88f22577f141894b4e2a40da7a8b3982a712ac6149bf74dd4bd"
+    },
+    {
+      "bytes": 669036,
+      "path": "results/pagoda-followup/agent/halogen/request-09.json",
+      "sha256": "9eb7b95786dbc3a512ce5e8ce3be37534029a41701d55d5efbcee53ec2dd680b"
+    },
+    {
+      "bytes": 111808,
+      "path": "results/pagoda-followup/agent/halogen/request-09.sse",
+      "sha256": "d8db6b17298a2aa546f426526592cc9ec21b1805cb12ec204cb6fb6d22d49c3b"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-09.timing.json",
+      "sha256": "c4ecf09638662174b95f19f722acb17d6e114c1d14f85252dd7cd43bd341ba8a"
+    },
+    {
+      "bytes": 670293,
+      "path": "results/pagoda-followup/agent/halogen/request-10.json",
+      "sha256": "3980c2bb3ce7668a0a26a3c282d105dbb309adf0a95cec701e4eeaa83c5d1d94"
+    },
+    {
+      "bytes": 2448,
+      "path": "results/pagoda-followup/agent/halogen/request-10.sse",
+      "sha256": "c50ebe137d5ecf86ac343df81989f4f5a2e752e0bc803de5d067df47e3738993"
+    },
+    {
+      "bytes": 76,
+      "path": "results/pagoda-followup/agent/halogen/request-10.timing.json",
+      "sha256": "5a96349d6087772987c75309b8653275582f6155f204a37d3263fdc72bdcbea6"
+    },
+    {
+      "bytes": 945480,
+      "path": "results/pagoda-followup/agent/halogen/request-11.json",
+      "sha256": "f671b800e1333c188674104462aa8b479fe2dcd6cb1273ce0a31384b91e68f3a"
+    },
+    {
+      "bytes": 12555,
+      "path": "results/pagoda-followup/agent/halogen/request-11.sse",
+      "sha256": "e1ccf463ccc5c5783c2c71b5e65a2e6186fb7ee0e9663d746c71fb8c15e2f9b7"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-11.timing.json",
+      "sha256": "cabd9c42bb02c8bdd59c6ac3d4e7012c63b101db6d3aee4e629aba94fda9118a"
+    },
+    {
+      "bytes": 946103,
+      "path": "results/pagoda-followup/agent/halogen/request-12.json",
+      "sha256": "88d1c16960978b06478cb885949af9df211b71195aed4cad6ebf1f5ce8cf3b0b"
+    },
+    {
+      "bytes": 20894,
+      "path": "results/pagoda-followup/agent/halogen/request-12.sse",
+      "sha256": "f6f38469f1ec09557afef5b18afacddc4e4c9594e6e9c59fe626c01cf745652f"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/halogen/request-12.timing.json",
+      "sha256": "95245e8b5677b2f11ca4df45e8939cde87bc24f01944310d0ff62c5c1c94fc3c"
+    },
+    {
+      "bytes": 279,
+      "path": "results/pagoda-followup/agent/halogen/result.json",
+      "sha256": "ff26b21bb252df015838d1eb4fafa08d28f77c32f2a5cc58ebe6a9b8427147a4"
+    },
+    {
+      "bytes": 906,
+      "path": "results/pagoda-followup/agent/halogen/system.txt",
+      "sha256": "28000875c56e94a30bf066366b5debffe953e97a2a00722b37262d7346e1f44d"
+    },
+    {
+      "bytes": 25550,
+      "path": "results/pagoda-followup/agent/halogen/versions/01-index.html",
+      "sha256": "3f2f2591fff3d842ec4496bcb06486e159454496f86d3cfef7e0053e9fa3e3c8"
+    },
+    {
+      "bytes": 25552,
+      "path": "results/pagoda-followup/agent/halogen/versions/02-index.html",
+      "sha256": "d23f930c27f8ad29be76e036c226c5483758a71dcfb0fb8ef9915777a56113ab"
+    },
+    {
+      "bytes": 25553,
+      "path": "results/pagoda-followup/agent/halogen/versions/03-index.html",
+      "sha256": "497bb1057f34a693728597da593fc522af3995e2ab734690d12cc1c619a907a8"
+    },
+    {
+      "bytes": 25551,
+      "path": "results/pagoda-followup/agent/halogen/versions/04-index.html",
+      "sha256": "c5ddbc4ec1bf418f5fc05f1d195349a132400a4da5b6ae548c8e66351eebff52"
+    },
+    {
+      "bytes": 25493,
+      "path": "results/pagoda-followup/agent/halogen/versions/05-index.html",
+      "sha256": "081343c387df4728b9fcd9cd3dfd2acb2e9df5dfccf116059f27589c9decfecb"
+    },
+    {
+      "bytes": 25776,
+      "path": "results/pagoda-followup/agent/halogen/versions/06-index.html",
+      "sha256": "36b71d9d2e0e4ed44db46c54ba463080928a12448c24dee6ebcfc83ad488a908"
+    },
+    {
+      "bytes": 25777,
+      "path": "results/pagoda-followup/agent/halogen/versions/07-index.html",
+      "sha256": "e0fcdb381fe30158b702227974b93feb3bda7610125fbdd6a47f043013642c62"
+    },
+    {
+      "bytes": 25776,
+      "path": "results/pagoda-followup/agent/halogen/versions/08-index.html",
+      "sha256": "39ed0b3c15c4221edba6f880e4ab4f25a1075f744542612720a71ba5debfdc4b"
+    },
+    {
+      "bytes": 53,
+      "path": "results/pagoda-followup/agent/kyojin/active-tools.json",
+      "sha256": "eb56c9e43208997c4c4cb243595cdd08d6e9af9e81c6eb3d085aac25bf6c7de9"
+    },
+    {
+      "bytes": 1164,
+      "path": "results/pagoda-followup/agent/kyojin/cpu-gates.json",
+      "sha256": "62123f0bda2dace5bb1d4b6edfdef842d2115eed7f79682d9ea75a3bf25ea67d"
+    },
+    {
+      "bytes": 14763,
+      "path": "results/pagoda-followup/agent/kyojin/final.html",
+      "sha256": "a3e9934e7227360ff536dbb290948f2cf483482368fc6c935b2f4ccc90abc80d"
+    },
+    {
+      "bytes": 368853,
+      "path": "results/pagoda-followup/agent/kyojin/final.png",
+      "sha256": "ea527c1f92381b8b48902f8969a782f634ce508fab75c74ea6d8c4b6c6e89b33"
+    },
+    {
+      "bytes": 411,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-01/browser-observation.json",
+      "sha256": "66823035ca656f222dd630caa2866d6fbc3b80bef076febeaa76d19f6c31285e"
+    },
+    {
+      "bytes": 577508,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-01/browser.png",
+      "sha256": "f064671ff11baaa20b6c6b8abaa34c533f0765abe2553465962c7b90a642c37f"
+    },
+    {
+      "bytes": 163,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-01/inspection-timing.json",
+      "sha256": "56b3e8aa4c3af9af4b28adf9c0c22fb41dfc37237ce7d1eeb8e2b25f8477b074"
+    },
+    {
+      "bytes": 14762,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-01/page.html",
+      "sha256": "d8552710b2217027cc5772883c7450aae3612c736adecfd5ea1fbea6b43a7958"
+    },
+    {
+      "bytes": 411,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-02/browser-observation.json",
+      "sha256": "66823035ca656f222dd630caa2866d6fbc3b80bef076febeaa76d19f6c31285e"
+    },
+    {
+      "bytes": 368853,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-02/browser.png",
+      "sha256": "ea527c1f92381b8b48902f8969a782f634ce508fab75c74ea6d8c4b6c6e89b33"
+    },
+    {
+      "bytes": 163,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-02/inspection-timing.json",
+      "sha256": "875761f4f8a8180ff15cbf3083cdfdbd4548f30bd1650d82fadb228ae6583b69"
+    },
+    {
+      "bytes": 14763,
+      "path": "results/pagoda-followup/agent/kyojin/inspect-02/page.html",
+      "sha256": "a3e9934e7227360ff536dbb290948f2cf483482368fc6c935b2f4ccc90abc80d"
+    },
+    {
+      "bytes": 1302583,
+      "path": "results/pagoda-followup/agent/kyojin/messages.jsonl",
+      "sha256": "d9ccfcb540593773e1c102d1a7c2fdca756aca9754219731528b33c679e654ea"
+    },
+    {
+      "bytes": 423,
+      "path": "results/pagoda-followup/agent/kyojin/protocol.json",
+      "sha256": "d40f24b051a1a8014dda9e93ad0f6544b5d7435bb73df1c423d6fb2eab3fbd77"
+    },
+    {
+      "bytes": 3713,
+      "path": "results/pagoda-followup/agent/kyojin/request-01.json",
+      "sha256": "9baf7f31bb6b78368b5ecae07b56bff530bf2f60471dc4b5929b7a6c4286bb7c"
+    },
+    {
+      "bytes": 22496,
+      "path": "results/pagoda-followup/agent/kyojin/request-01.sse",
+      "sha256": "78cb05ca5dec38cb60a2c18519bf16968d566165b32ce86b89d4dc5c06094ef1"
+    },
+    {
+      "bytes": 79,
+      "path": "results/pagoda-followup/agent/kyojin/request-01.timing.json",
+      "sha256": "75f6368897fadeb145707060fccbe195c48b47e28f7c5b2b7b83ccb519d10ae0"
+    },
+    {
+      "bytes": 19977,
+      "path": "results/pagoda-followup/agent/kyojin/request-02.json",
+      "sha256": "acd5b822740545d1f5df40c342a6606c4de3a959187613114336c33a4e229c0e"
+    },
+    {
+      "bytes": 1155,
+      "path": "results/pagoda-followup/agent/kyojin/request-02.sse",
+      "sha256": "1fab683caa9ab1a9ef9675e70b7b6a3add027953cef11ba49a5a945d874dff26"
+    },
+    {
+      "bytes": 76,
+      "path": "results/pagoda-followup/agent/kyojin/request-02.timing.json",
+      "sha256": "c2b8e02c260c442a22175dcacf8b4fcbe528cb7dc512af9410aa96c6ddf5f9e6"
+    },
+    {
+      "bytes": 790944,
+      "path": "results/pagoda-followup/agent/kyojin/request-03.json",
+      "sha256": "d3dc3403ac38910202e27984ad9d93072809ec898de68e51b3f26ff0f32e6a04"
+    },
+    {
+      "bytes": 1371,
+      "path": "results/pagoda-followup/agent/kyojin/request-03.sse",
+      "sha256": "8a1d559a7744d19b246143ed94df7be4202b98c2b3c5eeee68ce9b99f24dab05"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/kyojin/request-03.timing.json",
+      "sha256": "6a1bf6cff769c8b970541dad43a59a89e7635e4399a99efa7b8cacb58cd68c51"
+    },
+    {
+      "bytes": 791651,
+      "path": "results/pagoda-followup/agent/kyojin/request-04.json",
+      "sha256": "764565b58902c8b123fc63421ce8168912efa9338d57163082a6cf9963338b4a"
+    },
+    {
+      "bytes": 1157,
+      "path": "results/pagoda-followup/agent/kyojin/request-04.sse",
+      "sha256": "105997a0dc015860d29f427e3fe4b1c78cfdb7831b60c0ad958c1b4f00d1b9b8"
+    },
+    {
+      "bytes": 76,
+      "path": "results/pagoda-followup/agent/kyojin/request-04.timing.json",
+      "sha256": "5e8a95271da1be1dc563d563f140dcad80e03c07658efe29b86fc819e6ed68fd"
+    },
+    {
+      "bytes": 1284410,
+      "path": "results/pagoda-followup/agent/kyojin/request-05.json",
+      "sha256": "cab9403560d910f2dd76b8c917477b4292317768497139244e3706204c376f3b"
+    },
+    {
+      "bytes": 60594,
+      "path": "results/pagoda-followup/agent/kyojin/request-05.sse",
+      "sha256": "ffb83fff440df8e61cf209347fb9061586618472a68eb067a0f937230dbbf1dd"
+    },
+    {
+      "bytes": 77,
+      "path": "results/pagoda-followup/agent/kyojin/request-05.timing.json",
+      "sha256": "02f7fa265078dfdbce81c3a83361d5d5783f52965221c8751a5433dfdb6c0183"
+    },
+    {
+      "bytes": 1301305,
+      "path": "results/pagoda-followup/agent/kyojin/request-06.json",
+      "sha256": "283d124a86b44da4c024c5fcf20c75f4f667cb0b8bf06a141fadbc3e2e5d2c52"
+    },
+    {
+      "bytes": 58963,
+      "path": "results/pagoda-followup/agent/kyojin/request-06.sse",
+      "sha256": "1c0df4948b65300283410b8be4505813aa31eab611b5c1b15346ff560322b2cd"
+    },
+    {
+      "bytes": 78,
+      "path": "results/pagoda-followup/agent/kyojin/request-06.timing.json",
+      "sha256": "479ad71e45821b061b4ced7a1091279d2b8bc785e7f3c9ec31a104df8c0fe9be"
+    },
+    {
+      "bytes": 1514,
+      "path": "results/pagoda-followup/agent/kyojin/result.json",
+      "sha256": "e0ba1e5199a53df73132ad0c7dad5a6e98839b766bcf971dd3227cccbd73779c"
+    },
+    {
+      "bytes": 906,
+      "path": "results/pagoda-followup/agent/kyojin/system.txt",
+      "sha256": "28000875c56e94a30bf066366b5debffe953e97a2a00722b37262d7346e1f44d"
+    },
+    {
+      "bytes": 14762,
+      "path": "results/pagoda-followup/agent/kyojin/versions/01-index.html",
+      "sha256": "d8552710b2217027cc5772883c7450aae3612c736adecfd5ea1fbea6b43a7958"
+    },
+    {
+      "bytes": 14763,
+      "path": "results/pagoda-followup/agent/kyojin/versions/02-index.html",
+      "sha256": "a3e9934e7227360ff536dbb290948f2cf483482368fc6c935b2f4ccc90abc80d"
+    },
+    {
+      "bytes": 15846,
+      "path": "results/pagoda-followup/bare/halogen/original-01/answer.txt",
+      "sha256": "8912b311f142967c4918e5d3e4664398b7fc91ce50bb3bd88469abdfff3063a4"
+    },
+    {
+      "bytes": 14830,
+      "path": "results/pagoda-followup/bare/halogen/original-01/browser.png",
+      "sha256": "bc7a000006a0a6b4c9b51df19a9378c2f39f232b36bb7e6471d29c157404766a"
+    },
+    {
+      "bytes": 15485,
+      "path": "results/pagoda-followup/bare/halogen/original-01/page.html",
+      "sha256": "8e117810f6c49be370b3fb0ae8cf9630ba8b2dc8513e45ee2e05220af7957f87"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/original-01/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 572,
+      "path": "results/pagoda-followup/bare/halogen/original-01/request.json",
+      "sha256": "b03321ff24da9929fb2ee5ee259fbb34a119a973cbe06a8a3c7c3074c5d13f91"
+    },
+    {
+      "bytes": 1213160,
+      "path": "results/pagoda-followup/bare/halogen/original-01/response.sse",
+      "sha256": "14411e9f00cc275fa39855fd1223d7f038b48595d15bca561b89a9454b3d8fe3"
+    },
+    {
+      "bytes": 1521,
+      "path": "results/pagoda-followup/bare/halogen/original-01/result.json",
+      "sha256": "4eccf527970e0a4a37a9fbc6d99ea34a2742ac1fd9b1918b1beb387b9b1c4d80"
+    },
+    {
+      "bytes": 14484,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/answer.txt",
+      "sha256": "16df255d64fd3da7d5a7678d3b370cb1dfcee15dc1d5385e0fcc2d984738dacb"
+    },
+    {
+      "bytes": 434155,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/browser.png",
+      "sha256": "76f3335159ed47f70e61475cd53788e8b55dd574bb4591ddd02fad8c86692a65"
+    },
+    {
+      "bytes": 14238,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/page.html",
+      "sha256": "8e00c7ffb94672f32c8d951d4eddb9d0209a246fe3fd864b714f1b31cf07c590"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 637,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/request.json",
+      "sha256": "82ae2bfb33635876c2d39267b6d571f8f4d61c634ba08355afb1f5feda1cc4bc"
+    },
+    {
+      "bytes": 1086263,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/response.sse",
+      "sha256": "8bee4432d5d1ad4b06fe164d04b2a997f3d583c9d639c4f67584d82029631be2"
+    },
+    {
+      "bytes": 1509,
+      "path": "results/pagoda-followup/bare/halogen/sample-01/result.json",
+      "sha256": "d1af7147167c8dc6883162240b74d8d912f873b1729fd32a04814d508fd9a8f6"
+    },
+    {
+      "bytes": 696,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/answer.txt",
+      "sha256": "d20cb57cf525d500ead57ae43f11c60292fe47f64fec6613b625dcb2e11045f6"
+    },
+    {
+      "bytes": 13984,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/browser.png",
+      "sha256": "71b7a408b7c74931b3bf5b7a6062c5715ad9547112b970a2bfc1c295ebdb7b1c"
+    },
+    {
+      "bytes": 696,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/page.html",
+      "sha256": "d20cb57cf525d500ead57ae43f11c60292fe47f64fec6613b625dcb2e11045f6"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 637,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/request.json",
+      "sha256": "247637e1abd4399d8b6cf53b62c03f26eef3902b63b5b555ddb0044a4ff2edf3"
+    },
+    {
+      "bytes": 50833,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/response.sse",
+      "sha256": "94542c060bcd10c54d693769a2822bb15cdaa6b4fc5e2048abc3a5163ed82f4f"
+    },
+    {
+      "bytes": 1390,
+      "path": "results/pagoda-followup/bare/halogen/sample-02/result.json",
+      "sha256": "5557ced84618e723aa1455d14b70d692265e4f2f639bdb4da199ed3e1446053d"
+    },
+    {
+      "bytes": 538,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/answer.txt",
+      "sha256": "774d217b4176af469e21b71eb2f5bbd32d406c7bd3d9f0ae1ca644270a0a0dc5"
+    },
+    {
+      "bytes": 13504,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/browser.png",
+      "sha256": "aa97abbf4f2b3dfc0e94e6391a67c3de7f8484f08a8e482b7eaccc2710bc2db8"
+    },
+    {
+      "bytes": 538,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/page.html",
+      "sha256": "774d217b4176af469e21b71eb2f5bbd32d406c7bd3d9f0ae1ca644270a0a0dc5"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 637,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/request.json",
+      "sha256": "c7df387a4726fd8ce9e804599593a9e68e0b6812101dae16f2519ea3c1ebf861"
+    },
+    {
+      "bytes": 38712,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/response.sse",
+      "sha256": "95c32c7801862750e8d06c1f84ff50778b765406b20c2ff15f2919394dcb0f41"
+    },
+    {
+      "bytes": 1389,
+      "path": "results/pagoda-followup/bare/halogen/sample-03/result.json",
+      "sha256": "52964c91e7a89ad65db04258608b79865e35cc0e6f8431f33ef276d458c66b95"
+    },
+    {
+      "bytes": 20114,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/answer.txt",
+      "sha256": "938275e59c3676570228ad4392449b62d833da11ba50c891b4624d1a2b7dadae"
+    },
+    {
+      "bytes": 436363,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/browser.png",
+      "sha256": "6cd217a340487d32c6906995c75524a95d99e13c1dfadb820edb8936e52de313"
+    },
+    {
+      "bytes": 19948,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/page.html",
+      "sha256": "7896e433d42905d6cc9403ddb714970e6fe8ad3ffd8d719526a3288ae443fb25"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 637,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/request.json",
+      "sha256": "bfe69d579a1cfc69a9d520b47b36a6568d1bafa003c225b3618711b739b9e1dd"
+    },
+    {
+      "bytes": 1406551,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/response.sse",
+      "sha256": "480abb026c07b6ab0a358a61f8a4a08e41d69c75e7ec83e59806af44b61a36d3"
+    },
+    {
+      "bytes": 1509,
+      "path": "results/pagoda-followup/bare/halogen/sample-04/result.json",
+      "sha256": "a6a944daa903d5f9abff120632022f1fc825e38300a415cb29732cd6a2fbff88"
+    },
+    {
+      "bytes": 15332,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/answer.txt",
+      "sha256": "355f8835c5f3b644b148f3127e4d899c0c78d2fa7cc235e87628f83870458980"
+    },
+    {
+      "bytes": 340734,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/browser.png",
+      "sha256": "0751f98612372f14a942ac5acbeea21c422f535703fa9353722f0653ca68b788"
+    },
+    {
+      "bytes": 14990,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/page.html",
+      "sha256": "e9ccc0a2290f120132d4b93c7e0d44b3434ed0d0cebed0ba7c9762f54a9e314c"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 637,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/request.json",
+      "sha256": "e97de6ea387b2695ff3400d36d2aa65fbc6f745735222a0fcebf40e40f96b50b"
+    },
+    {
+      "bytes": 1133983,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/response.sse",
+      "sha256": "9789aae2b343bac52b13a474dd2bba74bb83158dc5e72b10bd3f886c5dc5e163"
+    },
+    {
+      "bytes": 1510,
+      "path": "results/pagoda-followup/bare/halogen/sample-05/result.json",
+      "sha256": "f783a7432437b389b372490d7980cf2b24f2e16f7240cc7ee70c915bc166f21e"
+    },
+    {
+      "bytes": 11958,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/answer.txt",
+      "sha256": "39287b37795b8bd98cf379c7a2ba905670b11375f560b82e451fb2fb38319a46"
+    },
+    {
+      "bytes": 254717,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/browser.png",
+      "sha256": "e44139384e26615f36f3fe402a7fc119d4c1d55841a22357eb6376bf84e6dce4"
+    },
+    {
+      "bytes": 11629,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/page.html",
+      "sha256": "f8cfbfff99b220bc2f992a7c8dfb97cfd4ec1885d23881a5279dd25f4975f91f"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 559,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/request.json",
+      "sha256": "a8652e393f2765be07717d0f975aab7f410735a11993488d3f16f6e33ec55ca9"
+    },
+    {
+      "bytes": 1013267,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/response.sse",
+      "sha256": "4c4e1adda226a4d7e1560a24749b3379e8f83f330fbfeb5e8195a186a3f41553"
+    },
+    {
+      "bytes": 1678,
+      "path": "results/pagoda-followup/bare/kyojin/original-01/result.json",
+      "sha256": "8689d5e300255fb060adc12bd0ff61600ed0114fefd68342b314c251c282b08e"
+    },
+    {
+      "bytes": 30204,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/answer.txt",
+      "sha256": "fc159ce00d42996c7f8ae7145d3c877bd05dd905910c466694e627730822d441"
+    },
+    {
+      "bytes": 525309,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/browser.png",
+      "sha256": "cb875268dfd8eefa01d2751f3401f96c40a1589f41a2b4e1fb3eef6d501ed333"
+    },
+    {
+      "bytes": 28959,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/page.html",
+      "sha256": "4831093e8c9119db44504d57d8f37e07475dc40344817337ddc730f93dc62552"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 624,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/request.json",
+      "sha256": "d18c327a0d481b86cc35ea20bf4070e19c45cf9fe4e0e85194885b368e75bcaa"
+    },
+    {
+      "bytes": 2404259,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/response.sse",
+      "sha256": "4be1bde35ad300bd4274419b245c6642958257f78823391d663db14895be6845"
+    },
+    {
+      "bytes": 1102,
+      "path": "results/pagoda-followup/bare/kyojin/sample-01/result.json",
+      "sha256": "73aaba346ae41b46929a9f16f66fbc61f2267c87c9f83b908e3188b21b1ea39f"
+    },
+    {
+      "bytes": 33302,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/answer.txt",
+      "sha256": "cbb53e5fdc4569e58a82033b92fc2797b603fe13b466c29fab2f9a86effb1bf8"
+    },
+    {
+      "bytes": 360101,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/browser.png",
+      "sha256": "1f916598cca8a69cc8902db5dc4e125206ad241cd9a6ab8ec31def51d0d37a5d"
+    },
+    {
+      "bytes": 32185,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/page.html",
+      "sha256": "ccc5c8b39653c921542eeb78800814d25524b517eb95d93afc0730934ef6dbd1"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 624,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/request.json",
+      "sha256": "ba12f228b6cf287e9a4f4dcfbf9051201c7600a4c31e1f6a6a9894288a22296d"
+    },
+    {
+      "bytes": 2547179,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/response.sse",
+      "sha256": "cfc58b1f45c5991689a47c979f29b115ed5b17d7a11f4ccf43ee65e675c9feb4"
+    },
+    {
+      "bytes": 1186,
+      "path": "results/pagoda-followup/bare/kyojin/sample-02/result.json",
+      "sha256": "b62ff409bba54ebd8bebbdae65a2ca05fdf54dfc42f36ea8844a618fe322b5dc"
+    },
+    {
+      "bytes": 37062,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/answer.txt",
+      "sha256": "c157f078ac157598e06faa230579c770b9cb08329aaafc82a324f6b38160a8b2"
+    },
+    {
+      "bytes": 138478,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/browser.png",
+      "sha256": "ea70f945d0bd73245da0d57e9aa52bb2a10e35cd732a11d9a3a26081a6acf8e7"
+    },
+    {
+      "bytes": 35798,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/page.html",
+      "sha256": "b1a89dd5882df4be0ad3a51657ccfca2ac47c37fcb4bf3bcdddbdff36b63fa87"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 624,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/request.json",
+      "sha256": "e42ff1450fab5b7993704cdc48943b126560d8e77332bf1bc81dfdc7109b8ed9"
+    },
+    {
+      "bytes": 2837559,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/response.sse",
+      "sha256": "b16c53669b2842ed14d3629a91dc337403f067735f0c0429c25fdc0a21bd13d0"
+    },
+    {
+      "bytes": 1185,
+      "path": "results/pagoda-followup/bare/kyojin/sample-03/result.json",
+      "sha256": "cc911a41ea6e8ef6f360af86c62b4f6a23e6b05b01f728ebe415847318bd20cc"
+    },
+    {
+      "bytes": 32365,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/answer.txt",
+      "sha256": "ca86add3881abf39c42316d511de2405dae07402f40da7eb94d465e2a28ea20d"
+    },
+    {
+      "bytes": 30995,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/page.html",
+      "sha256": "01e3e3011468cff3f54fc04f6636af4019d104c10b6ffa33ede97b67f3b210bb"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 624,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/request.json",
+      "sha256": "2281b98dae0fc89655d8dc522a50dadb3eeee09984fbdfebafe74616b670ac46"
+    },
+    {
+      "bytes": 2492407,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/response.sse",
+      "sha256": "7ebefa070a5c2bfaeb9936624c7a07e45be9b835c89225570dc8ebdaf4e1f20c"
+    },
+    {
+      "bytes": 1185,
+      "path": "results/pagoda-followup/bare/kyojin/sample-04/result.json",
+      "sha256": "992b76b862d322b0681ce5c895acecdd6b15b522a56ae79664d2fa14711cbb04"
+    },
+    {
+      "bytes": 37232,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/answer.txt",
+      "sha256": "0fb8a8b38befa48ac941116164ae191f1721e937842336af6ae5dcfaf079c7cf"
+    },
+    {
+      "bytes": 1116927,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/browser.png",
+      "sha256": "7cbfbea62093d340ae3e085cd75cf911701dec96496718e54a88f4a25c03dd39"
+    },
+    {
+      "bytes": 36030,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/page.html",
+      "sha256": "44343759e099068d1044241220953fce7ad7730172fffd48602283720cb6e766"
+    },
+    {
+      "bytes": 0,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/reasoning.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 624,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/request.json",
+      "sha256": "a188206ea34d4c098e4823a16acae92ba0caa4d72e0daa4dda7fc7111acb4017"
+    },
+    {
+      "bytes": 2843075,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/response.sse",
+      "sha256": "b3315ee616140758221042a0c2a52af5e4be118a0c35350afadf9b76a9ebd6a7"
+    },
+    {
+      "bytes": 1187,
+      "path": "results/pagoda-followup/bare/kyojin/sample-05/result.json",
+      "sha256": "5f51c6b61012f88a2a3439746fc1e31765f9c0e18340b462d7b4a396bb89a47e"
+    },
+    {
+      "bytes": 2604,
+      "path": "results/pagoda-followup/evaluations.json",
+      "sha256": "3e2f3e912185d601bf27ef9a1d6d4838eb148e566285325ccac4e8d62157049a"
+    },
+    {
+      "bytes": 5383,
+      "path": "results/pagoda-followup/harness/capture.py.txt",
+      "sha256": "04e1d9d761ef6f8641bb4056dfcd4be617c9abfdab24de528feadcde0b5e92a9"
+    },
+    {
+      "bytes": 2035,
+      "path": "results/pagoda-followup/harness/cpu_gate.py.txt",
+      "sha256": "8f9107438c5aa3d2bbfda7be31e70642123436686b5a2bf04f1228584193f6f5"
+    },
+    {
+      "bytes": 10653,
+      "path": "results/pagoda-followup/harness/pi-agent-clean.mjs.txt",
+      "sha256": "951067cb7b1e26ea6f15f40df311c8be2f94a88cab0116fd9eaa8d6f4f050a3c"
+    },
+    {
+      "bytes": 2772,
+      "path": "results/pagoda-followup/harness/return_feedback.py.txt",
+      "sha256": "de7ec0a535cf1654922fe8c3b8f166eb18ee4fdebb515f74667b1971d543e65f"
+    },
+    {
+      "bytes": 31264,
+      "path": "results/pagoda-followup/manifest.json",
+      "sha256": "550698ac9baf1dffc90ec1b6405f6fe23235465a2b3aa0710e7523f11fc07e3a"
+    },
+    {
+      "bytes": 2765,
+      "path": "results/pagoda-followup/protocol.md",
+      "sha256": "738efed3a746d4ddcc5fde8827dae6c24dd51a4b6a15b25541dbf0fba69ab676"
+    },
+    {
+      "bytes": 11748,
+      "path": "results/pagoda-followup/summary.json",
+      "sha256": "5a031aac5c7e72f74005876385c51a17b469e42397d31eb1cf6c4c83539588aa"
     },
     {
       "bytes": 1719,

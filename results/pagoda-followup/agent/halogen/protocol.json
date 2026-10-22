@@ -1,0 +1,18 @@
+{
+  "engine": "halogen",
+  "base": "http://127.0.0.1:8731/v1",
+  "modelId": "halogen-qwen3.8-flash-next",
+  "maxAssistantTurns": 12,
+  "wallCapS": 1200,
+  "totalOutputCap": 65536,
+  "maxTokensPerRequest": 16384,
+  "sampling": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0,
+    "seed": 5101,
+    "enable_thinking": false
+  },
+  "sdk": "real Pi AgentSession, custom confined tools, no discovered extensions"
+}
