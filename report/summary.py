@@ -276,9 +276,9 @@ def variance_block(runs: Path) -> tuple[list[dict], list[str]]:
         if conc and any(cached):
             # the repetition only counts if it ran under the same conditions as the original
             notes.append(
-                "N=4 repetitions are not shown for either engine: Halogen's repeated runs had "
-                f"prompt-cache hits on all requests ({cached} per run) while the original run "
-                "had none. Without a matched pair the comparison is not like-for-like.")
+                "N=4 repetitions are not shown for either engine: all four requests in each "
+                "of Halogen's repeated runs hit the prompt cache, while the original run had "
+                "no hits. Without a matched pair the comparison is not like-for-like.")
         else:
             add("aggregate_decode_tps", "N=4",
                 [rep.get("summary", {}).get("aggregate_decode_tps") for rep in conc])

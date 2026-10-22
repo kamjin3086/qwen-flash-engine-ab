@@ -229,7 +229,7 @@ class ReportTest(unittest.TestCase):
         (d / "variance.json").write_text(json.dumps(
             {"engine": "halogen", "ctx": ctx, "conc4": conc}))
         rows, notes = summary_mod.variance_block(runs)
-        self.assertTrue(notes and "prompt-cache" in notes[0])
+        self.assertTrue(notes and "prompt cache" in notes[0])
         self.assertFalse([r for r in rows if r["condition"] == "N=4"])
         self.assertTrue([r for r in rows if r["condition"] == "prompt ~32K"])
 

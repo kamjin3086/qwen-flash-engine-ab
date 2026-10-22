@@ -1766,6 +1766,6 @@
     }
   ],
   "variance_notes": [
-    "N=4 repetitions are not shown for either engine: Halogen's repeated runs had prompt-cache hits on all requests ([4, 4, 4] per run) while the original run had none. Without a matched pair the comparison is not like-for-like."
+    "N=4 repetitions are not shown for either engine: all four requests in each of Halogen's repeated runs hit the prompt cache, while the original run had no hits. Without a matched pair the comparison is not like-for-like."
   ]
 }

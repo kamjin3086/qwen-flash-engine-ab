@@ -6,8 +6,8 @@ throughput), it is 2.7× slower to come back after a reboot on a warm start, and
 an incomplete page on the task the comparison was originally about. If the question is "should I switch my daily driver", the answer here
 is no; if the question is "is the EXL3 route competitive", the decode numbers say yes.
 
-Everything below is a value from the tables above. Nothing here is a judgement of the
-model, only of what came out of each engine.
+Everything below is a value from the tables, the artifact cards, or the raw files they
+link. Nothing here is a judgement of the model, only of what came out of each engine.
 
 **How many times each number was measured.** Prefill and decode at the author's sizes are
 the median of three runs. Everything else is one observation: both retrieval depths, the tool call, the concurrency
@@ -31,12 +31,14 @@ worth the machine time.
 I measured, and the ratio barely moves (1.28× at the author's size, 1.36–1.37× from 32K to
 262K; 1.36–1.39× across those points and their repetitions). The author's-size ratio compares
 2,737 tokens against 3,110, because the two tokenizers disagree on the same text. Both
-engines lose about the same share of their speed as the prompt grows (−7.8 % and −6.7 %
+engines lose about the same share of their speed as the prompt grows (−7.8 % and −6.8 %
 from 32K to 262K), so this is not a long-context effect: it is a constant factor on
 forward pass throughput.
 
-**Decode is a tie.** 49.5 / 53.6 / 60.8 tok/s against 53.4 / 50.9 / 56.8 across prose,
-chat and code. The two engines trade the lead per prompt class and the spread between
+**Decode is a tie per request.** 49.5 / 53.6 / 60.8 tok/s against 53.4 / 50.9 / 56.8 across
+prose, chat and code. Aggregate *output* throughput, which includes prompt processing, is
+another matter: Halogen serves 23–34 % more tokens per second across N=1, 2 and 4 because its
+prefill is faster. The two engines trade the lead per prompt class and the spread between
 classes inside one engine is larger than the spread between engines. Anyone quoting a
 single decode number from this comparison is describing one prompt class, not an engine.
 
@@ -69,7 +71,7 @@ Quadrupling the requests buys 21 % more aggregate throughput on Halogen and 11 %
 Kyojin, while per-request speed falls by two thirds. Both engines are limited by the same
 thing at that point. The difference that matters for a user running four agents is not
 throughput but **how long a request waits for its first token**: a median of 11.6 s against
-23.0 s, and the slowest of the four 19.1 s against 23.0 s. Those rows are one observation:
+23.0 s, and the 95th percentile — the maximum at four requests — 19.1 s against 23.0 s. Those rows are one observation:
 when the run was repeated, every request in the repeat hit the prompt cache, so the repeat
 measures a different thing and is not quoted as a range.
 
@@ -131,8 +133,8 @@ Thirteen cases whose answers a script decides: 11 passed on Halogen, 8 on Kyojin
   with the 11th term instead of the 10th.
 
 With two packs of different precision, that split — identical on most, divergent on
-arithmetic — is consistent with quantization loss; it is a hypothesis from one run, not a
-measurement of the cause, and it is more informative than a single "quality score".
+arithmetic — is consistent with quantization loss, though one run cannot separate cause from
+correlation; it is more informative than a single "quality score".
 
 ## Container experience
 
@@ -166,8 +168,9 @@ The parts a user meets before any number matters:
   instead of 43 s.
 - **Many short turns with a repeated prefix** → either; both make reuse nearly free, and
   Halogen's is faster in absolute terms but neither is the bottleneck.
-- **Four agents at once** → Halogen, on latency: the fourth request sees its first token in
-  11.6 s against 23.0 s. Throughput at that point differs by only 34 %.
+- **Four agents at once** → Halogen, on latency: the median request sees its first token in
+  11.6 s against 23.0 s, and the 95th percentile (the maximum at four requests) is 19.1 s
+  against 23.0 s. Output throughput at that point differs by only 34 %.
 - **Decode speed in isolation** → neither, on this evidence.
 - **A single-purpose server that also serves GLM and MiMo, with the option of an EXL3 pack
   and an uncensored mode** → Kyojin. That is not a speed argument, and this comparison does

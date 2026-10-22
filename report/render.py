@@ -41,7 +41,7 @@ LABEL = {
     "tool_call_has_arguments": "Tool call carries arguments",
     "vision_ok": "Image input understood",
     "thinking_tokens": "Thinking tokens at xhigh",
-    "aggregate_decode_tps": "Aggregate decode, all requests",
+    "aggregate_decode_tps": "Output throughput, all requests",
     "per_request_decode_tps": "Decode per request (median)",
     "ttft_p50_s": "First token, median across requests",
     "ttft_p95_s": "First token, 95th percentile",
@@ -314,9 +314,9 @@ def variance_table(summary: dict) -> str:
     return ('<h2>Variance</h2>'
             '<p class="sub">The same configuration measured three times in one start, for '
             'the numbers the verdict leans on. The headline table above is the original run; '
-            "this is how far a repetition of it travels. These were measured in a separate "
-            "start, so their medians sit a little away from the headline column; the table is "
-            "the spread within a start, not absolute agreement between sessions. Decode rows are the original "
+            "this is how far a repetition of it travels. The context rows were measured in a "
+            "separate start, so their medians sit a little away from the headline column; the "
+            "table is the spread within a start, not absolute agreement between sessions. Decode rows are the original "
             "run's three repetitions per prompt class, the same data as Repetitions above; "
             "the context rows were re-measured.</p>"
             f'{notes}'
@@ -461,7 +461,7 @@ def build_charts(measurements: list[dict]) -> str:
                           for m in measurements if m["metric"] == "per_request_decode_tps" and m["condition"] == c}}
               for c in ns]
     if conc:
-        chunks.append(bar_chart(conc, y_label="tok/s", title="Aggregate decode with N requests in flight"))
+        chunks.append(bar_chart(conc, y_label="tok/s", title="Output throughput with N requests in flight"))
     if conc_p:
         chunks.append(bar_chart(conc_p, y_label="tok/s", title="Decode per request (median) at N requests in flight"))
 
@@ -532,7 +532,8 @@ def copy_artifacts(repo: Path, out: Path) -> list[dict]:
                           "raw_sha256": raw_hash,
                           "meta": {k: meta_doc.get(k) for k in
                                    ("completion_tokens", "finish_reason", "truncated",
-                                    "looks_complete_html", "wall_s") if k in meta_doc}})
+                                    "looks_complete_html", "wall_s", "tool_calls",
+                                    "turns") if k in meta_doc}})
     return found
 
 
@@ -547,6 +548,8 @@ def artifact_section(artifacts: list[dict]) -> str:
             bits.append(f'{meta["completion_tokens"]:,} tokens')
         if meta.get("wall_s"):
             bits.append(f'{meta["wall_s"]}s')
+        if isinstance(meta.get("tool_calls"), int) and meta["tool_calls"]:
+            bits.append(f'{meta["tool_calls"]} tool calls')
         if meta.get("finish_reason"):
             bits.append(f'finish: {meta["finish_reason"]}')
         if meta.get("truncated") is not None:
@@ -758,7 +761,9 @@ Kyojin <code>{escape(digest_short(digest.get("kyojin")))}</code> &middot;
 {abort_band(m)}
 {cell_table(m)}
 <p class="sub">Tok/s for prefill and decode; seconds for time to first token and startup.
-How often each value was measured is in Repetitions.</p>
+How often each value was measured is in Repetitions. Conditions name the requested prompt
+size; the tokenizer produced 30.8K–31.2K (~32K), 122K–125K (~128K) and 250K–256K (~262K)
+tokens, because the two engines tokenize the same text differently.</p>
 {note_html}
 {spread_table(m)}
 {variance_table(summary)}
